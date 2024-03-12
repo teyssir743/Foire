@@ -1,0 +1,55 @@
+.event-form {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  background-color: #F5F5F5;
+}
+
+.event-form label {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-top: 0;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.event-form input[type="text"],
+.event-form input[type="date"] {
+  width: 80%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  background-color: #fff;
+  color: #333;
+  font-size: 1.2rem;
+}
+
+.event-form button[type="submit"] {
+  background-color: #333;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.event-form button[type="submit"]:hover {
+  background-color: #333;
+}
+
+.create-event-title {
+  color: #333;
+  font-size: 2rem;
+}
+
+.fa-calendar {
+  color: #333 !important;
+}
+
+.date-input-container i {
+  color: #333;
+}
