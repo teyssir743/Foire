@@ -1,0 +1,53 @@
+.update-foire-container {
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .update-foire-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .update-foire-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .update-foire-form-group {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .update-foire-form-label {
+    font-weight: bold;
+  }
+  
+  .update-foire-form-input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .update-foire-form-textarea {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .update-foire-form-button {
+    padding: 10px;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .update-foire-form-button:hover {
+    background-color: #218838;
+  }
+  

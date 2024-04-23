@@ -1,0 +1,53 @@
+/* Calendar.css */
+/* Styles pour le conteneur du calendrier */
+.calendar-container {
+    width: 150%;
+    margin: auto;
+    margin-left: 130%; /* Ajoute une marge à gauche pour espacer le calendrier */
+margin-top: 100%;  
+}
+  
+  /* Styles pour le calendrier */
+  .calendar {
+    width: 100%;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.calendar-header h2 {
+  font-size: 20px;
+}
+
+.calendar-body table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.calendar-body th, .calendar-body td {
+  padding: 10px;
+  text-align: center;
+}
+
+.calendar-body .current-month {
+  cursor: pointer;
+}
+
+.calendar-body .current-month span {
+  display: block;
+  font-size: 14px;
+}
+
+.calendar-body .selected-marker {
+  color: #007bff;
+}

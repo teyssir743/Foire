@@ -1,0 +1,26 @@
+.delete-foire-container {
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .delete-foire-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .delete-foire-button {
+    padding: 10px;
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .delete-foire-button:hover {
+    background-color: #bd2130;
+  }
+  

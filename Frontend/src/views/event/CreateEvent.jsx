@@ -17,14 +17,11 @@ function Events() {
       .then (()=>{toast.success("event ajouter avec sucess !")
     }).catch(()=>{toast.error('quelque chose va pas correctement ! ')})
     }
-   
- 
-
 
   return (
     <>
     {/*formulaire de event*/}
-    <div className='event-form '>
+    <div className='event-form '> 
       <ToastContainer/>
 
       <h1 className="create-event-title" >create event</h1>
@@ -55,9 +52,6 @@ function Events() {
 
        <button  onClick={createEvent}type="submit">Enregistrer</button>
     </div>
-
-    
-
 
     </>
 
