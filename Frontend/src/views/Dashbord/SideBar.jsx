@@ -24,6 +24,10 @@ import PropTypes from 'prop-types';
 
 
 
+
+
+
+
 const drawerWidth = 240;
 
 SideBar.propTypes = {
@@ -87,6 +91,15 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 function SideBar ({open , handleDrawerClose}){
   // Utilisation du hook useTheme pour accéder au thème actuel
   const theme = useTheme();
+
+
+
+
+
+
+
+
+
    
   // Rendu du composant SideBar
   return (
@@ -120,7 +133,7 @@ function SideBar ({open , handleDrawerClose}){
         </ListItemButton>
 
         {/* Élément de liste pour les utilisateurs */}
-        <ListItemButton active="true">
+        <ListItemButton active="true" >
           <ListItemIcon>
             <PeopleIcon />
           </ListItemIcon>
@@ -128,7 +141,7 @@ function SideBar ({open , handleDrawerClose}){
         </ListItemButton>
 
         {/* Élément de liste pour les événements */}
-        <ListItemButton active="true">
+        <ListItemButton active="true"   >
           <ListItemIcon>
             <EventIcon />
           </ListItemIcon>
@@ -216,6 +229,14 @@ function SideBar ({open , handleDrawerClose}){
           <ListItemText primary="Aide" />
         </ListItemButton>
       </List>
+
+
+
+
+
+
+     
+     
       
     </StyledDrawer>
   );

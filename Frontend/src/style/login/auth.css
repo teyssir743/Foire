@@ -1,68 +1,79 @@
+/* auth.css */
+
 .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-}
-
-.form {
-    width: 300px;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #f9f9f9;
-}
-
-.form label {
-    margin-bottom: 10px;
-}
-
-.form input[type="email"],
-.form input[type="password"] {
-    width: 95%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-}
-
-
- .form  h2 {
-        color: #040303; /* Couleur du texte */
-        font-size: 24px; /* Taille de la police */
-        margin-bottom: 20px; /* Marge en bas */
-        text-align: center; /* Alignement du texte */
-        /* Autres propriétés CSS si nécessaire */
-    }
-    
-
-
-.form button[type="submit"] {
-    width: 100%;
-    padding: 10px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.form button[type="submit"]:hover {
-    background-color: #0056b3;
-}
-
-.error-message {
-    color: red;
-    margin-top: 10px;
-    font-size: 14px;
-}
-
-.form label {
-    display: block; /* Afficher chaque label sur une nouvelle ligne */
-    margin-bottom: 5px; /* Ajouter un espace en bas de chaque label */
-    font-weight: bold; /* Mettre en gras le texte des labels */
-    color: #333; /* Couleur du texte */
-  }
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100vh;
+  padding: 0 20px; /* Ajoute un peu d'espace sur les côtés */
   
+}
+
+
+
+  
+
+
+/*.container-register {
+  width: 100%;
+  max-width: 600px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+*/
+
+.welcome-section {
+  text-align: center;
+  margin-bottom: 20px;
+  background-color: #ffa7a6;
+  margin-top: 80px;
+  width: 400%;
+}
+
+
+.form-section {
+  width: 100%;
+  max-width: 400px;
+  margin-left: 20px;
+}
+
+.formulaire-register {
+  display: flex;
+  flex-direction: column;
+  margin-left: 80px;
+}
+
+
+
+.formulaire-register input {
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.formulaire-register button {
+  padding: 10px 20px;
+  background-color: #826bc1;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.formulaire-register button:hover {
+  background-color: #826bc1;
+}
+
+
+.form-section.image-register {
+  margin-top: 20px;
+ width: 10%;
+  border-radius: 8px;
+}

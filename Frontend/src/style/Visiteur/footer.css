@@ -1,0 +1,70 @@
+.container-footer{
+
+  border: 1px solid #2a253f; /* Ajoute une bordure de 1 pixel solide gris autour du footer */
+  padding: 20px ; /* Ajoute un espace à l'intérieur du cadre */
+  margin-left: 5px;
+  margin-bottom: 10px;
+}
+    footer {
+       
+        color: #2a253f; /* Couleur du texte */
+        width:100%; /* Occuper toute la largeur */
+        
+        
+      }
+      
+  
+  footer > div {
+    display: flex; /* Utiliser flexbox pour aligner les éléments horizontalement */
+    justify-content: space-between; /* Espacer les éléments horizontalement */
+    flex-wrap: wrap; /* Permettre le retour à la ligne des éléments */
+  }
+  
+  footer > div > div {
+    flex: 0 1 25%; /* Occuper 25% de la largeur et ne pas réduire en taille */
+  }
+  
+  footer h2 {
+    text-transform: uppercase; /* Convertir le texte en majuscules */
+  }
+  
+  footer ul {
+    list-style: none; /* Supprimer les puces */
+    padding: 0; /* Supprimer le remplissage */
+  }
+  
+  footer li:hover a {
+    text-decoration: underline; /* ou tout autre style de surbrillance souhaité */
+  }
+  
+
+  
+  footer .social-icons {
+    display: flex; /* Afficher les icônes horizontalement */
+  }
+  
+  footer .social-icons a {
+    margin-right: 180px; /* Espacement entre les icônes */
+    color: #2a253f; /* Couleur du texte des icônes */
+    text-decoration: none; /* Supprimer le soulignement des liens */
+    display: flex;
+    align-items: center;
+  }
+  
+  
+  footer .social-icons svg {
+    width: 120px; /* Taille des icônes */
+    height: 24px;
+    margin-right: 5px;
+    fill: #2a253f /* Couleur de remplissage des icônes */
+  }
+
+  .social-icons {
+    display: flex; /* Afficher les divs en ligne */
+    margin-right: 10px; /* Espacement entre les icônes */
+  }
+  
+  
+  footer .social-icons a:hover {
+    color: #2a253f;
+  }

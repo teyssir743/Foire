@@ -1,0 +1,142 @@
+.navbar-container {
+    background-color: transparent;
+    padding: 10px 20px;
+    width: 100%; /* Occupe toute la largeur disponible */
+
+    background-color: #ffffff; /* Couleur de fond */
+    border-bottom: 1px solid #e2e8f0; /* Bordure inférieure */
+    position: fixed; /* Position fixe pour rester en haut */
+    top: 0; /* Aligné en haut */
+    left: 0; /* Aligné à gauche */
+    z-index: 1000; /* Z-index pour s'assurer qu'il est au-dessus du contenu */
+    padding-top: 0%;
+
+
+}
+
+
+
+
+.navbar-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.5); /* Couleur d'arrière-plan transparente */
+    border-radius: 8px; /* Ajoutez une bordure arrondie si nécessaire */
+    padding: 10px;
+    height: 80px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* Ajoutez d'autres styles au besoin */
+.logo-img {
+    width: 180px; /* Largeur souhaitée */
+    height: auto; /* Hauteur automatique pour maintenir les proportions */
+    margin-right: 0%;
+    margin-top: 80px;
+    padding:20px 20px;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.navbar-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* Autres styles pour la barre de navigation */
+}
+
+/* Autres styles pour le logo, les liens, etc. */
+/* Style pour les liens de la barre de navigation */
+.navbar-section a {
+    color: #333; /* Couleur du texte */
+    text-decoration: none; /* Supprime les soulignements par défaut */
+    margin-right: 10px; /* Espacement entre les liens */
+    font-size: 16px; /* Taille de la police */
+    font-weight: 500; /* Gras */
+    transition: color 0.3s ease; /* Transition de couleur fluide */
+}
+
+/* Style pour les liens au survol */
+.navbar-section a:hover {
+    color: #007bff; /* Couleur du texte au survol */
+}
+
+
+
+
+
+
+
+
+
+
+
+/* Style pour le bouton de connexion */
+.connect-button {
+    background-color:#62c1d2; /* Couleur de fond */
+    color: #ffffff; /* Couleur du texte */
+    padding: 8px 16px; /* Rembourrage intérieur */
+    border: none; /* Supprimer la bordure */
+    border-radius: 4px; /* Arrondi des coins */
+    cursor: pointer; /* Curseur au survol */
+    transition: background-color 0.3s ease; /* Animation au survol */
+    margin-left: 8px;
+  
+}
+
+.connect-button:hover {
+    background-color: #357ae8; /* Couleur de fond au survol */
+}
+
+
+
+
+
+
+
+
+
+
+  
+/* Style pour les liens */
+.navbar-link {
+    color: black;
+    text-decoration: none;
+    margin-right: 20px; /* Espacement entre les liens */
+}
+/* Style pour les liens survolés */
+.navbar-link:hover {
+    color: #4a90e2 /* Couleur du lien survolé */
+}
+/* Style pour les liens cliqués */
+.navbar-link.clicked {
+    color: #cd5b15!important; /* Couleur du lien cliqué */
+}
+/* Ajuster l'espace entre les liens de la barre de navigation */
+.navbar-link:not(:last-child) {
+    margin-right: 50px; /* Ajouter un espace de 10px entre chaque lien */
+}
+

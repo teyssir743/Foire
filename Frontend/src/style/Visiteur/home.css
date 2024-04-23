@@ -1,0 +1,112 @@
+
+.container {
+    display: flex; /* Utiliser flexbox pour aligner les éléments horizontalement */
+    justify-content: center; /* Centrer les éléments horizontalement */
+    align-items: center; /* Centrer les éléments verticalement */
+}
+
+
+.imageFront {
+    align-items: center;
+    background-image: url('../../image/foire4.jpg');
+    background-size: cover; /* Couvrir toute la zone du conteneur */
+    width:1000px; /* Largeur du conteneur égale à 100% de son parent */
+    height:400px;
+    overflow: hidden;
+   
+    
+}
+
+.description {
+    
+    font-size: 18px; /* Augmenter la taille de la police */
+    color: #2a253f; /* Couleur du texte */
+    text-align: center;
+     margin-top: 30px;
+    width: 30%; /* Utiliser 50% de la largeur pour la description */
+    text-align: center;
+    padding: 0 20px; /* Ajouter un peu de marge intérieure */
+    background-color: transparent;
+   }
+
+
+
+
+    .description h2{
+        font-size: 40px; /* Taille du paragraphe */
+        color:#2a253f /* Couleur du texte */
+
+    }
+
+    
+    .description p{
+        font-size: 20px; /* Taille du paragraphe */
+        color:#2a253f; /* Couleur du texte */
+     
+
+    }
+
+.get-started-button {
+    padding: 10px 20px;
+    background-color: #Ea4157;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+
+
+
+.get-started-button:hover {
+    background-color:#Ea4157;
+}
+
+
+
+/* partie 2*/
+
+.container1 {
+    display: flex; /* Utiliser flexbox pour aligner les éléments horizontalement */
+    justify-content: center; /* Centrer les éléments horizontalement */
+    align-items: center; /* Centrer les éléments verticalement */
+    margin-bottom: 200px;
+}
+
+.image-font-2{
+    align-items: center;
+    background-image: url('../../image/foire5.jpg');
+    background-size: cover; /* Couvrir toute la zone du conteneur */
+    width:1000px; /* Largeur du conteneur égale à 100% de son parent */
+    height:400px;
+    overflow: hidden;
+    margin-right: 20px;}
+
+    
+
+    .contenu h3{
+        font-size: 40px; /* Taille du paragraphe */
+        color:#2a253f /* Couleur du texte */
+
+    }
+
+    .contenu p{
+        font-size: 20px; /* Taille du paragraphe */
+        color:#2a253f; /* Couleur du texte */
+     
+
+    }
+   
+
+    .consulter-button {
+        padding: 10px 20px;
+        background-color: #Faae3e;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        font-size: 30px;
+        cursor: pointer;
+       align-items: center;
+    }
+    

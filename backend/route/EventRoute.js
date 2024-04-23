@@ -2,6 +2,7 @@
 const express = require('express');
 const router = express.Router(); 
 const eventModel=require('../Models/Event');
+const upload = require('../middlewares/multer-config');
 
 
 //liste event
@@ -25,10 +26,9 @@ router.get("/listeEvent/:id",(req,res)=>
  
 
 // create event 
-router.post('/createEvent',async(req,res)=>
+router.post('/createEvent',upload,async(req,res)=>
     {
-   const event = req.body;
-   const newEvent = new eventModel(req.body);
+   const newEvent = new eventModel({...req.body,image:`${req.file.filename}`});
    await newEvent.save().then(()=>{res.json({msg : "event enregistré avec success"});
 }).catch((err)=>{console.log(err);
 });

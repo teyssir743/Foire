@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import  { useState, useEffect } from 'react';
 import axios from 'axios';
 import { formatDate } from '../../util/DateConvertor';
 import { useParams } from 'react-router-dom';
@@ -55,7 +55,7 @@ useEffect(() => {
   return (
     <div className="update-event-container">
       <h1 className="update-event-title">Modifier l'événement</h1>
-      <h5>{id}</h5>
+      
       <form className="update-event-form">
 
         <div className="update-event-form-group">

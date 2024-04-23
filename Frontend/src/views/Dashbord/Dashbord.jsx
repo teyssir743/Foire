@@ -6,6 +6,9 @@ import { createTheme } from '@mui/material/styles'; // Importation de la fonctio
 import { getDesignTokens } from '../../theme/Theme'; // Importation de la fonction getDesignTokens depuis un fichier de thème
 
 
+
+import ContenuDashbord from './ContenuDashbord';
+
 function Dashboard() {
   // Déclaration des états open et mode à l'aide de useState
   const [open, setOpen] = useState(false);
@@ -37,7 +40,13 @@ function Dashboard() {
 
         {/* Affichage du composant SideBar avec les props open, handleDrawerClose et setMode */}
         <SideBar open={open} handleDrawerClose={handleDrawerClose} setMode={setMode} />
+
+
       </ThemeProvider>
+
+      <ContenuDashbord/>
+
+
     </>
   );
 }

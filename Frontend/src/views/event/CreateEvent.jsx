@@ -1,66 +1,82 @@
-import React from 'react'
-import { toast , ToastContainer} from 'react-toastify';
-
-import { useState , useEffect} from 'react'
-import axios from 'axios'
+import  { useState } from 'react';
+import axios from 'axios';
+import { toast, ToastContainer } from 'react-toastify';
 import "../../style/evenement/CreateEvent.css";
 
-
-
 function Events() {
+  const [event, setEvent] = useState({
+    titre: '',
+    date_debut: '',
+    date_fin: '',
+    description: '',
+    image: null // State pour l'image sélectionnée
+  });
 
-     
-    const [event , setEvent]= useState(null)
-    const createEvent =()=>{
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setEvent({ ...event, [name]: value });
+  };
+
+  const handleImageChange = (e) => {
+    setEvent({ ...event, image: e.target.files[0] }); // Stocker le fichier image sélectionné dans le state
+  };
+
+  const createEvent = () => {
+    const formData = new FormData();
+    formData.append('titre', event.titre);
+    formData.append('date_debut', event.date_debut);
+    formData.append('date_fin', event.date_fin);
+    formData.append('description', event.description);
+    formData.append('image', event.image); // Ajouter l'image au formData
+
     console.log(event)
-      axios.post("http://localhost:5000/api/event/createEvent" , event)
-      .then (()=>{toast.success("event ajouter avec sucess !")
-    }).catch(()=>{toast.error('quelque chose va pas correctement ! ')})
-    }
-   
+    axios.post("http://localhost:5000/api/event/createEvent" , event , { headers: {
+      'Content-Type': 'multipart/form-data',
+  },})
+    .then (()=>{toast.success("event ajouter avec sucess !")
+  }).catch(()=>{toast.error('quelque chose va pas correctement ! ')})
+  }
  
 
 
   return (
     <>
-    {/*formulaire de event*/}
-    <div className='event-form '>
-      <ToastContainer/>
+      {/* formulaire de event */}
+      <div className='event-form'>
+        <ToastContainer />
 
-      <h1 className="create-event-title" >create event</h1>
+        <h1 className="create-event-title">Créer un événement</h1>
 
-        <label>Titre:</label>
-        <br/>
-        <input type="text" name="" id="" onChange={e =>setEvent({...event,titre:e.target.value})} />
-        <br/>
+        <label className='titre'>Titre:</label>
+        <input type="text" name="titre" value={event.titre} onChange={handleInputChange} />
+        <br />
 
         <label>Date_debut:</label>
         <div className="date-input-container">
-        <i className="fa fa-calendar" aria-hidden="true" />
-        <input className="event-form-input date-input" type="Date" name="" id="" onChange={e =>setEvent({...event,date_debut:e.target.value})} />
+          <i className="fa fa-calendar" aria-hidden="true" />
+          <input className="event-form-input date-input" type="Date" name="date_debut" value={event.date_debut} onChange={handleInputChange} />
         </div>
-        <br/>
-    
+      
+
         <label>Date_fin:</label>
         <div className="date-input-container">
-        <i className="fa fa-calendar" aria-hidden="true" />
-        <input className="event-form-input date-input" type="Date" name="" id=""  onChange={e =>setEvent({...event,date_fin:e.target.value})}/>
-       
-        </div> <br/>
-       
+          <i className="fa fa-calendar" aria-hidden="true" />
+          <input className="event-form-input date-input" type="Date" name="date_fin" value={event.date_fin} onChange={handleInputChange} />
+        </div> 
 
-        <label>description:</label>
-        <input type="text" name="" id=""   onChange={e =>setEvent({...event,description:e.target.value})}  />
-        <br/>
+        <label>Description:</label>
+        <input type="text" name="description" value={event.description} onChange={handleInputChange} />
+        <br />
 
-       <button  onClick={createEvent}type="submit">Enregistrer</button>
-    </div>
+        {/* Champ de téléchargement d'image */}
+        <label>Image:</label>
+        <input type="file" accept="image/*" onChange={handleImageChange} />
+        <br />
 
-    
-
-
+        <button className="button-event" onClick={createEvent} type="button">Enregistrer</button>
+      </div>
     </>
+  );
+}
 
- )}
-
-export default Events
+export default Events;

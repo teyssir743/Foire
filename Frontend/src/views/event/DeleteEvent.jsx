@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import  { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { formatDate } from '../../util/DateConvertor';
@@ -34,9 +34,9 @@ function DeleteEvent() {
 
   return (
     <div className="delete-event-container">
-      <h1 className="delete-event-title">Supprimer l'événement</h1>
+      <h1 className="delete-event-title">Supprimer événement</h1>
       <p className="delete-event-description">
-        Êtes-vous sûr de vouloir supprimer l'événement suivant ?
+        Êtes-vous sûr de vouloir supprimer événement suivant ?
       </p>
       <ul className="delete-event-details">
         <li>Titre: {event.titre}</li>

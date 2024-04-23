@@ -1,60 +1,109 @@
-.container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-}
 
-.form {
-    width: 300px;
+
+  .form-container {
+    width: 400px;
     padding: 20px;
-    border: 1px solid #ccc;
+  
     border-radius: 5px;
-    background-color: #f9f9f9;
-}
-
-.form label {
-    margin-bottom: 10px;
-}
-
-.form input[type="email"],
-.form input[type="password"] {
-    width: 95%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-}
+    margin-right: 370px;
+    margin-left: 80px;
+    margin-top: 180px;
+    position: absolute;
+    right: 0; /* Modification : aligner à droite */
+    top: 0;
+  }
+  
 
 
- .form  h2 {
-        color: #040303; /* Couleur du texte */
-        font-size: 24px; /* Taille de la police */
-        margin-bottom: 20px; /* Marge en bas */
-        text-align: center; /* Alignement du texte */
-        /* Autres propriétés CSS si nécessaire */
-    }
+
+
+
+
+  
+
+
+  .image-container {
+    left: 0; /* Modification : aligner à gauche */
+    top: 0;
+    margin-right: 40%;
+  }
+  
+  .image-container img {
+    max-width: 55%;
+    height: auto;
+    margin-top: 150px;
+    margin-left: 120px;
+   
     
+  }
 
 
-.form button[type="submit"] {
+
+
+
+  .form-container h2 {
+    margin-top: 0;
+    margin-left: 10px;
+    color:#1b2b34;
+}
+
+
+
+.form-container .form input[type="email"],
+.form-container .form input[type="password"] {
     width: 100%;
     padding: 10px;
-    background-color: #007bff;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.form-container .form button {
+    background-color:#f7c706;
     color: #fff;
+    padding: 10px 20px;
     border: none;
-    border-radius: 3px;
+    border-radius: 4px;
     cursor: pointer;
-    transition: background-color 0.3s;
+   width: 100%;
 }
 
-.form button[type="submit"]:hover {
-    background-color: #0056b3;
-}
 
-.error-message {
+  
+
+
+.form-container .error-message {
     color: red;
     margin-top: 10px;
     font-size: 14px;
+}
+
+.form-container .form {
+    width: 400px;
+    height: 300px;
+    margin-right: 120px;
+}
+
+
+.login-lien a {
+  color: #0056b3; /* Couleur du lien */
+  text-decoration: none; /* Supprimer la soulignement par défaut */
+  font-size: 16px; /* Taille de la police */
+  font-weight: bold; /* Gras */
+  margin-left: 120px;
+}
+
+.login-lien a:hover {
+  text-decoration: underline; /* Souligner au survol */
+  color: #004080; /* Changement de couleur au survol */
+}
+
+.login-lien p {
+  color: #2a253f; /* Couleur du lien */
+  text-decoration: none; /* Supprimer la soulignement par défaut */
+  font-size: 10px; /* Taille de la police */
+  font-weight: bold; /* Gras */
+  margin-left: 150px;
+  margin-top: 50px;
 }

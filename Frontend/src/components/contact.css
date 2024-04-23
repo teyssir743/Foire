@@ -1,0 +1,33 @@
+.footer {
+    background-color: black;
+    color: white;
+    padding: 20px 0;
+    border-top: 2px solid black; /* Ajoute une bordure noire en haut */
+    border-bottom: 2px solid black; /* Ajoute une bordure noire en bas */
+  }
+  
+  .footer-container {
+    max-width: 960px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .contact-info,
+  .social-links {
+    flex-basis: 45%;
+  }
+  
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+  a {
+    color: white;
+    text-decoration: none;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }  

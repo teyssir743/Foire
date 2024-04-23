@@ -32,7 +32,8 @@ const standModel = new mongoose.Schema({
     },
     dateInstallation: Date,
     dateDemontage: Date,
-    commentaires: String
+    commentaires: String,
+    image : String
 });
 
 // Création du modèle Stand à partir du schéma

@@ -1,11 +1,23 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { formatDate } from '../../util/DateConvertor';
+import { toast, ToastContainer } from 'react-toastify';
 
 function ListeUsers() {
   const [users, setUsers] = useState([]);
   const navigate = useNavigate();
+
+  // Fonction pour formater la date au format DD/MM/YYYY
+  const formatDate = (dateString) => {
+    if (!dateString) return 'N/A'; // Si la date est manquante, retourner 'N/A'
+  
+    const date = new Date(dateString);
+    const day = String(date.getDate()).padStart(2, '0'); // Jour avec un zéro devant s'il est inférieur à 10
+    const month = String(date.getMonth() + 1).padStart(2, '0'); // Mois avec un zéro devant s'il est inférieur à 10
+    const year = date.getFullYear();
+  
+    return `${day}/${month}/${year}`; // Format DD/MM/YYYY
+  };
 
   useEffect(() => {
     axios.get("http://localhost:5000/api/user/listeUser")
@@ -20,9 +32,9 @@ function ListeUsers() {
   const handleDelete = id => {
     axios.delete(`http://localhost:5000/api/user/deleteUser/${id}`)
       .then(() => {
-        // Gérer la suppression de l'utilisateur ici
         console.log('Utilisateur supprimé avec succès');
-        toast.warn("stand supprimer  avec succes ") 
+        toast.warn("Utilisateur supprimé avec succès");
+        setUsers(users.filter(user => user._id !== id));
       })
       .catch(error => {
         console.error("Erreur lors de la suppression de l'utilisateur :", error);
@@ -31,30 +43,34 @@ function ListeUsers() {
 
   return (
     <div>
+      <ToastContainer />
       <h1>ListeUsers</h1>
       {users.length > 0 ? (
-        <ul>
-          {users.map(user => (
-            <li key={user._id}>
-              <div>
-                <div>
-                  <strong>username:</strong> {user.username}
-                </div>
-                <div>
-                  <strong>lastname:</strong> {user.lastname}
-                </div>
-                <div>
-                  <strong>dateNaissance:</strong> {formatDate(user.dateNaissance)}
-                </div>
-                <div>
-                  <strong>email:</strong> {user.email}
-                </div>
-                <button className="button" onClick={() => navigate(`/updateUser/${user._id}`)}>Update</button>
-                <button className="button" onClick={() => handleDelete(user._id)}>Delete</button>
-              </div>
-            </li>
-          ))}
-        </ul>
+        <table>
+          <thead>
+            <tr>
+              <th>Username</th>
+              <th>Lastname</th>
+              <th>Date de Naissance</th>
+              <th>Email</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {users.map(user => (
+              <tr key={user._id}>
+                <td>{user.username || 'N/A'}</td>
+                <td>{user.lastname || 'N/A'}</td>
+                <td>{user.dateNaissance ? formatDate(user.dateNaissance) : 'N/A'}</td>
+                <td>{user.email || 'N/A'}</td>
+                <td>
+                  <button className="button" onClick={() => navigate(`/updateUser/${user._id}`)}>Update</button>
+                  <button className="button" onClick={() => handleDelete(user._id)}>Delete</button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       ) : (
         <h1>Le tableau est vide</h1>
       )}

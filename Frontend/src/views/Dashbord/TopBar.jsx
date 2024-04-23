@@ -153,6 +153,7 @@ const toggleMode = () => {
         {/* Espacement flexible pour pousser les éléments à droite */}
         <Box flexGrow={1}></Box>
 
+       
         <IconButton
           color="inherit"
           aria-label="toggle mode"
@@ -163,6 +164,8 @@ const toggleMode = () => {
            {mode === 'light' ? <Brightness4OutlinedIcon /> : <Brightness7OutlinedIcon />}
         
         </IconButton>
+
+
 
         {/* Stack d'icônes pour les actions de l'utilisateur horizontale  */}
         <Stack direction="row">

@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import  { useState } from 'react';
 import axios from 'axios';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import'../../style/login/login.css';
+import loginImage from '../../image/login.jpg';
+import TopBarHome from '../visiteur/TopBarHome';
 
 function Login() {
     const [user, setUser] = useState({ email: '', password: '' });
@@ -27,23 +29,54 @@ function Login() {
   };
   
 
+
+
     return (
-        <div className="container">
+        <div>
+            <TopBarHome/>
+        <div className='container'>
+
+            <div className="flex-container">
+                
+            <div className="image-container">
+            <img src={loginImage} alt="Contact" />
+           </div>
+
+
+
+          <div className="form-container">
               <ToastContainer />
           
             <form  className="form" >
-            <h2>Connexion</h2>
-                <label>Email:</label>
-                <input type="email" name="email" value={user.email} onChange={handleChange} />
+
+                <h2>Connexion</h2>
+                
+                <input type="email" name="email" value={user.email} onChange={handleChange} placeholder='email...' />
                 <br />
 
-                <label>Mot de passe:</label>
-                <input type="password" name="password" value={user.password} onChange={handleChange} />
+                
+                <input type="password" name="password" value={user.password} onChange={handleChange} placeholder='mot de passe ...' />
                 <br />
 
                 <button type="submit" onClick={handleSubmit}>Se connecter</button>
+                 <div className='login-lien'>
+                 <p>ou bien </p>
+
+                <a href="/register" >créer un compte </a>
+                </div>
+
             </form>
+
         </div>
+
+        
+          
+           </div>
+
+       
+         
+           </div>
+           </div>
     );
 }
 

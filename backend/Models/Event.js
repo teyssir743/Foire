@@ -5,9 +5,11 @@ const eventModel= mongoose.Schema({
     date_debut: {type:Date , required:true},
     date_fin: {type:Date, required:true},
     description: {type:String , required:true},
-});
+    image:{type: String }
+    
+});  
 
-
+   
 
 
 module.exports = mongoose.model('event',eventModel);

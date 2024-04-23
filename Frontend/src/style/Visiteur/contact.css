@@ -1,0 +1,131 @@
+/* contact.css */
+.contact {
+  border: 1px solid #2a253f;
+ 
+  margin-left: 5px;
+  margin-bottom: 10px;
+}
+
+
+.contact-title  {
+  color:#007bff;
+  font-size: 60px;
+  margin-top: 150px;
+  margin-left: 100px;
+}
+
+.contact-text {
+  color: #2a253f;
+  font-size: 16px;
+  margin-top: -15px;
+  margin-left: 50px;
+
+}
+
+
+
+
+.contact-button {
+  padding: 10px 20px;
+  background-color: #ffc73c;
+  color: #fff;
+  width: 350px;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-left: 100px;
+}
+
+
+
+
+
+
+
+
+
+
+
+.contact-container form input,
+.contact-container form textarea {
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #2a253f;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+
+
+
+.contact-image img {
+  max-width: 50%;
+  height: auto;
+  margin-left: 600px;
+  margin-top: -1000px;
+}
+
+.liste-icone{
+ color: #2a253f;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.contact-container .form-box .envoyer-button {
+  background-color: #f74077; /* Couleur bleue */
+  color: #fff; /* Texte blanc */
+  margin-left: 250px;
+
+  display: block;
+  width: 100%;
+  padding: 10px;
+  
+}
+
+
+
+
+.contact-container .form-box {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: transparent;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+
+.form-box input[type='text'],
+.form-box input[type='email'],
+.form-box textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box; /* Ensure padding is included in width */
+  margin-left: 250px;
+}
+
+
+
+.contact .contact-container .form-box .image-msg{
+  width: 600px;
+  margin-right: 300px;
+}

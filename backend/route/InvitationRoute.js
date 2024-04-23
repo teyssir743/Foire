@@ -3,15 +3,25 @@ const router = express.Router();
 const Invitation = require('../Models/Invitation');
 
 
-// Route pour créer une nouvelle invitation
-router.post('/createInvitation',async(req,res)=>
-    {
-   const invitation = req.body;
-   const newInvitation = Invitation(req.body);
-   await newInvitation.save().then(()=>{res.json({msg : "invitation enregistré avec success"});
-}).catch((err)=>{console.log(err);
+
+
+
+
+
+// create invitation
+
+router.post('/createInvitation', async (req, res) => {
+  const invitation = new Invitation(req.body);
+  try {
+      const newInvitation= await invitation.save();
+      res.status(201).json(newInvitation);
+
+
+  } catch (err) {
+      res.status(400).json({ message: err.message });
+  }
 });
-});
+
 
 
 // afficher liste d'invitation

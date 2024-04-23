@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Stand = require('../Models/Stand'); 
+const upload = require('../middlewares/multer-config');
 
 
 //tlawej 3al event mel base de donne w tjibou w yaffichi kan fema erreur 
@@ -21,9 +22,13 @@ router.get("/listeStand/:id",(req,res)=>
 });
 
 
+
+
+
+
 // Route pour créer un nouveau stand
-router.post('/createStand', async (req, res) => {
-    const stand = new Stand(req.body);
+router.post('/createStand',upload, async (req, res) => {
+    const stand = new Stand({...req.body,image:`${req.file.filename}`});
     try {
         const newStand = await stand.save();
         res.status(201).json(newStand);

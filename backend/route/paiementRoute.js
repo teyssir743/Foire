@@ -6,6 +6,7 @@ const Paiement = require('../Models/Paiement');
 
 // Route pour créer un nouveau Paiement
 router.post('/createPaiement', async (req, res) => {
+
     const paiement = new Paiement(req.body);
     try {
         const newPaiement= await paiement.save();
@@ -13,6 +14,8 @@ router.post('/createPaiement', async (req, res) => {
     } catch (err) {
         res.status(400).json({ message: err.message });
     }
+
+    
 });
 
 

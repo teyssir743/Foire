@@ -1,0 +1,50 @@
+.event-gallery {
+    padding: 20px;
+    margin-top: 100px;
+  }
+  
+  .event-boxes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .event-box {
+    width: calc(32% - 20px); /* Pour 3 boîtes par ligne */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .event {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  
+  .event img {
+    width: 100%;
+    height: auto;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+  }
+  
+  .event-details {
+    padding: 10px;
+  }
+  
+  .event-details h3 {
+    font-size: 16px;
+    margin-bottom: 5px;
+   
+  }
+  
+  .event-details p {
+    font-size: 14px;
+    margin-bottom: 5px;
+  }
+  
+  .event-gallery h2{
+    margin-left: 600px;
+  }

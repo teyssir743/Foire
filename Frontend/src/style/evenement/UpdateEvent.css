@@ -1,71 +1,56 @@
 .update-event-container {
-    border: 1px solid #333;
-    border-radius: 5px;
-    padding: 1rem;
-    margin-bottom: 1rem;
-    background-color: #fff;
-  }
-  
-  .update-event-title {
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin-top: 0;
-    margin-bottom: 1rem;
-    color: #333;
-  }
-  
-  .update-event-form {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  
-  .update-event-form-group {
-    margin-bottom: 1rem;
-  }
-  
-  .update-event-form-label {
-    display: inline-block;
-    margin-bottom: 0.2rem;
-    color: #333;
-    font-weight: bold;
-  }
-  
-  .update-event-form-input {
-    background-color: #f2f2f2;
-    color: #333;
-    padding: 0.5rem;
-    border: none;
-    border-radius: 5px;
-    width: 100%;
-    box-sizing: border-box;
-  }
-  
-  .update-event-form-textarea {
-    background-color: #f2f2f2;
-    color: #333;
-    padding: 0.5rem;
-    border: none;
-    border-radius: 5px;
-    width: 100%;
-    box-sizing: border-box;
-    height: 10rem;
-    resize: vertical;
-  }
-  
-  .update-event-form-button {
-    background-color: #333;
-    color: #fff;
-    padding: 0.5rem;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1rem;
-    font-weight: bold;
-  }
-  
-  
-  .update-event-form-button:hover {
-    background-color: #4d4d4d;
-    box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.5);
-  }
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-left: 500px;
+ 
+}
+
+.update-event-title {
+  text-align: center;
+  margin-bottom: 40px;
+  text-align: center;
+  color: #2a253f;
+}
+
+.update-event-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.update-event-form-group {
+  margin-bottom: 15px;
+}
+
+.update-event-form-label {
+
+  margin-bottom: 1px;
+  display: block;
+  margin-top: -8px;
+  color: #2a253f;
+}
+
+.update-event-form-input,
+.update-event-form-textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.update-event-form-button {
+  width: 100%;
+  padding: 10px;
+  background-color: #0b8a2f;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.update-event-form-button:hover {
+  background-color: #0b8a2f;
+}
