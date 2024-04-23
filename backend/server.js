@@ -60,7 +60,30 @@ const  FoireRoute = require('./route/FoireRoute');
 app.use('/api/foire',FoireRoute);
 
 
+// Importez votre modèle de stand
+const Stand = require('./Models/Stand');
 
+// Route API pour vérifier la disponibilité des stands à une date donnée
+app.get('/api/stand/availability', async (req, res) => {
+    try {
+        // Récupérer la date à vérifier à partir de la requête (passée en tant que paramètre de requête)
+        const { date } = req.query;
+
+        // Interrogez la base de données pour vérifier si des stands sont réservés à la date donnée
+        const reservedStands = await Stand.find({
+            reservedDates: { $elemMatch: { date } }
+        });
+
+        // Si aucun stand n'est réservé à la date donnée, ils sont disponibles
+        const isAvailable = reservedStands.length === 0;
+
+        // Envoyer la réponse au frontend
+        res.json({ isAvailable });
+    } catch (error) {
+        console.error('Erreur lors de la vérification de la disponibilité des stands :', error);
+        res.status(500).json({ error: 'Erreur interne du serveur' });
+    }
+});
 
 
 //connect to bd

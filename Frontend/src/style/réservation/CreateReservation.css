@@ -1,0 +1,88 @@
+/* CréezReservation.css */
+.reservation-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color:aqua;
+}
+/* Style global */
+form {
+  max-width: 500px; /* Largeur maximale du formulaire */
+  margin: 0 auto; /* Centrez le formulaire horizontalement */
+  padding: 20px; /* Espacement intérieur */
+  border-radius: 8px; /* Bords arrondis */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre */
+  background-color: transparent; /* Retirez la couleur de fond */
+}
+
+/* Conteneur de réservation */
+.reservation-container {
+  background-color: transparent; /* Retirez la couleur de fond */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Style pour l'image de réservation */
+.reservation-image {
+  width: 300px;
+  height: auto;
+  margin-right: 20px;
+  margin-left: 20px;
+}
+
+/* Style pour le conteneur de formulaire */
+.reservation-form {
+  background-color: #f9f9f9; /* Couleur de fond du formulaire */
+  padding: 20px; /* Espacement intérieur */
+  border-radius: 8px; /* Bords arrondis */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre */
+  width: 100%; /* Largeur maximale */
+  max-width: 500px; /* Largeur maximale du formulaire */
+}
+
+/* Styles pour les champs d'entrée */
+input,
+select {
+  width: calc(100% - 20px); /* Largeur des champs d'entrée */
+  padding: 10px; /* Espacement intérieur */
+  margin-bottom: 15px; /* Marge inférieure */
+  border: 1px solid #ccc; /* Bordure */
+  border-radius: 4px; /* Bords arrondis */
+  font-size: 14px; /* Taille de la police */
+}
+
+/* Styles lors de l'interaction de l'utilisateur */
+input:focus,
+select:focus {
+  border-color: #007bff; /* Changement de couleur de la bordure */
+  outline: none; /* Retirer le contour bleu par défaut */
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Ombre lors de la mise au point */
+}
+
+/* Style pour les étiquettes */
+label {
+  display: block; /* Bloquer l'affichage pour les étiquettes */
+  font-weight: bold; /* Texte en gras */
+  margin-bottom: 5px; /* Marge inférieure */
+}
+
+/* Style pour le bouton de soumission */
+button {
+  background-color: #007bff; /* Couleur de fond */
+  color: white; /* Couleur du texte */
+  padding: 10px 20px; /* Espacement intérieur */
+  border: none; /* Pas de bordure */
+  border-radius: 4px; /* Bords arrondis */
+  font-size: 14px; /* Taille de la police */
+  cursor: pointer; /* Curseur pointer */
+  display: block; /* Bloquer l'affichage */
+  margin: 0 auto; /* Centrer le bouton */
+}
+
+/* Changement de style lors du survol */
+button:hover {
+  background-color: #0056b3; /* Changement de couleur de fond */
+}
+
+/* Autres styles pour les champs d'entrée, étiquettes et bouton restent les mêmes */

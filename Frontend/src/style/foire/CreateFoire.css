@@ -1,0 +1,53 @@
+.create-foire-container {
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .create-foire-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .create-foire-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .create-foire-form-group {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .create-foire-form-label {
+    font-weight: bold;
+  }
+  
+  .create-foire-form-input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .create-foire-form-textarea {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .create-foire-form-button {
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .create-foire-form-button:hover {
+    background-color: #0056b3;
+  }
+  
