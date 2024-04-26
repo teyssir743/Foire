@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import "../../style/réservation/CreateReservation.css";
 import axios from 'axios';
 
 // Chemin vers votre image locale ou URL de l'image en ligne
-import  imagePath from '../../images/3896144.jpg';
+
 function CreateReservation() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -46,7 +46,7 @@ function CreateReservation() {
 
   return (
     <div className="reservation-container">
-      <img src={imagePath} alt="Image de réservation" className="reservation-image" />
+      <img src="" alt="Image de réservation" className="reservation-image" />
       <form onSubmit={handleSubmit} className="reservation-form">
         <div>
           <label>Nom:</label>

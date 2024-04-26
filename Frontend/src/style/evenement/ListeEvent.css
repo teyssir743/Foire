@@ -1,7 +1,6 @@
 .event-list-container {
-  margin-left: 200px;
- padding: 1rem;
-  margin-bottom: 1rem;
+ 
+   margin-top: 5px;
   display: flex;
   flex-wrap: wrap; /* Permet aux éléments flexibles de passer à la ligne si nécessaire */
   

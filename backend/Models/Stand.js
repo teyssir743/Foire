@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-
+const { ObjectId } = require('mongodb');
 // Définition du schéma du stand
 const standModel = new mongoose.Schema({
     nom: {
@@ -26,6 +26,7 @@ const standModel = new mongoose.Schema({
     },
     prixLocation: Number,
     service: String,
+    
     dateReservation: {
         type: Date,
         default: Date.now
@@ -33,7 +34,9 @@ const standModel = new mongoose.Schema({
     dateInstallation: Date,
     dateDemontage: Date,
     commentaires: String,
-    image : String
+    image : String ,
+
+    event: [{ type: ObjectId, ref: 'event' }]
 });
 
 // Création du modèle Stand à partir du schéma

@@ -2,18 +2,23 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { toast, ToastContainer } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
-import '../../style/stand/listeStand.css'
+import '../../style/stand/listeStand.css';
+import Dash from '../dash-bord/Dash';
+import { DataGrid, GridToolbar } from '@mui/x-data-grid';
+
 function ListeStand() {
-
-
     const [stands, setStands] = useState([]);
-    const [editedStand, setEditedStand] = useState({});
     const navigate = useNavigate();
 
     useEffect(() => {
         axios.get("http://localhost:5000/api/stand/listeStand")
             .then(res => {
-                setStands(res.data.data);
+                // Ajoutez une propriété 'id' à chaque objet de données
+                const dataWithIds = res.data.data.map((stand, index) => ({
+                    ...stand,
+                    id: index + 1 // Utilisez un ID unique pour chaque objet (vous pouvez utiliser l'ID de la base de données si disponible)
+                }));
+                setStands(dataWithIds);
             })
             .catch(error => {
                 console.error("Erreur lors de la récupération des stands :", error);
@@ -22,15 +27,8 @@ function ListeStand() {
 
     const handleInputChange = (e, standId) => {
         const { name, value } = e.target;
-        setEditedStand(prevState => ({
-            ...prevState,
-            [standId]: {
-                ...prevState[standId],
-                [name]: value
-            }
-        }));
+        // Implémentez votre logique de mise à jour des données ici
     };
-
 
     const handleDelete = (standId) => {
         axios.delete(`http://localhost:5000/api/stand/deleteStand/${standId}`)
@@ -43,92 +41,59 @@ function ListeStand() {
             });
     };
 
-  
-    
-
     return (
-        <div className="stand-list">
-            <ToastContainer />
-            <h1>Liste des stands</h1>
-            <ul className="stand-list">
-                {stands.map((stand) => (
-                    <li key={stand._id}>
-                        <label>
-                            Nom:
-                            <input type="text" name="" defaultValue={stand.nom} />
-                        </label>
-                        <br />
-                        <label>
-                            Emplacement:
-                            <input type="text" name="" defaultValue={stand.emplacement} />
-                        </label>
-                        <br />
-                        <label>
-                            Taille:
-                            <input type="text" name="" defaultValue={stand.taille} />
-                        </label>
-                        <br />
-                        <label>
-                            État:
-                            <select name="" defaultValue={stand.etat} onChange={(e) => handleInputChange(e, stand._id)}>
-                                <option value="réservé">Réservé</option>
-                                <option value="confirmé">Confirmé</option>
-                                <option value="installé">Installé</option>
-                                <option value="démonté">Démonté</option>
-                            </select>
-                        </label>
-                        <br />
-                        <label>
-                Exposant:
-                <input type="text" name="" defaultValue={stand.exposant} />
-            </label>
-            <br/>
-            <label>
-                Description:
-                <textarea name="" type="text" defaultValue={stand.description} />
-            </label>
-            <br/>
-            <label>
-                Prix de location:
-                <input type="number" name="" defaultValue={stand.prixDeLocation} />
-            </label>
-    
-            <br/>
-            <label>
-                Date de réservation:
-                <input type="date" name="" defaultValue={stand.dateReservation}/>
-            </label>
-            <br/>
-            <label>
-                Date d'installation:
-                <input type="date" name="" defaultValue={stand.dateInstallation} />
-            </label>
-            <br/>
-            <label>
-                Date de démontage:
-                <input type="date" name="" defaultValue={stand.dateDemontage}/>
-            </label>
-            <br/>
-            <label>
-                Commentaires:
-                <textarea type="text" name="" defaultValue={stand.commentaires}/>
-            </label>
-            <br/>
-            <label>
-                Services supplémentaires:
-                <textarea type="text"name="" defaultValue={stand.service}/>
-                
-               
-            </label>
-                      <div className="stand-list-buttons" >
-                        <button className="button" onClick={() => navigate(`/updateStand/${stand._id}`)}>Update</button>
-                        <button className="button" onClick={() => handleDelete(stand._id)}>Delete</button>
-                        </div>
-                    
-                    </li>
-                ))}
-            </ul>
-        </div>
+        <Dash>
+            <div className="stand-list">
+                <ToastContainer />
+                <h1>Liste des stands</h1>
+
+                <div style={{ height: 400, width: '100%' }}>
+                    <DataGrid
+                        rows={stands}
+                        columns={[
+                           // { field: 'id', headerName: 'ID', width: 100 }, // Ajout de la colonne ID
+                            { field: 'nom', headerName: 'Nom', width: 150 },
+                            { field: 'emplacement', headerName: 'Emplacement', width: 150 },
+                            { field: 'taille', headerName: 'Taille', width: 150 },
+                            { field: 'etat', headerName: 'État', width: 150 },
+                            { field: 'exposant', headerName: 'Exposant', width: 150 },
+                            { field: 'description', headerName: 'Description', width: 150 },
+                            { field: 'prixDeLocation', headerName: 'Prix de location', width: 150 },
+                            { field: 'dateReservation', headerName: 'Date de réservation', width: 150 },
+                            { field: 'dateInstallation', headerName: 'Date d\'installation', width: 150 },
+                            { field: 'dateDemontage', headerName: 'Date de démontage', width: 150 },
+                            { field: 'commentaires', headerName: 'Commentaires', width: 150 },
+                            { field: 'service', headerName: 'Services supplémentaires', width: 150 },
+                            {
+                                field: 'update',
+                                headerName: 'Update',
+                                width: 100,
+                                renderCell: (params) => (
+                                    <button className="button" onClick={() => navigate(`/updateStand/${params.id}`)}>Update</button>
+                                )
+                            },
+                            {
+                                field: 'delete',
+                                headerName: 'Delete',
+                                width: 100,
+                                renderCell: (params) => (
+                                    <button className="button" onClick={() => handleDelete(params.id)}>Delete</button>
+                                )
+                            },
+                            // Ajoutez d'autres colonnes pour chaque champ de données
+                        ]}
+                        pageSize={5}
+                        rowsPerPageOptions={[5, 10, 20]}
+                        checkboxSelection
+                        pagination
+                        autoHeight
+                        components={{
+                            Toolbar: GridToolbar, // Ajout de GridToolbar
+                        }}
+                    />
+                </div>
+            </div>
+        </Dash>
     );
 }
 

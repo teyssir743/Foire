@@ -29,34 +29,23 @@ function Events() {
     formData.append('description', event.description);
     formData.append('image', event.image); // Ajouter l'image au formData
 
-    console.log(event)
-<<<<<<< HEAD
-    axios.post("http://localhost:5000/api/event/createEvent" , event , { headers: {
-      'Content-Type': 'multipart/form-data',
-  },})
-    .then (()=>{toast.success("event ajouter avec sucess !")
-  }).catch(()=>{toast.error('quelque chose va pas correctement ! ')})
-  }
- 
-
+    axios.post("http://localhost:5000/api/event/createEvent", formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      }
+    })
+    .then (() => {
+      toast.success("Événement ajouté avec succès !");
+    })
+    .catch(() => {
+      toast.error('Quelque chose ne va pas correctement !');
+    });
+  };
 
   return (
     <>
-      {/* formulaire de event */}
       <div className='event-form'>
         <ToastContainer />
-=======
-      axios.post("http://localhost:5000/api/event/createEvent" , event)
-      .then (()=>{toast.success("event ajouter avec sucess !")
-    }).catch(()=>{toast.error('quelque chose va pas correctement ! ')})
-    }
-
-  return (
-    <>
-    {/*formulaire de event*/}
-    <div className='event-form '> 
-      <ToastContainer/>
->>>>>>> 736bac2bf75510471ef1a1174675d3e2079fafe4
 
         <h1 className="create-event-title">Créer un événement</h1>
 
@@ -69,7 +58,6 @@ function Events() {
           <i className="fa fa-calendar" aria-hidden="true" />
           <input className="event-form-input date-input" type="Date" name="date_debut" value={event.date_debut} onChange={handleInputChange} />
         </div>
-      
 
         <label>Date_fin:</label>
         <div className="date-input-container">
@@ -77,27 +65,16 @@ function Events() {
           <input className="event-form-input date-input" type="Date" name="date_fin" value={event.date_fin} onChange={handleInputChange} />
         </div> 
 
-<<<<<<< HEAD
         <label>Description:</label>
         <input type="text" name="description" value={event.description} onChange={handleInputChange} />
         <br />
 
-        {/* Champ de téléchargement d'image */}
         <label>Image:</label>
         <input type="file" accept="image/*" onChange={handleImageChange} />
         <br />
 
         <button className="button-event" onClick={createEvent} type="button">Enregistrer</button>
       </div>
-=======
-        <label>description:</label>
-        <input type="text" name="" id=""   onChange={e =>setEvent({...event,description:e.target.value})}  />
-        <br/>
-
-       <button  onClick={createEvent}type="submit">Enregistrer</button>
-    </div>
-
->>>>>>> 736bac2bf75510471ef1a1174675d3e2079fafe4
     </>
   );
 }

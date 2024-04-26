@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import  { useState, useEffect } from 'react';
 import axios from 'axios';
+import Dash from '../dash-bord/Dash';
 import "../../style/foire/ListeFoire.css";
 function ListeFoire() {
     const [foires, setFoires] = useState([]);
@@ -20,6 +21,7 @@ function ListeFoire() {
     }, []);
 
     return (
+        <Dash>
         <div>
             <h2>Liste des Foires</h2>
             {loading ? (
@@ -42,6 +44,7 @@ function ListeFoire() {
                 </ul>
             )}
         </div>
+        </Dash>
     );
 }
 

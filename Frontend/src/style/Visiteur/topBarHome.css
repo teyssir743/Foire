@@ -103,12 +103,17 @@
     border-radius: 4px; /* Arrondi des coins */
     cursor: pointer; /* Curseur au survol */
     transition: background-color 0.3s ease; /* Animation au survol */
-    margin-left: 8px;
+    margin-left: 4px;
   
 }
 
 .connect-button:hover {
     background-color: #357ae8; /* Couleur de fond au survol */
+}
+
+.navbar-button{
+    display: flex; /* Use flexbox */
+  justify-content: center; /* Center align buttons */
 }
 
 

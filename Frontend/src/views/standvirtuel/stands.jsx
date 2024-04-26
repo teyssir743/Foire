@@ -1,5 +1,5 @@
-import "../../style/standvirtuel/stands.css";
-import React, { useState } from 'react';
+import "../../style/stand/stands.css";
+import  { useState } from 'react';
 import clsx from 'clsx';
 
 const foires = [

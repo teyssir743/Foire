@@ -2,6 +2,8 @@ import { Menu } from 'antd';
 import '../dash-bord/Dash-style/dash.css';
 import { MailOutlined, DollarCircleOutlined, ScheduleFilled, CalendarFilled, ShopFilled, CalendarOutlined, TeamOutlined, ShopOutlined, AppstoreOutlined, UserOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
+import { QuestionCircleOutlined } from '@ant-design/icons';
+
 
 function DashSideMenu() {
   const navigate = useNavigate(); // Importation de la fonction navigate
@@ -13,7 +15,7 @@ function DashSideMenu() {
       }} items={[
         {
           label: "Tableau de bord",
-          key: '/dash',
+          key: '/DashbordPage',
           icon: <AppstoreOutlined />
         },
         {
@@ -23,12 +25,12 @@ function DashSideMenu() {
         },
         {
           label: "Exposant",
-          key: '/exposant',
+          key: '/listeUser',
           icon: <TeamOutlined />
         },
         {
           label: "Foire",
-          key: '/foire',
+          key: '/listeFoire',
           icon: <ShopOutlined />
         },
         {
@@ -38,12 +40,12 @@ function DashSideMenu() {
         },
         {
           label: "Stand",
-          key: '/stand',
+          key: '/ListeStand',
           icon: <ShopFilled />
         },
         {
           label: "Calendrier",
-          key: '/calendrier',
+          key: '/CalendrierDash',
           icon: <CalendarFilled />
         },
         {
@@ -60,6 +62,12 @@ function DashSideMenu() {
           label: "Invitation",
           key: '/invitation',
           icon: <MailOutlined />
+        },
+
+        {
+          label: "FAQ",
+          key: '/faq',
+          icon: <QuestionCircleOutlined />
         },
       ]}>
       </Menu>
