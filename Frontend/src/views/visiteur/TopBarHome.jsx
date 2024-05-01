@@ -64,7 +64,7 @@ const handleCreateAccountClick = () => {
                     <a href="#" className="navbar-link">stand</a>
                     <a href="#" className="navbar-link">vue 360</a>
                     <a href="#" className="navbar-link">Réservation</a>
-                    <a href="#" className="navbar-link">paiement</a>
+                    <a href="/payer" className="navbar-link">paiement</a>
 
                    
         

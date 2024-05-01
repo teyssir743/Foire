@@ -1,0 +1,47 @@
+/* Style pour le bouton de création d'utilisateur */
+.create-user {
+    background-color: #5ad45a; /* Couleur de fond */
+    color: white; /* Couleur du texte */
+    border: none; /* Pas de bordure */
+    padding: 8px 16px; /* Remplissage intérieur */
+    margin-bottom: 20px; /* Marge en bas */
+    cursor: pointer; /* Curseur de la souris */
+    margin-left: 1000px;
+    width: 200px;
+    margin-top: 20px;
+  }
+  
+  .create-user:hover {
+    background-color: #0056b3; /* Couleur de fond au survol */
+  }
+  
+  /* Style pour les boutons d'actions */
+  .update-button{
+    background-color: #bd7ebe; /* Couleur de fond */
+    color: white; /* Couleur du texte */
+    border: none; /* Pas de bordure */
+    padding: 8px 16px; /* Remplissage intérieur */
+    margin-right: 8px; /* Marge à droite */
+    cursor: pointer; /* Curseur de la souris */
+
+  }
+  .delete-button {
+    background-color: #ffb55a; /* Couleur de fond */
+    color: white; /* Couleur du texte */
+    border: none; /* Pas de bordure */
+    padding: 8px 16px; /* Remplissage intérieur */
+    margin-right: 8px; /* Marge à droite */
+    cursor: pointer; /* Curseur de la souris */
+  }
+  
+  .update-button:hover,
+  .delete-button:hover {
+    background-color: #b2e061; /* Couleur de fond au survol */
+  }
+  
+  /* Style pour le tableau */
+  .data-grid-container {
+    height: 400px; /* Hauteur fixe */
+    width: 100%; /* Largeur maximale */
+  }
+  

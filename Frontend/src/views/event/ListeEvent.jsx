@@ -41,8 +41,8 @@ function ListeEvent() {
     <Dash>
       <div className="event-list-container">
         <ToastContainer/>
-        <h1 className="event-list-title">Liste des événements</h1>
-        <button className="button-create-event" onClick={() => navigate(`/createEvent`)}>Créer un événement</button>
+       
+        <button className="button-create" onClick={() => navigate(`/createEvent`)}>Créer un événement</button>
         <div style={{ height: 400, width: '100%' }}>
           <DataGrid
             rows={events}
@@ -58,8 +58,8 @@ function ListeEvent() {
                 width: 200,
                 renderCell: (params) => (
                   <>
-                    <button className="button" onClick={() => navigate(`/updateEvent/${params.id}`)}>Modifier</button>
-                    <button className="button" onClick={() => handleDelete(params.id)}>Supprimer</button>
+                    <button className="buttonUpdate" onClick={() => navigate(`/updateEvent/${params.row._id}`)}>Modifier</button>
+                    <button className="buttonDelete" onClick={() => handleDelete(params.row._id)}>Supprimer</button>
                   </>
                 )
               },

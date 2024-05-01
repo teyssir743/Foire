@@ -11,28 +11,13 @@
 
 
 
-  
-
-
-/*.container-register {
-  width: 100%;
-  max-width: 600px;
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-*/
-
 .welcome-section {
   text-align: center;
   margin-bottom: 20px;
   background-color: #ffa7a6;
-  margin-top: 80px;
-  width: 400%;
+  margin-top: 90px;
+  width: 365%;
+  height: 80px;
 }
 
 
@@ -74,6 +59,21 @@
 
 .form-section.image-register {
   margin-top: 20px;
- width: 10%;
+  width: 10%;
   border-radius: 8px;
+}
+
+.image-register {
+  margin-top: 20px;
+  width: 800px; /* Réglez la largeur de l'image en fonction de vos besoins */
+  border-radius: 8px;
+}
+
+.image-register img {
+  width: 500px;
+  height: auto;
+  border-radius: 8px; /* Ajoutez également la bordure arrondie à l'image elle-même */
+margin-left: 150px;
+margin-top: -450px;
+
 }

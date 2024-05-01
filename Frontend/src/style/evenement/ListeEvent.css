@@ -11,7 +11,7 @@
   font-weight: bold;
   margin-top: 0;
   margin-bottom: 1rem;
-  color: #2a253f;
+  color: #2f81c0;
   display: flex;
 }
 
@@ -55,8 +55,8 @@
   cursor: pointer;
 }
 
-.button {
-  background-color: #0b8a2f;
+.buttonUpdate {
+  background-color:#b2e061;
   border: none;
   color: white;
   padding: 5px 10px;
@@ -67,12 +67,8 @@
   cursor: pointer;
 }
 
-.button:hover {
-  background-color: #0b8a2f;
-}
-
-.button-create-event{
-  background-color: #0b8a2f;
+.buttonDelete {
+  background-color:#bd7ebe;
   border: none;
   color: white;
   padding: 5px 10px;
@@ -81,7 +77,31 @@
   font-size: 16px;
   margin: 4px 2px;
   cursor: pointer;
-  margin-left:400px ;
+}
+
+
+.buttonUpdate:hover {
+  background-color: #8bd3c7;
+}
+
+.buttonDelete:hover {
+  background-color: #8bd3c7;
+}
+
+.button-create:hover {
+  background-color: #8bd3c7;
+}
+.button-create{
+  background-color: #beb9db;
+  border: none;
+  color: white;
+  padding: 5px 10px;
+  text-align: center;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  margin-left:900px ;
   width: 200px;
 
 }

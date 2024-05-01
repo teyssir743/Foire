@@ -4,6 +4,7 @@ import axios from 'axios';
 import { toast, ToastContainer } from 'react-toastify';
 import Dash from '../dash-bord/Dash';
 import { DataGrid, GridToolbar } from '@mui/x-data-grid';
+import '../../style/user/listeUser.css';
 
 function ListeUsers() {
   const [users, setUsers] = useState([]);
@@ -52,13 +53,13 @@ function ListeUsers() {
     <Dash>
       <div>
         <ToastContainer />
-        <h1>ListeUsers</h1>
+        <button className='create-user'>create User</button>
         {users.length > 0 ? (
           <div style={{ height: 400, width: '100%' }}>
             <DataGrid
               rows={users}
               columns={[
-               // { field: 'id', headerName: 'ID', width: 200 },
+                { field: 'id', headerName: 'ID', width: 200 },
                 { field: 'username', headerName: 'Username', width: 200},
                 { field: 'lastname', headerName: 'Lastname', width: 200 },
                 { field: 'dateNaissance', headerName: 'Date de Naissance', width: 200, valueGetter: (params) => formatDate(params.value) },
@@ -69,8 +70,8 @@ function ListeUsers() {
                   width: 200,
                   renderCell: (params) => (
                     <>
-                      <button className="button" onClick={() => navigate(`/updateUser/${params.row.id}`)}>Update</button>
-                      <button className="button" onClick={() => handleDelete(params.row.id)}>Delete</button>
+                      <button className="update-button" onClick={() => navigate(`/updateUser/${params.row._id}`)}>Update</button>
+                      <button className="delete-button" onClick={() => handleDelete(params.row._id)}>Delete</button>
                     </>
                   )
                 },

@@ -82,6 +82,8 @@ import Dash from './views/dash-bord/Dash';
 import DashbordPage from './views/dash-bord/DashbordPage';
 import CalendrierDash from './views/dash-bord/CalendrierDash';
 import Faq from './views/dash-bord/Faq';
+import BarChartDash from './views/dash-bord/BarChartDash';
+import ActivationPage from './views/authentification/ActivationPage';
 
 
 
@@ -106,7 +108,7 @@ function App() {
       {/*compte user*/}
         <Route path='/login' element={<Login/>}/>
         <Route path='/register' element={<Register/>}/>
-
+        <Route path='/confirm/:activationcode' element={<ActivationPage/>}/>
        
         
        {/*calendrier*/}
@@ -120,7 +122,7 @@ function App() {
         <Route path='/DashbordPage' element={ <DashbordPage/>} /> 
         <Route path='/CalendrierDash' element={ <CalendrierDash/>} /> 
         <Route path='/Faq' element={ <Faq/>} /> 
-       
+        <Route path='/BarChartDash' element={ <BarChartDash/>} />
         
 
         {/*event*/}
@@ -166,8 +168,7 @@ function App() {
 
 
           
-       
-       
+      
         {/*reservation*/}
         <Route path='/createReservation' element={<CreateReservation/>}/>
         <Route path='/listeReservation' element={<ListeReservation/>}/>

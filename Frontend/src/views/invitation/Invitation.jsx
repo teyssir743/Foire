@@ -32,14 +32,15 @@ function InvitationForm() {
   return (
     <div>
       <h2>Envoyer des invitations</h2>
-      <label htmlFor="senderName">Votre nom :</label>
+      
       <input
         type="text"
         id="senderName"
         value={senderName}
         onChange={handleSenderNameChange}
+        placeholder='votre nom '
       />
-      <label htmlFor="invitationMessage">Message de l'invitation :</label>
+      
       <textarea
         id="invitationMessage"
         value={invitationMessage}

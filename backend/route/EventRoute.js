@@ -4,6 +4,13 @@ const router = express.Router();
 const eventModel=require('../Models/Event');
 const upload = require('../middlewares/multer-config');
 
+router.get('/listeEvent1', (req, res) => {
+  eventModel.find({}).then((result) => {
+    res.json(result); // Envoyez directement les données sans les envelopper dans un objet
+  }).catch((error) => {
+    res.status(500).json({ error: error.message });
+  });
+});
 
 //liste event
 router.get('/listeEvent',(req,res)=>

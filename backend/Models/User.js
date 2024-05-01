@@ -25,7 +25,20 @@ const userSchema = new mongoose.Schema({
         required: true
 
     },
-    role: { type: String, enum: ['admin', 'client'] }
+   
+    role: { type: String, enum: ['admin', 'client'] },
+    
+    
+    // lorsque on fait un compte om met une valeur par defaut false et envoi un code de verification par email
+    
+     isActive:{
+        type:Boolean,
+        default:false,
+    },
+
+    activationCode:{type: String} 
+
+
 });
 
 

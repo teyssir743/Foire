@@ -22,6 +22,17 @@ router.get('/listeUser',(req,res)=>
     });
        });
 
+      // Route pour récupérer la liste des utilisateurs
+router.get('/listeUser1', (req, res) => {
+  User.find({})
+      .then((result) => {
+          res.json({ data: result });
+      })
+      .catch((error) => {
+          res.status(500).json({ error: error.message });
+      });
+});
+
 //rechercher  by User
 router.get("/listeUser/:id",(req,res)=>
 { User.findById(req.params.id)

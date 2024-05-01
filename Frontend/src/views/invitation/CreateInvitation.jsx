@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import  { useState } from 'react';
 import axios from 'axios';
 import { toast , ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -53,11 +53,7 @@ function CreateInvitation() {
                 <br />
 
                 <label>Statut:</label>
-                <select name="statut" onChange={e =>setInvitation({...invitation,statut:e.target.value})}>
-                    <option value="en attente">En attente</option>
-                    <option value="acceptée">Acceptée</option>
-                    <option value="refusée">Refusée</option>
-                </select>
+               
                 <br />
 
 

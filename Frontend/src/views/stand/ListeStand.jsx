@@ -45,13 +45,14 @@ function ListeStand() {
         <Dash>
             <div className="stand-list">
                 <ToastContainer />
-                <h1>Liste des stands</h1>
+                
+                <button className="buttonCreate" >Create Stand</button>
 
                 <div style={{ height: 400, width: '100%' }}>
                     <DataGrid
                         rows={stands}
                         columns={[
-                           // { field: 'id', headerName: 'ID', width: 100 }, // Ajout de la colonne ID
+                           { field: 'id', headerName: 'ID', width: 100 }, // Ajout de la colonne ID
                             { field: 'nom', headerName: 'Nom', width: 150 },
                             { field: 'emplacement', headerName: 'Emplacement', width: 150 },
                             { field: 'taille', headerName: 'Taille', width: 150 },
@@ -69,15 +70,17 @@ function ListeStand() {
                                 headerName: 'Update',
                                 width: 100,
                                 renderCell: (params) => (
-                                    <button className="button" onClick={() => navigate(`/updateStand/${params.id}`)}>Update</button>
+                                    <button className="button-Update" onClick={() => navigate(`/updateStand/${params.row._id}`)}>Update</button>
                                 )
                             },
+                            
+                            
                             {
                                 field: 'delete',
                                 headerName: 'Delete',
                                 width: 100,
                                 renderCell: (params) => (
-                                    <button className="button" onClick={() => handleDelete(params.id)}>Delete</button>
+                                    <button className="button-Delete" onClick={() => handleDelete(params.row._id)}>Delete</button>
                                 )
                             },
                             // Ajoutez d'autres colonnes pour chaque champ de données

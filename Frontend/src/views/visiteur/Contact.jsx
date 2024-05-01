@@ -88,9 +88,13 @@ const Contact = () => {
     <div>
       <TopBarHome/>
     <div className="contact">
+    <div className="contact-image">
+          <img src={contactImage} alt="Contact" />
+         </div>
         <div className="contact-container">
         <div>
           <h3 className="contact-title">Contact</h3>
+           <br/>
            <div className='contact-text'>
           <p >
             Let us know how we can help !
@@ -118,9 +122,7 @@ const Contact = () => {
             Contactez-nous
           </button>
 
-          <div className="contact-image">
-          <img src={contactImage} alt="Contact" />
-         </div>
+          
         </div>
           <div className="form-box">
             <form style={{ display: showForm ? 'block' : 'none' }} onSubmit={(e) => e.preventDefault()}>

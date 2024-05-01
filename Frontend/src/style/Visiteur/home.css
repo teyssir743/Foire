@@ -52,8 +52,9 @@
     color: #fff;
     border: none;
     border-radius: 5px;
-    font-size: 30px;
+    font-size: 25px;
     cursor: pointer;
+    margin-top: 20px;
 }
 
 
@@ -92,7 +93,7 @@
     }
 
     .contenu p{
-        font-size: 20px; /* Taille du paragraphe */
+        font-size: 19px; /* Taille du paragraphe */
         color:#2a253f; /* Couleur du texte */
      
 
@@ -105,8 +106,9 @@
         color: #fff;
         border: none;
         border-radius: 5px;
-        font-size: 30px;
+        font-size: 25px;
         cursor: pointer;
        align-items: center;
+       margin-top: 20px;
     }
     

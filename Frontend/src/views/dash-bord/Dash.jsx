@@ -21,7 +21,7 @@ function Dash({children}) {
 
         </Space>
 
-        <DashFooter/>
+        
     </div>
   )
 }
