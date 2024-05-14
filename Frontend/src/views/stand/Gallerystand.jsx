@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import "../../style/stand/listeStand.css"; // Importez le fichier de style pour les stands
 import TopBarHome from '../visiteur/TopBarHome';
 
-export default function ListeStand() {
+export default function Gallerystand() {
     const [stands, setStands] = useState([]);
     const [selectedStand, setSelectedStand] = useState(null);
 

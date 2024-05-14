@@ -31,72 +31,45 @@ function CreateStand() {
             <ToastContainer />
             <h1>create Stand</h1>
             <label>
-                Nom:
+                nom:
                 <input type="text" name="" onChange={e =>setStand({...stand,nom:e.target.value})}/>
             </label>
             <br/>
+            
             <label>
-                Emplacement:
+            numero:
+                <input type="number" name=""  onChange={e =>setStand({...stand,numero:e.target.value})}/>
+            </label>
+            <br/>
+            
+            <label>
+            emplacement:
                 <input type="text" name=""  onChange={e =>setStand({...stand,emplacement:e.target.value})}/>
             </label>
             <br/>
             <label>
-                Taille:
+            taille:
                 <input type="text" name=""  onChange={e =>setStand({...stand,taille:e.target.value})}/>
             </label>
             <br/>
             <label>
-                État:
+            etat:
                 <select name="" onChange={e =>setStand({...stand,etat:e.target.value})}>
                     <option value="réservé">Réservé</option>
-                    <option value="confirmé">Confirmé</option>
-                    <option value="installé">Installé</option>
-                    <option value="démonté">Démonté</option>
+                    <option value="disponible">disponible</option>
+           
                 </select>
             </label>
             <br/>
+          
             <label>
-                Exposant:
-                <input type="text" name="" onChange={e =>setStand({...stand,exposant:e.target.value})} />
-            </label>
-            <br/>
-            <label>
-                Description:
-                <textarea name="" type="text" onChange={e =>setStand({...stand,description:e.target.value})} />
-            </label>
-            <br/>
-            <label>
-                Prix de location:
+                prixLocation:
                 <input type="number" name="" onChange={e =>setStand({...stand,prixLocation:e.target.value})} />
             </label>
     
             <br/>
-            <label>
-                Date de réservation:
-                <input type="date" name="" onChange={e =>setStand({...stand,dateReservation:e.target.value})}/>
-            </label>
-            <br/>
-            <label>
-                Date d'installation:
-                <input type="date" name="" onChange={e =>setStand({...stand,dateInstallation:e.target.value})} />
-            </label>
-            <br/>
-            <label>
-                Date de démontage:
-                <input type="date" name="" onChange={e =>setStand({...stand,dateDemontage:e.target.value})}/>
-            </label>
-            <br/>
-            <label>
-                Commentaires:
-                <textarea type="text" name="" onChange={e =>setStand({...stand,commentaires:e.target.value})}/>
-            </label>
-            <br/>
-            <label>
-                Services supplémentaires:
-                <textarea type="text"name="" onChange={e =>setStand({...stand,service:e.target.value})}/>
-                
+        
                
-            </label>
             
 
             <button type="submit" onClick={(e)=>handleCreateStand(e)}>Créer Stand</button>

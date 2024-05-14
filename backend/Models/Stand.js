@@ -6,6 +6,10 @@ const standModel = new mongoose.Schema({
         type: String,
         required: true
     },
+    num: {
+        type: Number,
+        required: true
+    },
     emplacement: {
         type: String,
         required: true
@@ -14,29 +18,16 @@ const standModel = new mongoose.Schema({
         type: String,
         required: true
     },
-    exposant: {
-        type: String,
-        required: true
-    },
-    description: String,
+   
     etat: {
         type: String,
-        enum: ['réservé', 'confirmé', 'installé', 'démonté'],
-        default: 'réservé'
+        enum: ['réservé', 'disponible'],
+        default: ''
     },
-    prixLocation: Number,
-    service: String,
+    prixLocation:{type: Number,} 
     
-    dateReservation: {
-        type: Date,
-        default: Date.now
-    },
-    dateInstallation: Date,
-    dateDemontage: Date,
-    commentaires: String,
-    image : String ,
+    
 
-    event: [{ type: ObjectId, ref: 'event' }]
 });
 
 // Création du modèle Stand à partir du schéma

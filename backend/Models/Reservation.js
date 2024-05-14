@@ -1,7 +1,5 @@
 const mongoose = require('mongoose');
 
-const { ObjectId } = require('mongodb');
-
 const reservationSchema = new mongoose.Schema({
     name: {
         type: String,
@@ -20,10 +18,11 @@ const reservationSchema = new mongoose.Schema({
         type: Date,
         required: true,
     },
-    
-
-  stand:{type: ObjectId, ref: 'stand', required: true }, 
- 
+    selectedStand: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Stand',
+        required: true
+    }
 });
 
 const Reservation = mongoose.model('Reservation', reservationSchema);
