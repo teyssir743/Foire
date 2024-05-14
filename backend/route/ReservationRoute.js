@@ -7,24 +7,21 @@ const router = express.Router();
 
 // Route to create a new Reservation
 router.post('/createReservation', async (req, res) => {
-    const { name, email, phone, date, stand } = req.body;
+    const { name, email, phone, date, selectedStand } = req.body;
   
     try {
-        const standModel = await Stand.findById(stand);
-        console.log(stand);
+        const standModel = await Stand.findById(selectedStand);
 
-        if (!standModel ) {
-            return res.status(404).json({ message: 'Stand  not found' });
+        if (!standModel) {
+            return res.status(404).json({ message: 'Stand not found' });
         }
-
 
         const reservation = new Reservation({
             name,
             email,
             phone,
             date,
-            stand: stand,
-           
+            selectedStand,
         });
 
         const newReservation = await reservation.save();

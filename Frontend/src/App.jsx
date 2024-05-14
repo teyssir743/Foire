@@ -39,7 +39,7 @@ import  EventGallery from './views/event/EventGallery'
 import CreateStand from './views/stand/CreateStand';
 import ListeStand from './views/stand/ListeStand';
 import UpdateStand from './views/stand/UpdateStand';
-
+import Gallerystand  from './views/stand/Gallerystand';
 
 
 import CreateInvitation from'./views/invitation/CreateInvitation';
@@ -53,12 +53,8 @@ import ListeReservation from './views/reservation/ListeReservation';
 import UpdateReservation from './views/reservation/UpdateReservation';
 import DeleteReservation from './views/reservation/DeleteReservation';
 
-
-
-
-
-import PaymentPage from './views/Paiement/PaymentPage';
-import   PaymentListPage from './views/Paiement/ListeDePaiement'
+import  PaymentPage from './views/Paiement/PaymentPage';
+import   PaymentListPage from './views/Paiement/ListeDePaiement';
 
 
 
@@ -139,6 +135,8 @@ function App() {
         <Route path='/createStand' element={ <CreateStand/>}/> 
         <Route path='/listeStand' element={ <ListeStand/>}/>  
         <Route path='/updateStand/:id' element={ <UpdateStand/>}/> 
+        <Route path='/Gallerystand' element={ <Gallerystand/>}/> 
+        
       
 
          {/*user*/}

@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import "../../style/stand/listeStand.css"; // Importez le fichier de style pour les stands
 import TopBarHome from '../visiteur/TopBarHome';
 
-export default function ListeStand() {
+export default function Gallerystand() {
     const [stands, setStands] = useState([]);
     const [selectedStand, setSelectedStand] = useState(null);
 
@@ -49,7 +49,7 @@ export default function ListeStand() {
                     <div className="stand-details-content">
                         <h2>Stand Details</h2>
                         <p><strong>Nom:</strong> {selectedStand.nom}</p>
-                        <p><strong>numero:</strong> {selectedStand.num}</p>
+                        <p><strong>numero:</strong> {selectedStand.nm}</p>
                         <p><strong>Emplacement:</strong> {selectedStand.emplacement}</p>
                         <p><strong>Taille:</strong> {selectedStand.taille}</p>
                         <p><strong>Etat:</strong> {selectedStand.etat}</p>
