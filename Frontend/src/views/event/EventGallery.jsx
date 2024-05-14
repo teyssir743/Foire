@@ -3,6 +3,7 @@ import axios from 'axios';
 import "../../style/evenement/eventGallery.css";
 import TopBarHome from '../visiteur/TopBarHome';
 
+
 function EventGallery() {
   const [events, setEvents] = useState([]);
 
@@ -31,6 +32,8 @@ function EventGallery() {
                 <p>Date de début: {event.date_debut}</p>
                 <p>Date de fin: {event.date_fin}</p>
                 <p>Description: {event.description}</p>
+      
+
               </div>
             </div>
           </div>
