@@ -54,7 +54,7 @@ import UpdateReservation from './views/reservation/UpdateReservation';
 import DeleteReservation from './views/reservation/DeleteReservation';
 
 import  PaymentPage from './views/Paiement/PaymentPage';
-import   PaymentListPage from './views/Paiement/ListeDePaiement'
+import   PaymentListPage from './views/Paiement/ListeDePaiement';
 
 
 

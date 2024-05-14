@@ -49,7 +49,7 @@ export default function ListeStand() {
                     <div className="stand-details-content">
                         <h2>Stand Details</h2>
                         <p><strong>Nom:</strong> {selectedStand.nom}</p>
-                        <p><strong>numero:</strong> {selectedStand.nm}</p>
+                        <p><strong>numero:</strong> {selectedStand.num}</p>
                         <p><strong>Emplacement:</strong> {selectedStand.emplacement}</p>
                         <p><strong>Taille:</strong> {selectedStand.taille}</p>
                         <p><strong>Etat:</strong> {selectedStand.etat}</p>
