@@ -2,6 +2,7 @@ import  { useState } from 'react';
 import axios from 'axios';
 import { toast, ToastContainer } from 'react-toastify';
 import "../../style/evenement/CreateEvent.css";
+import Dash from '../dash-bord/Dash';
 
 function Events() {
   const [event, setEvent] = useState({
@@ -42,40 +43,135 @@ function Events() {
     });
   };
 
+  const styles = {
+    container: {
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+    createEventContainer: {
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      backgroundColor: 'transparent',
+      padding: '20px',
+      border: '2px solid #FF007F',
+      borderRadius: '8px',
+      marginTop: '30px',
+      marginLeft: '350px',
+      width: '80%',
+      maxWidth: '600px',
+    },
+    formSection: {
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      marginTop: '20px',
+      width: '100%',
+    },
+    inputContainer: {
+      marginBottom: '10px',
+      width: '100%',
+    },
+    formInput: {
+      background: 'transparent',
+      border: 'none',
+      borderBottom: '2px solid #FF007F',
+      width: '100%',
+      padding: '8px',
+      color: 'white',
+      marginBottom: '10px',
+      outline: 'none',
+    },
+    formTextarea: {
+      background: 'transparent',
+      border: 'none',
+      borderBottom: '2px solid #FF007F',
+      width: '100%',
+      padding: '8px',
+      color: 'white',
+      marginBottom: '10px',
+      outline: 'none',
+    },
+    formLabel: {
+      marginBottom: '5px',
+      color: 'white',
+    },
+    formButton: {
+      width: '40%',
+      padding: '10px',
+      borderRadius: '4px',
+      backgroundColor: '#FF007F',
+      color: 'white',
+      cursor: 'pointer',
+    },
+  };
+
   return (
-    <>
-      <div className='event-form'>
-        <ToastContainer />
-
-        <h1 className="create-event-title">Créer un événement</h1>
-
-        <label className='titre'>Titre:</label>
-        <input type="text" name="titre" value={event.titre} onChange={handleInputChange} />
-        <br />
-
-        <label>Date_debut:</label>
-        <div className="date-input-container">
-          <i className="fa fa-calendar" aria-hidden="true" />
-          <input className="event-form-input date-input" type="Date" name="date_debut" value={event.date_debut} onChange={handleInputChange} />
+    <Dash>
+      <div style={styles.container}>
+        <div style={styles.createEventContainer}>
+          <h1 className="create-event-title" style={{color:'white'}}>Créer un événement</h1>
+          <ToastContainer />
+          <form style={styles.formSection}>
+            <div style={styles.inputContainer}>
+              <label style={styles.formLabel}>Titre:</label>
+              <input
+                style={styles.formInput}
+                type="text"
+                name="titre"
+                value={event.titre}
+                onChange={handleInputChange}
+              />
+            </div>
+            <div style={styles.inputContainer}>
+              <label style={styles.formLabel}>Date de début:</label>
+              <input
+                style={styles.formInput}
+                type="date"
+                name="date_debut"
+                value={event.date_debut}
+                onChange={handleInputChange}
+              />
+            </div>
+            <div style={styles.inputContainer}>
+              <label style={styles.formLabel}>Date de fin:</label>
+              <input
+                style={styles.formInput}
+                type="date"
+                name="date_fin"
+                value={event.date_fin}
+                onChange={handleInputChange}
+              />
+            </div>
+            <div style={styles.inputContainer}>
+              <label style={styles.formLabel}>Description:</label>
+              <textarea
+                style={styles.formTextarea}
+                value={event.description}
+                name="description"
+                onChange={handleInputChange}
+              ></textarea>
+            </div>
+            <div style={styles.inputContainer}>
+              <label style={styles.formLabel}>Image:</label>
+              <input
+                type="file"
+                accept="image/*"
+                onChange={handleImageChange}
+              />
+            </div>
+            <button
+              style={styles.formButton}
+              onClick={createEvent}
+              type="button"
+            >
+              Enregistrer
+            </button>
+          </form>
         </div>
-
-        <label>Date_fin:</label>
-        <div className="date-input-container">
-          <i className="fa fa-calendar" aria-hidden="true" />
-          <input className="event-form-input date-input" type="Date" name="date_fin" value={event.date_fin} onChange={handleInputChange} />
-        </div> 
-
-        <label>Description:</label>
-        <input type="text" name="description" value={event.description} onChange={handleInputChange} />
-        <br />
-
-        <label>Image:</label>
-        <input type="file" accept="image/*" onChange={handleImageChange} />
-        <br />
-
-        <button className="button-event" onClick={createEvent} type="button">Enregistrer</button>
       </div>
-    </>
+    </Dash>
   );
 }
 

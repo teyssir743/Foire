@@ -44,6 +44,10 @@ const handleCreateAccountClick = () => {
 
     return (
         <nav className="navbar-container">
+             <div className="top-banner">
+        <p>Bienvenue sur Futur Event - Votre partenaire pour des foires réussies !</p>
+        <p>Planifiez et organisez vos événements avec facilité. Inscrivez-vous dès maintenant pour réserver votre stand.</p>
+    </div>
             <div className="navbar-box">
                
                
@@ -58,11 +62,11 @@ const handleCreateAccountClick = () => {
                 <div className="navbar-section">
                     <a href="/" className="navbar-link">Acceuil</a>
                     <a href="/contact" className="navbar-link">Contact</a>
-                    <a href="/fonctionalité" className="navbar-link">Fonctionalité</a>
-                    <a href="/Vue" className="navbar-link">Foire</a>
+                   
+                    
                     <a href="/eventGallery" className="navbar-link">Événements</a>
                     <a href="/Gallerystand" className="navbar-link">stand</a>
-                    <a href="#" className="navbar-link">vue 360</a>
+                    
                     <a href="createReservation" className="navbar-link">Réservation</a>
                     <a href="/payer" className="navbar-link">paiement</a>
 

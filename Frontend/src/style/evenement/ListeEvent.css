@@ -1,151 +1,143 @@
+/* Style du container */
 .event-list-container {
- 
-   margin-top: 5px;
-  display: flex;
-  flex-wrap: wrap; /* Permet aux éléments flexibles de passer à la ligne si nécessaire */
-  
+  padding: 20px;
 }
 
-.event-list-title {
-  font-size: 1.5rem;
-  font-weight: bold;
-  margin-top: 0;
-  margin-bottom: 1rem;
-  color: #2f81c0;
-  display: flex;
+/* Style du bouton de création */
+.button-create {
+  background-color: #007bff; /* Bleu */
+  color: #fff; /* Texte blanc */
+  border: none; /* Suppression de la bordure */
+  padding: 10px 20px; /* Espacement interne */
+  font-size: 16px; /* Taille de la police */
+  border-radius: 5px; /* Coins arrondis */
+  margin-bottom: 20px; /* Marge en bas */
+  cursor: pointer; /* Curseur pointeur */
 }
 
-.event-list {
-  display: flex;
-  flex-wrap: wrap; /* Permet aux éléments flexibles de passer à la ligne si nécessaire */
-}
-
-.event-list__item {
-  border: 1px solid #2a253f;
-  border-radius: 5px;
-  padding: 0.5rem;
-  margin-right: 0.5rem; /* Espacement horizontal entre les éléments */
-  margin-bottom: 0.5rem;
-  color: transparent;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.event-list__item-details {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.event-list__item-property {
-  margin-bottom: 0.2rem;
-  color: #333;
-}
-
-.event-list__item-property strong {
-  font-weight: bold;
-  color: #2a253f;
-}
-
-.event-list__item:nth-child(even) {
-  background-color: #f5f5f5;
-}
-
-.event-list__item:hover {
-  background-color: #f5f5dc;
-  cursor: pointer;
-}
-
-.buttonUpdate {
-  background-color:#b2e061;
-  border: none;
-  color: white;
-  padding: 5px 10px;
-  text-align: center;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  cursor: pointer;
-}
-
+/* Style des boutons d'action */
+.buttonUpdate,
 .buttonDelete {
-  background-color:#bd7ebe;
-  border: none;
-  color: white;
-  padding: 5px 10px;
-  text-align: center;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  cursor: pointer;
+  background-color: #ff007f; /* Rose */
+  color: #fff; /* Texte blanc */
+  border: none; /* Suppression de la bordure */
+  padding: 8px 16px; /* Espacement interne */
+  font-size: 14px; /* Taille de la police */
+  border-radius: 5px; /* Coins arrondis */
+  margin-right: 8px; /* Marge à droite */
+  cursor: pointer; /* Curseur pointeur */
 }
 
-
-.buttonUpdate:hover {
-  background-color: #8bd3c7;
-}
-
+/* Style des boutons au survol */
+.buttonUpdate:hover,
 .buttonDelete:hover {
-  background-color: #8bd3c7;
+  background-color: #d3076b; /* Rose foncé */
 }
 
-.button-create:hover {
-  background-color: #8bd3c7;
-}
-.button-create{
-  background-color: #beb9db;
-  border: none;
-  color: white;
-  padding: 5px 10px;
-  text-align: center;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  cursor: pointer;
-  margin-left:900px ;
-  width: 200px;
-
+/* Style du tableau */
+.MuiDataGrid-root {
+  background-color: #192a56; /* Bleu marin */
 }
 
-
-
-.event-list-table th {
-  padding: 10px; /* Ajoute un padding à l'intérieur des cellules d'en-tête */
+/* Style de l'en-tête du tableau */
+.MuiDataGrid-colCellWrapper {
+  color: #fff; /* Texte blanc */
 }
 
-.event-list-table td {
-  padding: 10px; /* Ajoute un padding à l'intérieur des cellules de données */
+/* Style des lignes du tableau */
+.MuiDataGrid-row {
+  color: #fff; /* Texte blanc */
 }
 
-/* Vous pouvez également spécifier une classe spécifique pour chaque en-tête de colonne si nécessaire */
-.event-list-table th.titre {
-  padding-right: 20px; /* Ajoute un espace à droite de la colonne "Titre" */
+/* Style des lignes paires du tableau */
+.MuiDataGrid-row:nth-of-type(even) {
+  background-color: #0f3460; /* Bleu foncé */
 }
 
-.event-list-table th.date {
-  padding-right: 20px; /* Ajoute un espace à droite de la colonne "Date de début" */
+/* Style des boutons de pagination */
+.MuiTablePagination-root {
+  color: #fff; /* Texte blanc */
 }
 
-.event-list-table th.description {
-  padding-right: 20px; /* Ajoute un espace à droite de la colonne "Description" */
+/* Style de la flèche de tri */
+.MuiDataGrid-iconSeparator {
+  color: #fff; /* Texte blanc */
 }
 
-
-
-.event-list-table {
-  border-collapse: collapse; /* Fusionne les bordures adjacentes */
-  width: 100%; /* Largeur du tableau */
+/* Style des options par page */
+.MuiSelect-icon {
+  color: #fff; /* Texte blanc */
 }
 
-.event-list-table th, .event-list-table td {
-  border: 1px solid #ddd; /* Bordure de 1 pixel solide gris */
-  padding: 8px; /* Ajoute un padding à l'intérieur des cellules */
-  text-align: left; /* Alignement du texte à gauche */
+/* Style de la bordure de la cellule */
+.MuiDataGrid-cell {
+  border-color: #fff; /* Bordure blanche */
 }
 
-.event-list-table th {
-  background-color: #f2f2f2; /* Couleur de fond des en-têtes de colonne */
+/* Style du texte des boutons de pagination */
+.MuiTypography-root.MuiTablePagination-caption.MuiTypography-caption {
+  color: #fff; /* Texte blanc */
+}
+.MuiDataGrid-root {
+  background-color: #192a56; /* Couleur de fond bleu marin */
 }
 
-.event-list-table th.titre {
-  padding-right: 20px; /* Ajoute un espace à droite de la colonne "Titre" */
+.MuiDataGrid-colCellWrapper,
+.MuiDataGrid-row {
+  color: #fff; /* Couleur du texte blanc */
+}
+
+.MuiDataGrid-row:nth-of-type(even) {
+  background-color: #0b1430; /* Couleur de fond légèrement plus foncée pour les lignes paires */
+}
+/* Couleur rose fuchsia pour le texte de la row page */
+.MuiDataGrid-footer,
+.MuiDataGrid-footerContainer {
+  color: #ff007f; /* Couleur rose fuchsia */
+}
+
+/* Couleur rose fuchsia pour l'icône select */
+.MuiDataGrid-iconSeparator {
+  color: #ff007f; /* Couleur rose fuchsia */
+}
+
+/* Couleur rose fuchsia pour l'ID titre */
+.MuiDataGrid-colCell {
+  color: #ff007f; /* Couleur rose fuchsia */
+}
+/* Couleur blanche pour le texte des colonnes */
+.MuiDataGrid-colCell {
+  color: white; /* Couleur blanche */
+}
+
+/* Couleur blanche pour l'en-tête de colonne */
+.MuiDataGrid-columnHeader,
+.MuiDataGrid-columnHeaderTitle {
+  color: white; /* Couleur blanche */
+}
+/* Couleur rose fuchsia pour les éléments de filtre de colonnes */
+.MuiDataGrid-menuItem {
+  color: #ff007f; /* Couleur rose fuchsia */
+}
+/* Couleur rose fuchsia pour tous les icônes de la DataGrid */
+.MuiSvgIcon-root {
+  color: #ff007f;
+}
+/* Couleur rose fuchsia pour le texte des colonnes */
+.MuiDataGrid-colCell {
+  color: #ff007f;
+}
+
+/* Couleur rose fuchsia pour le texte des filtres */
+.MuiDataGrid-filterForm {
+  color: #ff007f;
+}
+
+/* Couleur rose fuchsia pour le texte des en-têtes de filtre */
+.MuiDataGrid-filterLabel {
+  color: #ff007f;
+}
+/* Couleur rose fuchsia pour le texte des en-têtes de colonnes */
+.MuiDataGrid-columnHeaderTitle {
+  color: #ff007f;
 }

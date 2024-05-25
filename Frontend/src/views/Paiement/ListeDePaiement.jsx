@@ -1,9 +1,13 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { toast , ToastContainer} from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
+import Dash from '../dash-bord/Dash';
+import { DataGrid, GridToolbar } from '@mui/x-data-grid';
 
 function ListePaiements() {
   const [paiements, setPaiements] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios.get("http://localhost:5000/api/paiement/listePaiement")
@@ -19,59 +23,55 @@ function ListePaiements() {
     axios.delete(`http://localhost:5000/api/paiement/deletePaiement/${id}`)
       .then(() => {
         console.log('Paiement supprimé avec succès');
-        toast.warn("Paiement supprimé avec succès") 
+        toast.warn("Paiement supprimé avec succès");
         // Actualiser la liste des paiements après la suppression
         setPaiements(paiements.filter(paiement => paiement._id !== id));
       })
       .catch(error => {
         console.error("Erreur lors de la suppression du paiement :", error);
       });
-  }
+  };
 
   return (
-    <div>
-      <ToastContainer/>
-      <h1>Liste des paiements</h1>
-      {paiements.length > 0 ? (
-        <ul>
-          {paiements.map(paiement => (
-            <li key={paiement._id}>
-              <div>
-  <div className="payment-info">
-    <div>
-      <strong>Réservation ID:</strong> {paiement.reservationId}
-    </div>
-    <div>
-      <strong>Montant:</strong> {paiement.amount}
-    </div>
-  
-    <div>
-      <strong>Date de paiement:</strong> {paiement.paymentDate}
-    </div>
-   
-    <div>
-      <strong>Numéro de carte:</strong> {paiement.cardNumber}
-    </div>
-    <div>
-      <strong>Date d'expiration:</strong> {paiement.expirationDate}
-    </div>
-    <div>
-      <strong>CVV:</strong> {paiement.cvv}
-    </div>
-    <div>
-      <strong>Carte sélectionnée:</strong> {paiement.selectedCard}
-    </div>
-  </div>
-  <button className="delete-button" onClick={() => handleDelete(paiement._id)}>Supprimer</button>
-</div>
-
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <h1>Le tableau est vide</h1>
-      )}
-    </div>
+    <Dash>
+      <div >
+        <ToastContainer />
+       
+        <button className="button-create" onClick={() => navigate(`/Payment_admin`)}>Créer un paiement</button>
+        <div style={{ height: 400, width: '100%' }}>
+          <DataGrid
+            rows={paiements.map(paiement => ({ ...paiement, id: paiement._id }))}
+            columns={[
+              { field: 'id', headerName: 'ID ', width: 200 },
+              { field: 'amount', headerName: 'Montant', width: 200 },
+              { field: 'paymentDate', headerName: 'Date de paiement', width: 200 },
+              { field: 'cardNumber', headerName: 'Numéro de carte', width: 200 },
+              { field: 'expirationDate', headerName: 'Date d\'expiration', width: 200 },
+              { field: 'cvv', headerName: 'CVV', width: 200 },
+              { field: 'selectedCard', headerName: 'Carte sélectionnée', width: 200 },
+              {
+                field: 'actions',
+                headerName: 'Actions',
+                width: 200,
+                renderCell: (params) => (
+                  <>
+                    <button className="buttonDelete" onClick={() => handleDelete(params.row._id)}>Supprimer</button>
+                  </>
+                )
+              },
+            ]}
+            pageSize={5}
+            rowsPerPageOptions={[5, 10, 20]}
+            checkboxSelection
+            pagination
+            autoHeight
+            components={{
+              Toolbar: GridToolbar, // Ajout de GridToolbar
+            }}
+          />
+        </div>
+      </div>
+    </Dash>
   );
 }
 

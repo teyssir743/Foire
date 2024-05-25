@@ -5,6 +5,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import '../../style/paiement/payer.css';
 
+
 const PaymentPage = () => {
   const [selectedCard, setSelectedCard] = useState('');
   const [cardNumber, setCardNumber] = useState('');
@@ -43,6 +44,7 @@ const PaymentPage = () => {
   };
 
   return (
+    
     <div className="payment-page">
       <ToastContainer />
 
@@ -154,6 +156,7 @@ const PaymentPage = () => {
         <button type="button" onClick={handleSubmit}>Payer</button>
       </div>
     </div>
+   
   );
 };
 

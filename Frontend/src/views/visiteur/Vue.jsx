@@ -1,45 +1,55 @@
-
 import foire from '../../vedio/vue360.mp4';
-import TopBarHome from '../visiteur/TopBarHome';
-import Footer from '../visiteur/Footer'
-
+import foir1 from '../../image/foir1.png';
+import foir2 from '../../image/foir2.png';
+import foir3 from '../../image/foir3.png';
+import '../../style/Visiteur/vue.css'
 
 function Vue() {
-
-  const pdfUrl = 'chemin/vers/votre/pdf.pdf'; // Remplacez 'chemin/vers/votre/pdf.pdf' par le chemin de votre PDF
-
-
   return (
     <div>
-      < TopBarHome/>
-    <h2 color='black' >visiter notre foire !</h2>
-    <video width="1530px" height="600px" controls>
-        <source src={foire} type="video/mp4" />
+      <div>
+        <video width="100%" height="auto" loop controls>
+          <source src={foire} type="video/mp4"  />
+        </video>
+      </div>
+
+      <div className='container-foir'>
+        <div className='foir1'>  
+          <img src={foir2} alt="foir2" />
+        </div>
+
+        <div className='des'>
+          <h2>Plongez dans une expérience immersive et trouvez tout ce dont vous avez besoin !</h2>
+          <h4>Que vous soyez à la recherche de bonnes affaires, d’idées cadeaux originales, d’idées inspirantes ou simplement d’une expérience immersive, la Foire Virtuelle  est l’endroit parfait pour vous. Connectez-vous depuis chez vous et découvrez un monde virtuel dynamique et engageant qui regorge de surprises.</h4>
+        </div>
+      </div>
+
+      <div className='container-foir'>
+      <div className='des'>
+          <h2>Qu’est-ce que vous trouverez à la Foire Virtuelle ?</h2>
+          <h4>Parcourez les stands virtuels des exposants et découvrez une vaste sélection de produits et services de qualité à des prix avantageux. Que vous soyez à la recherche de vêtements, d’électronique, d’articles de maison, de produits alimentaires, pour la rénovation de votre maison, de votre jardin ou de bien-être, vous trouverez des offres spéciales et des réductions attractives qui sauront vous séduire. Découvrez leurs produits et services uniques, échangez avec eux et établissez des relations commerciales solides.</h4>
+        </div>
+
+        <div className='foir1' >  
+          <img src={foir1} alt="foir1" />
+        </div>
+
        
-    </video>
+      </div>
 
+      <div className='container-foir'> 
 
-    <div>
+        <div className='foir1' >  
+          <img src={foir3} alt="foir3" />
+        </div>
 
-    <a href={pdfUrl}
-     target="_blank" 
-     rel="noopener noreferrer"
-     style={{
-      color: 'blue', // Couleur du texte
-      textDecoration: 'none', // Pas de soulignement
-      fontSize: '16px', // Taille de la police
-      fontWeight: 'bold', // Graisse de la police
-      margin: '20px 0', // Marge supérieure et inférieure
-      display: 'block' // Afficher comme bloc pour occuper toute la largeur disponible
-    }}
-    >cliquer pour voir detail de cette Foire</a>
-
+        <div className='des'>
+          <h2>Une multitude de secteurs représentés dans cette foire expo .</h2>
+          <h4>Quel que soit votre domaine d’intérêt, la Foire Virtuelle  saura répondre à vos attentes. Du bâtiment aux services à la personne, en passant par l’artisanat, le tourisme, l’immobilier, la santé, l’éducation et bien plus encore, explorez une variété de secteurs représentés par des professionnels passionnés et engagés. </h4>
+        </div>
+      </div>
     </div>
-
-   <Footer/> 
-    
-</div>
-  )
+  );
 }
 
 export default Vue;

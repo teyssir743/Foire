@@ -21,13 +21,10 @@ function CreateReservation() {
   const [phone, setPhone] = useState('');
   const [date, setDate] = useState(new Date());
   const [stands, setStands] = useState([]);
-  const [events, setEvents] = useState([]);
   const [selectedStand, setSelectedStand] = useState(selectedStandNum || '');
-  const [selectedEvent, setSelectedEvent] = useState('');
 
   useEffect(() => {
     fetchStands();
-    fetchEvents();
   }, []);
 
   const fetchStands = async () => {
@@ -43,55 +40,38 @@ function CreateReservation() {
     }
   };
 
-  const fetchEvents = async () => {
-    try {
-      const response = await axios.get('http://localhost:5000/api/event/listeEvent');
-      if (response.data && response.data.data) {
-        setEvents(response.data.data);
-      } else {
-        console.error('Données d\'événement non disponibles dans la réponse :', response);
-      }
-    } catch (error) {
-      console.error('Erreur lors de la récupération des événements :', error);
-    }
-  };
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     if (name === 'name') setName(value);
     else if (name === 'email') setEmail(value);
     else if (name === 'phone') setPhone(value);
-    else if (name === 'selectedEvent') setSelectedEvent(value); // Mettre à jour selectedEvent lorsqu'un événement est sélectionné
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-        const response = await axios.post('http://localhost:5000/api/reservation/createReservation', {
-            name,
-            email,
-            phone,
-            date,
-            selectedStand // Utilisez le nom correct de l'attribut
-        });
-       
-        if (response.data.data) {
-            toast.success('Votre réservation a été enregistrée avec succès!');
-        } else {
-            toast.error('Une erreur est survenue lors de la réservation. Veuillez réessayer.');
-        }
+      const response = await axios.post('http://localhost:5000/api/reservation/createReservation', {
+        name,
+        email,
+        phone,
+        date,
+        selectedStand
+      });
+  
+      console.log('Réponse de la requête de réservation :', response); // Afficher la réponse de la requête
+      toast.success('Votre réservation a été enregistrée avec succès!'); 
+   
     } catch (error) {
-        toast.error('Une erreur est survenue lors de la réservation. Veuillez réessayer.');
+      console.error('Erreur lors de la réservation :', error); // Afficher les détails de l'erreur
+      toast.error('. Veuillez réessayer.');
     }
-};
-
-
+  };
+  
   return (
     <div>
-      <TopBarHome />
+      
       <div className="container">
         <div className="flex-container">
-         
           <div className="form-container">
             <ToastContainer />
             <form onSubmit={handleSubmit} className="form">
@@ -102,17 +82,16 @@ function CreateReservation() {
               <DatePicker selected={date} onChange={(date) => setDate(date)} dateFormat="dd/MM/yyyy" required />
               <select value={selectedStand} onChange={(e) => setSelectedStand(e.target.value)} required>
                 <option value="">Sélectionner un stand</option>
-                {stands.map((stand, index) => (
-                  <option key={index} value={stand.num}>Stand {stand.num}</option>
+                {stands.map((stand) => (
+                  <option key={stand._id} value={stand._id}>Stand {stand.num}</option>
                 ))}
               </select>
-            
               <button type="submit">Réserver</button>
             </form>
           </div>
         </div>
       </div>
-      <Footer />
+  
     </div>
   );
 }

@@ -19,6 +19,10 @@ router.post('/createPaiement', async (req, res) => {
 });
 
 
+
+
+
+
 //liste Paiement
 router.get('/listePaiement',(req,res)=>
       {Paiement.find({}).then((result)=>{res.json({data: result});

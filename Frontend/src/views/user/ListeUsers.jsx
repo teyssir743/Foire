@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { toast, ToastContainer } from 'react-toastify';
@@ -8,7 +8,6 @@ import '../../style/user/listeUser.css';
 
 function ListeUsers() {
   const [users, setUsers] = useState([]);
-  const [selectedRole, setSelectedRole] = useState('Exposant'); // État pour le rôle sélectionné
   const navigate = useNavigate();
 
   // Fonction pour formater la date au format DD/MM/YYYY
@@ -50,28 +49,12 @@ function ListeUsers() {
       });
   };
 
-  const handleChangeRole = (id, role) => {
-    axios.put(`http://localhost:5000/api/user/changeRole/${id}`, { role })
-      .then(() => {
-        console.log(id);
-        // Mettre à jour localement le rôle de l'utilisateur
-        const updatedUsers = users.map(user =>
-          user.id === id ? { ...user, role } : user
-        );
-        console.log(id);
-        setUsers(updatedUsers);
-        setSelectedRole(role); // Mettre à jour l'état selectedRole avec le nouveau rôle
-        toast.success("Rôle de l'utilisateur modifié avec succès");
-      })
-      .catch(error => {
-        console.error("Erreur lors du changement de rôle de l'utilisateur :", error);
-      });
-  };
+  
 
   return (
     <Dash>
       <div>
-        
+      <button className='button-create'onClick={() => navigate(`/Register_admin `)}>Créer Exposant</button>
         <ToastContainer />
         {users.length > 0 ? (
           <div style={{ height: 400, width: '100%' }}>
@@ -79,23 +62,20 @@ function ListeUsers() {
               rows={users}
               columns={[
                 { field: 'id', headerName: 'ID', width: 200 },
-                { field: 'username', headerName: 'Username', width: 200},
+                { field: 'role', headerName: 'Role', width: 200 },
+
+                { field: 'username', headerName: 'Username', width: 200 },
                 { field: 'lastname', headerName: 'Lastname', width: 200 },
-                { field: 'email', headerName: 'Email', width: 200 },
+                { field: 'email', headerName: 'Email', width: 500 },
                 {
                   field: 'actions',
                   headerName: 'Actions',
                   width: 500,
                   renderCell: (params) => (
                     <>
-                      <button className="update-button" onClick={() => navigate(`/updateUser/${params.row._id}`)}>Update</button>
-                      <button className="delete-button" onClick={() => handleDelete(params.row._id)}>Delete</button>
+                      <button className="buttonUpdate" onClick={() => navigate(`/updateUser/${params.row._id}`)}>Update</button>
+                      <button className="buttonDelete" onClick={() => handleDelete(params.row._id)}>Delete</button>
                       {/* Afficher le menu déroulant pour changer de rôle */}
-                      <select value={selectedRole} onChange={(e) => handleChangeRole(params.row._id, e.target.value)}>
-                        <option value="Exposant">Exposant</option>
-                        <option value="Admin">Admin</option>
-                        
-                      </select>
                     </>
                   )
                 },
@@ -108,6 +88,7 @@ function ListeUsers() {
                 Toolbar: GridToolbar, // Ajout de GridToolbar
               }}
             />
+           
           </div>
         ) : (
           <h1>Le tableau est vide</h1>

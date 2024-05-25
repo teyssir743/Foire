@@ -3,18 +3,27 @@
     flex-direction:column ;
     width: 100vw;
     height: 100vh ;
+    background-color: #e2e6f1;
+    /* Styles pour le composant Dash */
+
 }
 
+.dash-Side-Menu {
+    background-color: #192a56 !important; /* Fond en bleu marin */
+    color: #fff !important; /* Couleur de texte en blanc */
+}
+.PageContent{ background-color: #192a56;}
 .dash-Header {
-    height: 50px;
+    background-color: #192a56;
+    height: 80px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 4px 20px 4px 12px;
-    border-bottom: 1px solid  rgba(0,0,0,0.15);
-    
-
+    border: 2px solid #fff; /* Ajout de la bordure blanche */
 }
+
+.dash-content{background-color: #192a56;}
 
 .dash-Footer {
     height: 50px;
@@ -29,12 +38,62 @@
     flex:1;
     justify-content: flex-start;
     align-items: flex-start;
-
-}
-.dash-Side-Menu{
+    background-color: #192a56;
     
 }
 
-.dash-content {
 
+/* dash.css */
+
+/* Style pour le bouton de connexion */
+.login-button {
+    background-color: #007bff; /* Couleur de fond */
+    color: white; /* Couleur du texte */
+    border: none; /* Suppression de la bordure */
+    padding: 10px 20px; /* Espacement interne */
+    font-size: 16px; /* Taille de la police */
+    border-radius: 5px; /* Bord arrondi */
+    cursor: pointer; /* Curseur pointeur au survol */
+    margin-right: 100px;
+    width: 300px;
+  }
+  
+  /* Style pour le survol du bouton */
+  .login-button:hover {
+    background-color: #0056b3; /* Couleur de fond au survol */
+  }
+  
+
+
+
+
+
+
+
+
+
+  .dash-Side-Menu {
+    background-color: #192a56; /* Fond en bleu marin */
+   
+}
+
+/* Style des icônes */
+.dash-Side-Menu .anticon svg {
+    fill: #ff007f; /* Couleur rose fuchsia pour les icônes */
+    
+}
+
+/* Style du texte des éléments du menu */
+.dash-Side-Menu .ant-menu-item {
+    color: #ff007f; /* Couleur rose fuchsia pour le texte */
+}
+
+/* Style du texte des sous-menus, si nécessaire */
+.dash-Side-Menu .ant-menu-submenu-title {
+    color: #ff007f; /* Couleur rose fuchsia pour le texte */
+}
+
+/* Style des icônes des sous-menus, si nécessaire */
+.dash-Side-Menu .ant-menu-submenu-title .anticon svg {
+    fill: #ff007f; /* Couleur rose fuchsia pour les icônes */
 }

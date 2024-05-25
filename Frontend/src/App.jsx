@@ -78,8 +78,19 @@ import Dash from './views/dash-bord/Dash';
 import DashbordPage from './views/dash-bord/DashbordPage';
 import CalendrierDash from './views/dash-bord/CalendrierDash';
 import Faq from './views/dash-bord/Faq';
-import BarChartDash from './views/dash-bord/BarChartDash';
+
 import ActivationPage from './views/authentification/ActivationPage';
+
+import AdminForm from './views/admin/Admin';
+import ListeAdmin from './views/admin/ListeAdmin';
+import ListeStand1 from './views/stand/Stand-Liste';
+import UpdateAdmin from './views/admin/UpdateAdmin'
+import ListePaiements from './views/Paiement/ListeDePaiement';
+import Login_admin from './views/dash-bord/loginAdmin';
+import Register_admin from './views/dash-bord/Register_admin';
+import Payment_admin from './views/dash-bord/Payment_admin';
+
+
 
 
 
@@ -94,6 +105,19 @@ function App() {
       <Routes>
 
       
+
+      <Route path='/admin' element={ <AdminForm/>}/>
+      <Route path='/listeAdmin' element={ <ListeAdmin/>}/>
+      <Route path='/UpdateAdmin' element={ <UpdateAdmin/>}/>
+      <Route path="/UpdateAdmin/:id" element={<UpdateAdmin />} />
+      <Route path="/login_admin" element={<Login_admin />} />
+      <Route path="/Register_admin" element={<Register_admin />} />
+      <Route path="/Payment_admin" element={<Payment_admin />} />
+      
+   
+      
+
+
        {/* visiteur*/ }
         <Route path='/contact' element={ <Contact/>}/>
         <Route path='/fonctionalité' element={ <Fonctionalite/>}/>
@@ -114,11 +138,13 @@ function App() {
         
         {/*dashbord*/}
         <Route path='/DashContent' element={ <DashContent/>}/>
-        <Route path='/Dash' element={ <Dash/>} /> 
+        <Route path='/dash' element={ <Dash/>} /> 
         <Route path='/DashbordPage' element={ <DashbordPage/>} /> 
         <Route path='/CalendrierDash' element={ <CalendrierDash/>} /> 
         <Route path='/Faq' element={ <Faq/>} /> 
-        <Route path='/BarChartDash' element={ <BarChartDash/>} />
+  
+       
+        
         
 
         {/*event*/}
@@ -133,7 +159,8 @@ function App() {
        {/*stand*/}
 
         <Route path='/createStand' element={ <CreateStand/>}/> 
-        <Route path='/listeStand' element={ <ListeStand/>}/>  
+        <Route path='/listeStand' element={ <ListeStand/>}/>
+        <Route path='/listeStand1' element={ <ListeStand1/>}/>  
         <Route path='/updateStand/:id' element={ <UpdateStand/>}/> 
         <Route path='/Gallerystand' element={ <Gallerystand/>}/> 
         
@@ -162,7 +189,8 @@ function App() {
 
         {/*paiement*/}
         <Route path='/payer' element={ <PaymentPage/>}/>
-        <Route path='/listepayer' element={ <  PaymentListPage/>}/>
+        <Route path='/ListeDePaiement' element={ <ListePaiements/>}/>
+        ListeDePaiement
 
 
           

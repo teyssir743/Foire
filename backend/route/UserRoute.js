@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-
 const User = require('../Models/User');
 
 // Route pour créer un nouveau User
@@ -13,6 +12,9 @@ router.post('/createUser', async (req, res) => {
         res.status(400).json({ message: err.message });
     }
 });
+
+
+
 
 // Route pour récupérer la liste des utilisateurs
 router.get('/listeUser', (req, res) => {
@@ -54,22 +56,6 @@ router.delete("/deleteUser/:id", (req, res) => {
 });
 
 
-
-
-
-
-router.put("/changeRole/:id", (req, res) => {
-  const { id } = req.params.id;
-  const { role } = req.body;
-
-  User.findByIdAndUpdate(id, { role }) // Mise à jour du rôle uniquement
-    .then(() => {
-      res.json({ msg: "Rôle de l'utilisateur modifié avec succès" });
-    })
-    .catch((error) => {
-      res.status(500).json({ error: error.message });
-    });
-});
 
 
 // Route pour enregistrer un nouvel utilisateur

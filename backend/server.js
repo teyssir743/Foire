@@ -50,9 +50,6 @@ const AdminRoute = require('./route/AdminRoute');
 app.use('/api/admin',AdminRoute);
 
 
-// Montez le routeur Client Route sous le préfixe '/api'
-const ClientRoute = require('./route/ClientRoute');
-app.use('/api/client',ClientRoute);
 
 
 // Montez le routeur Foire Route sous le préfixe '/api'

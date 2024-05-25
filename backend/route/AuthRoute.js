@@ -5,6 +5,11 @@ const User = require('../Models/User');
 
 
 
+
+
+
+
+
 // Fonction pour générer une clé d'activation aléatoire
 function generateActivationKey(length) {
     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';

@@ -1,14 +1,14 @@
 import { Routes, Route } from "react-router-dom";
 import '../dash-bord/Dash-style/dash.css';
-import DashRoutes from './Dash-routes';
+import Dash from "./Dash";
 
 
 function DashContent() {
   return (
-    <div>
+    <div className="dash-content">
       <Routes>
         
-          <Route path="/dash" element={<DashRoutes />} />
+          <Route path="/dash" element={<Dash />} />
        
       
       </Routes>

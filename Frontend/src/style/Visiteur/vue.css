@@ -1,0 +1,51 @@
+.foir1 {
+    display: flex; /* Utiliser flexbox pour aligner les éléments horizontalement */
+    justify-content: center; /* Centrer les éléments horizontalement */
+    align-items: center; /* Centrer les éléments verticalement */
+    margin-bottom: 40px;
+}
+
+
+video {
+    display: block; /* Assurez-vous que la vidéo est affichée en tant que bloc */
+    margin-top: 0; /* Réinitialisez la marge en haut */
+    margin-bottom: 100px;}
+
+.des{
+    align-items: center;
+   
+    background-size: cover; /* Couvrir toute la zone du conteneur */
+    width:1000px; /* Largeur du conteneur égale à 100% de son parent */
+    height:400px;
+    overflow: hidden;
+    margin-right: 20px;}
+
+    .container-foir {
+        display: flex; /* Utiliser flexbox pour aligner les éléments horizontalement */
+        justify-content: center; /* Centrer les éléments horizontalement */
+        align-items: center; /* Centrer les éléments verticalement */
+        margin-top: -50px;
+    }
+
+
+
+    /* vue.css */
+
+/* Style pour les titres h2 */
+.container-foir .des h2 {
+    font-size: 24px; /* Taille de la police */
+    color: #333; /* Couleur du texte */
+    margin-bottom: 10px; /* Marge en bas */
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+/* Style pour les titres h4 */
+.container-foir .des h4 {
+    font-size: 18px; /* Taille de la police */
+    color: #666; /* Couleur du texte */
+    margin-bottom: 20px; /* Marge en bas */
+    margin-left: 20px;
+    margin-right: 20px;
+}
+

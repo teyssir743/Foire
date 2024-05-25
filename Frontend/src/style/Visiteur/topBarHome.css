@@ -14,6 +14,21 @@
 
 }
 
+.top-banner {
+    background-color: #83a7cb;
+    color: #343a40;
+    text-align: center;
+    padding: 0px 0;
+    border-bottom: 1px solid #dee2e6;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+.top-banner p {
+    margin: 0;
+    padding: 5px;
+}
+
 
 
 

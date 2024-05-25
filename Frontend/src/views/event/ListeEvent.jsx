@@ -2,6 +2,7 @@ import  { useState, useEffect } from 'react';
 import axios from 'axios';
 import { formatDate } from '../../util/DateConvertor';
 import "../../style/evenement/ListeEvent.css";
+import '../../style/user/listeUser.css';
 import { toast , ToastContainer} from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import Dash from '../dash-bord/Dash';
@@ -48,10 +49,11 @@ function ListeEvent() {
             rows={events}
             columns={[
               //{ field: 'id', headerName: 'ID', width: 200 },
+              { field: 'id', headerName: 'id', width: 200 },
               { field: 'titre', headerName: 'Titre', width: 200 },
               { field: 'date_debut', headerName: 'Date de début', width: 200, valueFormatter: ({ value }) => formatDate(value) },
               { field: 'date_fin', headerName: 'Date de fin', width: 200, valueFormatter: ({ value }) => formatDate(value) },
-              { field: 'description', headerName: 'Description', width: 200 },
+              { field: 'description', headerName: 'Description', width: 255 },
               {
                 field: 'actions',
                 headerName: 'Actions',

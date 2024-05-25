@@ -4,12 +4,13 @@ import '../../style/Visiteur/home.css'; // Import du fichier de style CSS
 import { Link } from 'react-router-dom';
 
 
+
 const HomePage = () => {
 
     return (
        <div>
        
-        
+       
 
 
             <div className='container'>
@@ -51,6 +52,8 @@ const HomePage = () => {
                      </div>
 
             </div>
+
+            
 
             
 

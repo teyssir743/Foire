@@ -1,31 +1,4 @@
-
-html,
-body,
-body > div { /* the react root */
-  margin: 0;
-  padding: 0;
-  height: 100%;
-}
-
-h2 {
-  margin: 0;
-  font-size: 16px;
-}
-
-ul {
-  margin: 0;
-  padding: 0 0 0 1.5em;
-}
-
-li {
-  margin: 1.5em 0;
-  padding: 0;
-}
-
-b { /* used for event dates/times */
-  margin-right: 3px;
-}
-
+/* Styles pour l'application de calendrier */
 .demo-app {
   display: flex;
   min-height: 100%;
@@ -33,6 +6,7 @@ b { /* used for event dates/times */
   font-size: 14px;
 }
 
+/* Styles pour la barre latérale */
 .demo-app-sidebar {
   width: 300px;
   line-height: 1.5;
@@ -44,13 +18,273 @@ b { /* used for event dates/times */
   padding: 2em;
 }
 
+/* Styles pour la zone principale */
 .demo-app-main {
   flex-grow: 1;
   padding: 3em;
   width: 1000px;
 }
 
-.fc { /* the calendar root */
+/* Styles pour le calendrier */
+.fc {
   max-width: 1100px;
   margin: 0 auto;
+}
+
+/* Styles pour les jours de la semaine */
+.fc-day-header {
+  color: white !important;
+}
+
+/* Styles pour les jours du mois */
+.fc-daygrid-day-number {
+  color: rgb(13, 8, 52) !important;
+}
+
+/* Styles pour les événements du calendrier */
+.fc-event-title {
+  color: rgb(7, 9, 49) !important;
+}
+
+.fc-daygrid-event.fc-event-selected {
+  background-color: #ff007f;
+}
+
+/* Styles pour le fond du calendrier */
+.fc-bg {
+  background-color: #160c36 ;
+}
+
+/* Styles pour le jour actuel */
+
+
+/* Styles pour le numéro du jour actuel */
+.fc-daygrid-day.fc-day-today .fc-daygrid-day-number {
+  color: rgb(220, 213, 236) !important;
+}
+/* Styles pour les jours du mois */
+.fc-daygrid-day-number,
+.fc-daygrid-day-header {
+  color: rgb(221, 218, 230) ;
+}
+
+
+
+
+.full-calendar {
+  background-color: transparent; /* Background transparent */
+  color: white; /* Texte blanc */
+}
+
+.fc-toolbar-title, .fc-daygrid-event {
+  color: white !important; /* Couleur du texte de titre et d'événement */
+}
+
+.fc-toolbar-chunk {
+  background-color: transparent !important; /* Background transparent pour la barre d'outils */
+}
+
+.fc-toolbar {
+  background-color: rgba(255, 255, 255, 0.1) !important; /* Background transparent avec une teinte */
+}
+
+.fc-day-today {
+  background-color: rgba(255, 255, 255, 0.1) !important; /* Background transparent pour le jour actuel */
+}
+
+.fc-content {
+  color: white !important; /* Tout le contenu du calendrier en blanc */
+}
+
+.fc-event-main {
+  background-color: #FF007F !important; /* Couleur de fond rose fuchsia pour les événements sélectionnés */
+  border-color: #FF007F !important; /* Bordure rose fuchsia pour les événements sélectionnés */
+}
+
+
+
+.fc-daygrid-day-number, .fc-daygrid-day-events, .fc-event-title {
+  color: white !important; /* Couleur du numéro de date, du contenu du jour et du titre de l'événement */
+}
+
+.fc-toolbar-title, .fc-daygrid-event {
+  color: white !important; /* Couleur du texte de titre et d'événement */
+}
+
+.fc-toolbar-chunk {
+  background-color: transparent !important; /* Background transparent pour la barre d'outils */
+}
+
+.fc-toolbar {
+  background-color: rgba(255, 255, 255, 0.1) !important; /* Background transparent avec une teinte */
+}
+
+.fc-day-today {
+  background-color: rgba(255, 255, 255, 0.1) !important; /* Background transparent pour le jour actuel */
+}
+
+.fc-event-main {
+  background-color: #FF007F !important; /* Couleur de fond rose fuchsia pour les événements sélectionnés */
+  border-color: #FF007F !important; /* Bordure rose fuchsia pour les événements sélectionnés */
+}
+
+
+
+.fc-daygrid-day-number,
+.fc-daygrid-day-events,
+.fc-event-title,
+.fc-col-header-cell-cushion,
+.fc-day-header {
+  color: white !important; /* Couleur blanche pour les numéros de jour, les événements, les titres d'événements et les en-têtes de jour */
+}
+
+.fc-toolbar-title,
+.fc-daygrid-event {
+  color: white !important; /* Couleur blanche pour les titres et les événements */
+}
+
+.fc-toolbar-chunk {
+  background-color: transparent !important; /* Fond transparent pour la barre d'outils */
+}
+
+.fc-toolbar {
+  background-color: rgba(255, 255, 255, 0.1) !important; /* Fond transparent avec teinte pour la barre d'outils */
+}
+
+.fc-day-today {
+  background-color: rgba(255, 255, 255, 0.1) !important; /* Fond transparent pour le jour actuel */
+}
+
+.fc-event-main {
+  background-color: #FF007F !important; /* Fond rose fuchsia pour les événements sélectionnés */
+  border-color: #FF007F !important; /* Bordure rose fuchsia pour les événements sélectionnés */
+}.full-calendar {
+  background-color: transparent; /* Fond transparent */
+  color: white; /* Texte blanc */
+}
+
+/* Styles pour les numéros de jour, les événements, les titres d'événements, les en-têtes de jour et les heures */
+.fc-daygrid-day-number,
+.fc-daygrid-day-events,
+.fc-event-title,
+.fc-col-header-cell-cushion,
+.fc-day-header,
+.fc-time-grid-event,
+.fc-time {
+  color: white !important; /* Couleur blanche pour les numéros de jour, les événements, les titres d'événements, les en-têtes de jour et les heures */
+}
+
+/* Styles pour les autres vues */
+.fc-dayGridWeek-frame, .fc-timeGridWeek-frame, .fc-timeGridDay-frame {
+  color: white !important; /* Couleur blanche pour les vues de semaine et de jour */
+}
+
+.fc-toolbar-title,
+.fc-daygrid-event {
+  color: white !important; /* Couleur blanche pour les titres et les événements */
+}
+
+.fc-toolbar-chunk {
+  background-color: transparent !important; /* Fond transparent pour la barre d'outils */
+}
+
+.fc-toolbar {
+  background-color: rgba(255, 255, 255, 0.1) !important; /* Fond transparent avec teinte pour la barre d'outils */
+}
+
+.fc-day-today {
+  background-color: rgba(255, 255, 255, 0.1) !important; /* Fond transparent pour le jour actuel */
+}
+
+.fc-event-main {
+  background-color: #FF007F !important; /* Fond rose fuchsia pour les événements sélectionnés */
+  border-color: #FF007F !important; /* Bordure rose fuchsia pour les événements sélectionnés */
+}
+.full-calendar {
+  background-color: transparent; /* Fond transparent */
+  color: white; /* Texte blanc */
+}
+
+/* Styles pour les numéros de jour, les événements, les titres d'événements, les en-têtes de jour et les heures */
+.fc-daygrid-day-number,
+.fc-daygrid-day-events,
+.fc-event-title,
+.fc-col-header-cell-cushion,
+.fc-day-header,
+.fc-time-grid-event,
+.fc-time {
+  color: white !important; /* Couleur blanche pour les numéros de jour, les événements, les titres d'événements, les en-têtes de jour et les heures */
+}
+
+/* Styles spécifiques pour les vues de semaine et de jour */
+.fc-timeGridWeek-frame .fc-time,
+.fc-timeGridDay-frame .fc-time {
+  color: white !important; /* Couleur blanche pour les vues de semaine et de jour */
+}
+
+/* Styles pour les autres vues */
+.fc-toolbar-title,
+.fc-daygrid-event {
+  color: white !important; /* Couleur blanche pour les titres et les événements */
+}
+
+.fc-toolbar-chunk {
+  background-color: transparent !important; /* Fond transparent pour la barre d'outils */
+}
+
+.fc-toolbar {
+  background-color: rgba(255, 255, 255, 0.1) !important; /* Fond transparent avec teinte pour la barre d'outils */
+}
+
+.fc-day-today {
+  background-color: rgba(255, 255, 255, 0.1) !important; /* Fond transparent pour le jour actuel */
+}
+
+.fc-event-main {
+  background-color: #FF007F !important; /* Fond rose fuchsia pour les événements sélectionnés */
+  border-color: #FF007F !important; /* Bordure rose fuchsia pour les événements sélectionnés */
+}
+.full-calendar {
+  background-color: transparent; /* Fond transparent */
+  color: white; /* Texte blanc */
+}
+
+/* Styles pour les numéros de jour, les événements, les titres d'événements, les en-têtes de jour et les heures */
+.fc-daygrid-day-number,
+.fc-daygrid-day-events,
+.fc-event-title,
+.fc-col-header-cell-cushion,
+.fc-day-header,
+.fc-time-grid-event,
+.fc-time {
+  color: white !important; /* Couleur blanche pour les numéros de jour, les événements, les titres d'événements, les en-têtes de jour et les heures */
+}
+
+/* Styles spécifiques pour les vues de semaine et de jour */
+.fc-timeGridWeek-frame .fc-time,
+.fc-timeGridDay-frame .fc-time {
+  color: white !important; /* Couleur blanche pour les vues de semaine et de jour */
+}
+
+/* Styles pour les autres vues */
+.fc-toolbar-title,
+.fc-daygrid-event {
+  color: white !important; /* Couleur blanche pour les titres et les événements */
+}
+
+.fc-toolbar-chunk {
+  background-color: transparent !important; /* Fond transparent pour la barre d'outils */
+}
+
+.fc-toolbar {
+  background-color: rgba(255, 255, 255, 0.1) !important; /* Fond transparent avec teinte pour la barre d'outils */
+}
+
+.fc-day-today {
+  background-color: rgba(255, 255, 255, 0.1) !important; /* Fond transparent pour le jour actuel */
+}
+
+.fc-event-main {
+  background-color: #FF007F !important; /* Fond rose fuchsia pour les événements sélectionnés */
+  border-color: #FF007F !important; /* Bordure rose fuchsia pour les événements sélectionnés */
 }

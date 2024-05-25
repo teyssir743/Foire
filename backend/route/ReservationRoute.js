@@ -31,6 +31,19 @@ router.post('/createReservation', async (req, res) => {
     }
 });
 
+
+router.get('/listeReservation1', (req, res) => {
+    Reservation.find({}) // Utilisez le modèle de réservation pour rechercher toutes les réservations
+        .then((reservations) => {
+            res.json({ data: reservations }); // Renvoie les données de réservation sous forme d'objet JSON
+        })
+        .catch((error) => {
+            res.status(500).json({ error: error.message }); // Gestion des erreurs
+        });
+});
+
+
+
 // Route to get all reservations
 router.get('/listeReservation', async (req, res) => {
     try {

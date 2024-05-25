@@ -25,13 +25,16 @@ const userSchema = new mongoose.Schema({
         enum: ['admin', 'exposant'], 
         default: 'exposant' // Valeur par défaut est 'exposant'
     },
+    secretKey: {
+        type: String // Champ pour la clé secrète, uniquement pour les administrateurs
+    },
     password : {
         type: String,
         required: true
 
     },
+    role: { type: String, enum: ['exposant', 'admin'] } ,// Ajout du champ role
    
-    role: { type: String, enum: ['admin', 'client'] },
     
     
     // lorsque on fait un compte om met une valeur par defaut false et envoi un code de verification par email

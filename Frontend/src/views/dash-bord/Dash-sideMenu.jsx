@@ -1,75 +1,57 @@
+import React from 'react';
 import { Menu } from 'antd';
-import '../dash-bord/Dash-style/dash.css';
-import { MailOutlined, DollarCircleOutlined, ScheduleFilled, CalendarFilled, ShopFilled, CalendarOutlined, TeamOutlined, ShopOutlined, AppstoreOutlined, UserOutlined } from '@ant-design/icons';
+import { MailOutlined, HomeOutlined, DollarCircleOutlined, ScheduleFilled, CalendarFilled, ShopFilled, CalendarOutlined, TeamOutlined, AppstoreOutlined, UserOutlined, QuestionCircleOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
-import { QuestionCircleOutlined } from '@ant-design/icons';
 
+// Style CSS intégré
+const styles = {
+  sideMenuContainer: {
+    marginTop: '10px', // Marge en haut
+  },
+  sideMenu: {
+    backgroundColor: '#192a56', // Fond en bleu marin
+    color: '#fff', // Couleur de texte en blanc
+    border: '2px solid #fff', // Bordure blanche
+    height: '2000px', // Hauteur de la barre latérale ajustée pour tenir compte de la marge en haut
+  },
+  icon: {
+    fill: '#fff', // Couleur rose fuchsia pour les icônes
+  },
+  menuItem: {
+    color: '#fff', // Couleur rose fuchsia pour le texte
+  },
+};
 
 function DashSideMenu() {
-  const navigate = useNavigate(); // Importation de la fonction navigate
+  const navigate = useNavigate();
+
+  const menuItems = [
+    { key: '/', icon: <HomeOutlined style={styles.icon} />, title: "Accueil" },
+    { key: '/DashbordPage', icon: <AppstoreOutlined style={styles.icon} />, title: "Tableau de bord" },
+
+    { key: '/listeUser', icon: <TeamOutlined style={styles.icon} />, title: "Exposant" },
+    { key: '/listeEvent', icon: <CalendarOutlined style={styles.icon} />, title: "Événement" },
+    { key: '/ListeStand1', icon: <ShopFilled style={styles.icon} />, title: "Stand" },
+    { key: '/CalendrierDash', icon: <CalendarFilled style={styles.icon} />, title: "Calendrier" },
+    { key: '/ListeReservation', icon: <ScheduleFilled style={styles.icon} />, title: "Réservation" },
+    { key: '/ListeDePaiement', icon: <DollarCircleOutlined style={styles.icon} />, title: "Paiement" },
+    { key: '/invitation', icon: <MailOutlined style={styles.icon} />, title: "Invitation" },
+    { key: '/faq', icon: <QuestionCircleOutlined style={styles.icon} />, title: "FAQ" },
+  ];
 
   return (
-    <div className="dash-Side-Menu">
-      <Menu onClick={(item) => {
-        navigate(item.key); // Utilisation de la fonction navigate
-      }} items={[
-        {
-          label: "Tableau de bord",
-          key: '/DashbordPage',
-          icon: <AppstoreOutlined />
-        },
-        {
-          label: "Admin",
-          key: '/Admin',
-          icon: <UserOutlined />
-        },
-        {
-          label: "Exposant",
-          key: '/listeUser',
-          icon: <TeamOutlined />
-        },
-        {
-          label: "Foire",
-          key: '/listeFoire',
-          icon: <ShopOutlined />
-        },
-        {
-          label: "Événement",
-          key: '/listeEvent',
-          icon: <CalendarOutlined />
-        },
-        {
-          label: "Stand",
-          key: '/ListeStand',
-          icon: <ShopFilled />
-        },
-        {
-          label: "Calendrier",
-          key: '/CalendrierDash',
-          icon: <CalendarFilled />
-        },
-        {
-          label: "Réservation",
-          key: '/reservation',
-          icon: <ScheduleFilled />
-        },
-        {
-          label: "Paiement",
-          key: '/payer',
-          icon: <DollarCircleOutlined />
-        },
-        {
-          label: "Invitation",
-          key: '/invitation',
-          icon: <MailOutlined />
-        },
-
-        {
-          label: "FAQ",
-          key: '/faq',
-          icon: <QuestionCircleOutlined />
-        },
-      ]}>
+    <div style={styles.sideMenuContainer}>
+      <Menu
+        onClick={(item) => {
+          navigate(item.key);
+        }}
+        style={styles.sideMenu}
+      >
+        {menuItems.map(item => (
+          <Menu.Item key={item.key} icon={item.icon} style={styles.menuItem}>
+            {item.title}
+          </Menu.Item>
+        ))}
       </Menu>
     </div>
   );
