@@ -1,63 +1,50 @@
 const express = require('express');
-const Event = require('../Models/Event');
-const Stand = require('../Models/Stand');
-const Reservation = require('../Models/Reservation');
 const router = express.Router();
+const Reservation = require('../Models/Reservation');
+const Stand = require('../Models/Stand'); // Assurez-vous de spécifier le bon chemin d'accès au modèle Stand
+const Event = require('../Models/Event');
 
-
-// Route to create a new Reservation
 router.post('/createReservation', async (req, res) => {
-    const { name, email, phone, date, selectedStand } = req.body;
+    try {
+      const { startDate, endDate, stand, event } = req.body;
   
-    try {
-        const standModel = await Stand.findById(selectedStand);
-
-        if (!standModel) {
-            return res.status(404).json({ message: 'Stand not found' });
-        }
-
-        const reservation = new Reservation({
-            name,
-            email,
-            phone,
-            date,
-            selectedStand,
-        });
-
-        const newReservation = await reservation.save();
-        res.status(201).json(newReservation);
-    } catch (err) {
-        res.status(400).json({ message: err.message });
+      // Assurez-vous que les champs requis sont présents
+      if (!startDate || !endDate || !stand || !event) {
+        return res.status(400).json({ message: 'Veuillez remplir tous les champs requis.' });
+      }
+  
+      console.log("Données reçues pour la réservation :", req.body);
+  
+      // Vérifiez que les ID de stand et d'événement sont valides
+      const standExists = await Stand.findById(stand);
+      const eventExists = await Event.findById(event);
+  
+      if (!standExists || !eventExists) {
+        return res.status(404).json({ message: 'Stand ou événement non trouvé.' });
+      }
+  
+      // Créez une nouvelle réservation
+      const newReservation = new Reservation({
+        startDate,
+        endDate,
+        stand,
+        event
+      });
+  
+      // Enregistrez la réservation dans la base de données
+      await newReservation.save();
+  
+      res.status(201).json({ message: 'Réservation créée avec succès!' });
+    } catch (error) {
+      console.error('Erreur lors de la création de la réservation :', error);
+      res.status(500).json({ message: 'Erreur lors de la création de la réservation.' });
     }
-});
+  });
 
 
-router.get('/listeReservation1', (req, res) => {
-    Reservation.find({}) // Utilisez le modèle de réservation pour rechercher toutes les réservations
-        .then((reservations) => {
-            res.json({ data: reservations }); // Renvoie les données de réservation sous forme d'objet JSON
-        })
-        .catch((error) => {
-            res.status(500).json({ error: error.message }); // Gestion des erreurs
-        });
-});
-
-
-
-// Route to get all reservations
-router.get('/listeReservation', async (req, res) => {
-    try {
-        const reservations = await Reservation.find().populate('stand event');
-        res.json({ data: reservations });
-    } catch (err) {
-        res.status(500).json({ message: err.message });
-    }
-});
-
-// Route to get a reservation by ID
 router.get('/listeReservation/:id', async (req, res) => {
     try {
-        const reservation = await Reservation.findById(req.params.id).populate('stand event');
+        const reservation = await Reservation.findById(req.params.id).populate('selectedStand selectedEvent');
         if (reservation) {
             res.json({ data: reservation });
         } else {
@@ -68,7 +55,6 @@ router.get('/listeReservation/:id', async (req, res) => {
     }
 });
 
-// Route to update a reservation by ID
 router.put('/updateReservation/:id', async (req, res) => {
     try {
         const updatedReservation = await Reservation.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true });
@@ -82,7 +68,6 @@ router.put('/updateReservation/:id', async (req, res) => {
     }
 });
 
-// Route to delete a reservation by ID
 router.delete('/deleteReservation/:id', async (req, res) => {
     try {
         const deletedReservation = await Reservation.findByIdAndDelete(req.params.id);

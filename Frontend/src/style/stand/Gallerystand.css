@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css?family=Exo+2&display=swap');
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Exo 2', sans-serif;
+  background: #080808;
+  color: #100576;
+  font-size: 14px;
+  min-height: 100vh;
+  display: flex;
+justify-content: center;
+  align-items: center;
+}
+
+.stands-grid {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  gap: 20px;
+  padding: 30px;
+  
+}
+
+.stand {
+  width: 70px;
+  height: 70px;
+  background-color: #1e3a4c;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.stand:hover {
+  background-color: #9ed2a3;
+}
+
+.stand.occupied {
+  background-color: #e57373;
+}
+
+.stand-details {
+  border: 2px solid #eeeef3;
+  padding: 20px;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.stand-details h3 {
+  font-weight: 300;
+  color: #0c0909;
+  margin-bottom: 10px;
+}
+
+.stand-details p {
+  color: #3e137e;
+  margin-bottom: 20px;
+}
+
+.stand-details button {
+  background-color: #333;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.stand-details button:hover {
+  background-color: #16a41d;
+}
