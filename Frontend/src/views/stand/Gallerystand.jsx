@@ -1,13 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import clsx from 'clsx';
-import { Link } from 'react-router-dom';
-import "../../style/stand/listeStand.css"; // Importez le fichier de style pour les stands
+import { Link, useLocation } from 'react-router-dom';
+import "../../style/stand/Gallerystand.css";
 import TopBarHome from '../visiteur/TopBarHome';
 
 export default function Gallerystand() {
     const [stands, setStands] = useState([]);
     const [selectedStand, setSelectedStand] = useState(null);
+    const location = useLocation();
+    const searchParams = new URLSearchParams(location.search);
+    const eventId = searchParams.get('event');
+    const eventName = searchParams.get('eventName');
+    const eventStartDate = searchParams.get('eventStartDate');
+    const eventEndDate = searchParams.get('eventEndDate');
 
     useEffect(() => {
         fetchStands();
@@ -37,7 +43,7 @@ export default function Gallerystand() {
                 {stands.map((stand, index) => (
                     <div
                         key={index}
-                        className={clsx('stand', selectedStand && selectedStand.num === stand.num && 'selected')}
+                        className={clsx('stand', selectedStand && selectedStand._id === stand._id && 'selected')}
                         onClick={() => handleStandClick(stand)}
                     >
                         <span>{stand.num}</span>
@@ -49,13 +55,13 @@ export default function Gallerystand() {
                     <div className="stand-details-content">
                         <h2>Stand Details</h2>
                         <p><strong>Nom:</strong> {selectedStand.nom}</p>
-                        <p><strong>numero:</strong> {selectedStand.nm}</p>
+                        <p><strong>Numéro:</strong> {selectedStand.num}</p>
                         <p><strong>Emplacement:</strong> {selectedStand.emplacement}</p>
                         <p><strong>Taille:</strong> {selectedStand.taille}</p>
                         <p><strong>Etat:</strong> {selectedStand.etat}</p>
                         <p><strong>Prix de location:</strong> {selectedStand.prixLocation}</p>
                         {selectedStand.etat === 'disponible' && (
-                            <Link to={`/CreateReservation?stand=${selectedStand.num}`}>
+                            <Link to={`/createReservation?stand=${selectedStand._id}&event=${eventId}&eventName=${eventName}&eventStartDate=${eventStartDate}&eventEndDate=${eventEndDate}`}>
                                 <button>Réserver maintenant</button>
                             </Link>
                         )}

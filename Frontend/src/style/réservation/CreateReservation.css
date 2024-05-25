@@ -1,80 +1,56 @@
-/* CréezReservation.css */
+/* CreateReservation.css */
 
-/* Conteneur global */
 .container {
   display: flex;
   justify-content: center;
   align-items: center;
- 
+  height: 100vh;
+  background-image: url('C:\\xampp\\htdocs\\ClinicMate\\poster.png');
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
-/* Conteneur flex pour les éléments */
-.flex-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-/* Style pour l'image de réservation */
-.image-container {
-  margin-right: 20px;
-  margin-left: 20px;
-}
-
-.image-container img {
-  width: 300px;
-  height: auto;
-}
-
-/* Style pour le conteneur de formulaire */
 .form-container {
-  background-color: #f9f9f9;
+  background-color: rgba(255, 255, 255, 0.7);
   padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  max-width: 500px;
+  width: 300px;
+  border-radius: 5px;
 }
 
-/* Styles pour les champs d'entrée */
-.form input,
-.form select {
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+label {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+input[type="text"],
+input[type="password"] {
   width: calc(100% - 20px);
   padding: 10px;
-  margin-bottom: 15px;
   border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 14px;
+  border-radius: 5px;
+  margin-bottom: 20px;
 }
 
-/* Styles lors de l'interaction de l'utilisateur */
-.form input:focus,
-.form select:focus {
-  border-color: #007bff;
-  outline: none;
-  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
-}
-
-/* Style pour les étiquettes */
-.form label {
-  display: block;
-  font-weight: bold;
-  margin-bottom: 5px;
-}
-
-/* Style pour le bouton de soumission */
-.form button {
-  background-color: #007bff;
-  color: white;
-  padding: 10px 20px;
+button[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  background-color: #585256;
+  color: #fff;
   border: none;
-  border-radius: 4px;
-  font-size: 14px;
+  border-radius: 5px;
   cursor: pointer;
-  display: block;
-  margin: 0 auto;
 }
 
-/* Changement de style lors du survol */
-.form button:hover {
-  background-color: #0056b3;
+button[type="submit"]:hover {
+  background-color: #444;
 }

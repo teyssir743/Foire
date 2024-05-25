@@ -12,14 +12,15 @@ router.get('/listeStand', async (req, res) => {
     }
 });
 
-// Route pour rechercher un stand par son ID
-router.get("/listeStand/:id", async (req, res) => {
+
+// Route pour récupérer les détails d'un stand par son ID
+router.get('/listeStand/:id', async (req, res) => {
     try {
         const stand = await Stand.findById(req.params.id);
         if (stand) {
             res.json({ data: stand });
         } else {
-            res.status(404).json({ error: "Veuillez vérifier l'ID" });
+            res.status(404).json({ error: "Stand non trouvé" });
         }
     } catch (err) {
         res.status(500).json({ error: err.message });

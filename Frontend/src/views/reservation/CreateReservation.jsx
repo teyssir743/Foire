@@ -5,114 +5,126 @@ import 'react-toastify/dist/ReactToastify.css';
 import "../../style/réservation/CreateReservation.css";
 import TopBarHome from '../visiteur/TopBarHome';
 import Footer from '../visiteur/Footer';
-
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-
 import { useLocation } from 'react-router-dom';
 
 function CreateReservation() {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
-  const selectedStandNum = searchParams.get('stand');
+  const standId = searchParams.get('stand');
+  const eventId = searchParams.get('event');
+  const eventName = decodeURIComponent(searchParams.get('eventName'));
+  const eventStartDateStr = decodeURIComponent(searchParams.get('eventStartDate'));
+  const eventEndDateStr = decodeURIComponent(searchParams.get('eventEndDate'));
 
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [phone, setPhone] = useState('');
-  const [date, setDate] = useState(new Date());
-  const [stands, setStands] = useState([]);
-  const [events, setEvents] = useState([]);
-  const [selectedStand, setSelectedStand] = useState(selectedStandNum || '');
-  const [selectedEvent, setSelectedEvent] = useState('');
+  const eventStartDate = new Date(eventStartDateStr);
+  const eventEndDate = new Date(eventEndDateStr);
+  const isValidDate = (date) => !isNaN(date.getTime());
+  const [startDate, setStartDate] = useState(isValidDate(eventStartDate) ? eventStartDate : new Date());
+  const [endDate, setEndDate] = useState(isValidDate(eventEndDate) ? eventEndDate : new Date());
+  const [standNum, setStandNum] = useState('');
 
   useEffect(() => {
-    fetchStands();
-    fetchEvents();
-  }, []);
+    if (standId) {
+      fetchStandDetails(standId);
+    }
+  }, [standId]);
 
-  const fetchStands = async () => {
+  const fetchStandDetails = async (standId) => {
     try {
-      const response = await axios.get('http://localhost:5000/api/stand/listeStand');
-      if (response.data && response.data.data) {
-        setStands(response.data.data);
+      const response = await axios.get(`http://localhost:5000/api/stand/listeStand/${standId}`);
+      console.log('Réponse de l\'API pour les détails du stand :', response); // Debug
+      if (response.data && response.data.data && response.data.data.num !== undefined) {
+        setStandNum(response.data.data.num);
       } else {
-        console.error('Données de stand non disponibles dans la réponse :', response);
+        console.error('Numéro de stand non disponible dans la réponse :', response);
       }
     } catch (error) {
-      console.error('Erreur lors de la récupération des stands :', error);
+      console.error('Erreur lors de la récupération des détails du stand :', error);
     }
-  };
-
-  const fetchEvents = async () => {
-    try {
-      const response = await axios.get('http://localhost:5000/api/event/listeEvent');
-      if (response.data && response.data.data) {
-        setEvents(response.data.data);
-      } else {
-        console.error('Données d\'événement non disponibles dans la réponse :', response);
-      }
-    } catch (error) {
-      console.error('Erreur lors de la récupération des événements :', error);
-    }
-  };
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    if (name === 'name') setName(value);
-    else if (name === 'email') setEmail(value);
-    else if (name === 'phone') setPhone(value);
-    else if (name === 'selectedEvent') setSelectedEvent(value); // Mettre à jour selectedEvent lorsqu'un événement est sélectionné
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-        const response = await axios.post('http://localhost:5000/api/reservation/createReservation', {
-            name,
-            email,
-            phone,
-            date,
-            selectedStand // Utilisez le nom correct de l'attribut
-        });
-       
-        if (response.data.data) {
-            toast.success('Votre réservation a été enregistrée avec succès!');
-        } else {
-            toast.error('Une erreur est survenue lors de la réservation. Veuillez réessayer.');
-        }
-    } catch (error) {
-        toast.error('Une erreur est survenue lors de la réservation. Veuillez réessayer.');
-    }
-};
 
+    if (!startDate || !endDate || !standId || !eventId) {
+      toast.error('Veuillez remplir tous les champs requis.');
+      return;
+    }
+
+    const start = new Date(startDate);
+    const end = new Date(endDate);
+    const eventStart = new Date(eventStartDate);
+    const eventEnd = new Date(eventEndDate);
+
+    if (start < eventStart || end > eventEnd) {
+      toast.error('Les dates de réservation doivent être dans la plage des dates de l\'événement.');
+      return;
+    }
+
+    try {
+      const reservationData = {
+        startDate: start.toISOString(),
+        endDate: end.toISOString(),
+        stand: standId,
+        event: eventId
+      };
+
+      console.log('Données envoyées pour la réservation :', reservationData);
+
+      const response = await axios.post('http://localhost:5000/api/reservation/createReservation', reservationData);
+
+      console.log('Réponse de la requête de réservation :', response);
+      toast.success('Votre réservation a été enregistrée avec succès!');
+
+    } catch (error) {
+      console.error('Erreur lors de la réservation :', error);
+      toast.error('Erreur lors de la réservation. Veuillez réessayer.');
+    }
+  };
 
   return (
     <div>
       <TopBarHome />
       <div className="container">
         <div className="flex-container">
-         
           <div className="form-container">
             <ToastContainer />
             <form onSubmit={handleSubmit} className="form">
               <h2>Réserver un stand !</h2>
-              <input type="text" name="name" value={name} onChange={handleChange} placeholder="Nom" required />
-              <input type="email" name="email" value={email} onChange={handleChange} placeholder="Email" required />
-              <input type="tel" name="phone" value={phone} onChange={handleChange} placeholder="Téléphone" required />
-              <DatePicker selected={date} onChange={(date) => setDate(date)} dateFormat="dd/MM/yyyy" required />
-              <select value={selectedStand} onChange={(e) => setSelectedStand(e.target.value)} required>
-                <option value="">Sélectionner un stand</option>
-                {stands.map((stand, index) => (
-                  <option key={index} value={stand.num}>Stand {stand.num}</option>
-                ))}
-              </select>
-            
+              <label>Date de début de réservation :</label>
+              <DatePicker
+                selected={startDate}
+                onChange={(date) => setStartDate(date)}
+                dateFormat="dd/MM/yyyy"
+                selectsStart
+                startDate={startDate}
+                endDate={endDate}
+                minDate={eventStartDate}
+                maxDate={eventEndDate}
+                required
+              />
+              <label>Date de fin de réservation :</label>
+              <DatePicker
+                selected={endDate}
+                onChange={(date) => setEndDate(date)}
+                dateFormat="dd/MM/yyyy"
+                selectsEnd
+                startDate={startDate}
+                endDate={endDate}
+                minDate={startDate}
+                maxDate={eventEndDate}
+                required
+              />
+              <input type="text" value={`Stand sélectionné: Stand ${standNum}`} readOnly />
+              <input type="text" value={`Événement sélectionné: ${eventName}`} readOnly />
               <button type="submit">Réserver</button>
             </form>
           </div>
         </div>
       </div>
-      <Footer />
+     <Footer />
     </div>
   );
 }

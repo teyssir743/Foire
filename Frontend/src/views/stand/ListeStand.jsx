@@ -1,13 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import clsx from 'clsx';
-import { Link } from 'react-router-dom';
-import "../../style/stand/listeStand.css"; // Importez le fichier de style pour les stands
+import { Link, useLocation } from 'react-router-dom'; // Import useLocation
+import "../../style/stand/listeStand.css";
 import TopBarHome from '../visiteur/TopBarHome';
 
 export default function ListeStand() {
     const [stands, setStands] = useState([]);
     const [selectedStand, setSelectedStand] = useState(null);
+    const location = useLocation();
+    const searchParams = new URLSearchParams(location.search);
+    const eventId = searchParams.get('event');
+    const eventName = searchParams.get('eventName');
 
     useEffect(() => {
         fetchStands();
@@ -49,13 +53,13 @@ export default function ListeStand() {
                     <div className="stand-details-content">
                         <h2>Stand Details</h2>
                         <p><strong>Nom:</strong> {selectedStand.nom}</p>
-                        <p><strong>numero:</strong> {selectedStand.num}</p>
+                        <p><strong>Numéro:</strong> {selectedStand.num}</p>
                         <p><strong>Emplacement:</strong> {selectedStand.emplacement}</p>
                         <p><strong>Taille:</strong> {selectedStand.taille}</p>
-                        <p><strong>Etat:</strong> {selectedStand.etat}</p>
+                        <p><strong>État:</strong> {selectedStand.etat}</p>
                         <p><strong>Prix de location:</strong> {selectedStand.prixLocation}</p>
                         {selectedStand.etat === 'disponible' && (
-                            <Link to={`/CreateReservation?stand=${selectedStand.num}`}>
+                            <Link to={`/createReservation?stand=${selectedStand.num}&event=${eventId}&eventName=${encodeURIComponent(eventName)}`}>
                                 <button>Réserver maintenant</button>
                             </Link>
                         )}
