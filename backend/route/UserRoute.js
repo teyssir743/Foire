@@ -2,6 +2,11 @@ const express = require('express');
 const router = express.Router();
 const User = require('../Models/User');
 
+
+
+
+
+
 // Route pour créer un nouveau User
 router.post('/createUser', async (req, res) => {
     const user = new User(req.body);
@@ -17,7 +22,7 @@ router.post('/createUser', async (req, res) => {
 
 
 // Route pour récupérer la liste des utilisateurs
-router.get('/listeUser', (req, res) => {
+router.get('/listeUser',(req, res) => {
     User.find({})
         .then((result) => {
             res.json({ data: result });

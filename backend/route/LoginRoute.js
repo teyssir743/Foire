@@ -3,9 +3,7 @@ const router = express.Router();
 const bcrypt = require('bcrypt');
 const User = require('../Models/User');
 
-
-
-
+ 
 
 router.post('/login', async (req, res) => {
     try {
@@ -18,7 +16,13 @@ router.post('/login', async (req, res) => {
             return res.status(401).json({ error: 'Email ou mot de passe incorrect' });
         }
 
+
+       
+
+
+
         
+
         // Authentification réussie
         res.json({ msg: 'Authentification réussie', user });
     } catch (error) {

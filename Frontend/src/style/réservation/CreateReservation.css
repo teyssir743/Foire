@@ -1,13 +1,14 @@
 /* CreateReservation.css */
 
-.container {
+.container-reservation {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-image: url('C:\\xampp\\htdocs\\ClinicMate\\poster.png');
+  width: 218vh;
   background-repeat: no-repeat;
   background-size: cover;
+
 }
 
 .form-container {

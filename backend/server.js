@@ -3,14 +3,29 @@ const express = require('express');
 //instance de l'express
 const app = express();
 app.use(express.json());
+const jwt = require('jsonwebtoken');
+
+const dotenv = require('dotenv');
+// Charger les variables d'environnement à partir du fichier .env
+dotenv.config();
 
 
 const cors =require("cors");
 app.use(cors());
 
+
+//forgot and reser password
+const forgotPasswordRoutes = require('./route/forgotPasswordRoutes');
+const resetPasswordRoutes = require('./route/resetPasswordRoutes');
+app.use('/api/forgot-password', forgotPasswordRoutes);
+app.use('/api/reset-password', resetPasswordRoutes);
+
+
+
 //authentification
 const AuthRoute = require ('./route/AuthRoute');
 app.use ('/api/auth',AuthRoute);
+
 
 //login
 const LoginRoute = require ('./route/LoginRoute');
@@ -89,12 +104,25 @@ mongoose.connect('mongodb+srv://teyssir:14035766@cluster0.brvirxu.mongodb.net/Fo
 .then(()=>{console.log("data base connected");})
 .catch(err => {console.log(err);})
 
-
-
-
-
 //activer sur le port 5000 et fonction flechee callback : localhost:5000 
 app.listen(5000,()=> console.log("serveur en marche"));
+
+
+const verifyToken = (req, res, next) => {
+    const token = req.headers['authorization'];
+    if (!token) return res.status(403).send('Token is required');
+  
+    jwt.verify(token, process.env.SECRET_KEY, (err, decoded) => {
+      if (err) return res.status(500).send('Failed to authenticate token');
+      req.user = decoded;
+      next();
+    });
+    
+  };
+
+// Activer le serveur sur le port 5000
+//const PORT = process.env.PORT || 5000;
+//app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 
 
 

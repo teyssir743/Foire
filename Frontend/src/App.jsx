@@ -89,6 +89,9 @@ import ListePaiements from './views/Paiement/ListeDePaiement';
 import Login_admin from './views/dash-bord/loginAdmin';
 import Register_admin from './views/dash-bord/Register_admin';
 import Payment_admin from './views/dash-bord/Payment_admin';
+import ProtectedRoute from './views/ProtectedRoute/ProtectedRoute';
+
+
 
 
 
@@ -105,6 +108,9 @@ function App() {
       <Routes>
 
       
+      <Route path="/confirm/ActivationPage/:activationCode" element={<ActivationPage />}></Route>
+      
+      
 
       <Route path='/admin' element={ <AdminForm/>}/>
       <Route path='/listeAdmin' element={ <ListeAdmin/>}/>
@@ -113,6 +119,8 @@ function App() {
       <Route path="/login_admin" element={<Login_admin />} />
       <Route path="/Register_admin" element={<Register_admin />} />
       <Route path="/Payment_admin" element={<Payment_admin />} />
+      
+      
       
    
       
@@ -162,7 +170,7 @@ function App() {
         <Route path='/listeStand' element={ <ListeStand/>}/>
         <Route path='/listeStand1' element={ <ListeStand1/>}/>  
         <Route path='/updateStand/:id' element={ <UpdateStand/>}/> 
-        <Route path='/Gallerystand' element={ <Gallerystand/>}/> 
+        <Route path='/Gallerystand' element={  <ProtectedRoute> <Gallerystand/>  </ProtectedRoute>  } />
         
       
 
@@ -188,7 +196,7 @@ function App() {
 
 
         {/*paiement*/}
-        <Route path='/payer' element={ <PaymentPage/>}/>
+        <Route path='/payer' element={  <ProtectedRoute>  <PaymentPage/>  </ProtectedRoute>  } />
         <Route path='/ListeDePaiement' element={ <ListePaiements/>}/>
         ListeDePaiement
 

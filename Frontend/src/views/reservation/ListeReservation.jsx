@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { toast, ToastContainer } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
@@ -12,13 +12,15 @@ function ListeReservation() {
   useEffect(() => {
     axios.get("http://localhost:5000/api/reservation/listeReservation1")
       .then(res => {
-        setReservations(res.data.data);
+        console.log("Réponse de la requête :", res); // Consolez la réponse ici
+        setReservations(res.data); // Assurez-vous que vous utilisez la bonne structure pour accéder aux données
       })
       .catch(error => {
         console.error("Erreur lors de la récupération des réservations :", error);
       });
   }, []);
 
+  
   const handleDelete = id => {
     axios.delete(`http://localhost:5000/api/reservation/deleteReservation/${id}`)
       .then(() => {
@@ -32,29 +34,34 @@ function ListeReservation() {
       });
   };
 
+
+  
+
+
   return (
     <Dash>
       <div className="admin-list-container">
         <ToastContainer />
        
-        <button className="button-create" onClick={() => navigate(`/createReservation`)}>Créer une réservation</button>
+       
         <div style={{ height: 400, width: '100%' }}>
           <DataGrid
             rows={reservations.map(reservation => ({ ...reservation, id: reservation._id }))}
             columns={[
-              { field: 'id', headerName: 'ID', width: 200 }, // Changer 'id' en 'ID'
-              { field: 'name', headerName: 'Nom', width: 200 },
-              { field: 'email', headerName: 'Email', width: 200 },
-              { field: 'phone', headerName: 'Téléphone', width: 200 },
-              { field: 'date', headerName: 'Date', width: 200 },
-              { field: 'selectedStand', headerName: 'Stand', width: 200 },
+              { field: 'id', headerName: 'ID', width: 200 },
+              { field: 'startDate', headerName: 'Date de début', width: 200 },
+              { field: 'endDate', headerName: 'Date de fin', width: 200 },
+              { field: 'stand', headerName: 'Stand', width: 200 },
+              { field: 'event', headerName: 'Événement', width: 200 },
+              
               {
                 field: 'actions',
                 headerName: 'Actions',
                 width: 200,
                 renderCell: (params) => (
                   <>
-                    <button className="buttonDelete" onClick={() => handleDelete(params.row.id)}>Supprimer</button> {/* Utiliser params.row.id */}
+                  
+                    <button className="buttonDelete" onClick={() => handleDelete(params.row.id)}>Supprimer</button>
                   </>
                 )
               },
@@ -65,7 +72,7 @@ function ListeReservation() {
             pagination
             autoHeight
             components={{
-              Toolbar: GridToolbar, // Ajout de GridToolbar
+              Toolbar: GridToolbar,
             }}
           />
         </div>

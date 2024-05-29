@@ -87,7 +87,7 @@ function CreateReservation() {
   return (
     <div>
       <TopBarHome />
-      <div className="container">
+      <div className="container-reservation">
         <div className="flex-container">
           <div className="form-container">
             <ToastContainer />
