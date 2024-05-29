@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import { Link, useLocation } from 'react-router-dom';
 import "../../style/stand/Gallerystand.css";
 import TopBarHome from '../visiteur/TopBarHome';
-
+import Footer from '../visiteur/Footer';
 export default function Gallerystand() {
     const [stands, setStands] = useState([]);
     const [selectedStand, setSelectedStand] = useState(null);
@@ -43,7 +43,7 @@ export default function Gallerystand() {
                 {stands.map((stand, index) => (
                     <div
                         key={index}
-                        className={clsx('stand', selectedStand && selectedStand._id === stand._id && 'selected')}
+                        className={clsx('stand', selectedStand && selectedStand._id === stand._id && 'selected', stand.etat === 'reservé' && 'reserved')}
                         onClick={() => handleStandClick(stand)}
                     >
                         <span>{stand.num}</span>
@@ -57,9 +57,9 @@ export default function Gallerystand() {
                         <p><strong>Nom:</strong> {selectedStand.nom}</p>
                         <p><strong>Numéro:</strong> {selectedStand.num}</p>
                         <p><strong>Emplacement:</strong> {selectedStand.emplacement}</p>
-                        <p><strong>Taille:</strong> {selectedStand.taille}</p>
+                        <p><strong>Taille:</strong> {selectedStand.taille} mètre carré</p>
                         <p><strong>Etat:</strong> {selectedStand.etat}</p>
-                        <p><strong>Prix de location:</strong> {selectedStand.prixLocation}</p>
+                        <p><strong>Prix de location:</strong> {selectedStand.prixLocation} DT/J</p>
                         {selectedStand.etat === 'disponible' && (
                             <Link to={`/createReservation?stand=${selectedStand._id}&event=${eventId}&eventName=${eventName}&eventStartDate=${eventStartDate}&eventEndDate=${eventEndDate}`}>
                                 <button>Réserver maintenant</button>
@@ -68,6 +68,7 @@ export default function Gallerystand() {
                     </div>
                 )}
             </div>
+            
         </div>
     );
 }

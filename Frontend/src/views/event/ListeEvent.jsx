@@ -53,6 +53,7 @@ function ListeEvent() {
               { field: 'titre', headerName: 'Titre', width: 200 },
               { field: 'date_debut', headerName: 'Date de début', width: 200, valueFormatter: ({ value }) => formatDate(value) },
               { field: 'date_fin', headerName: 'Date de fin', width: 200, valueFormatter: ({ value }) => formatDate(value) },
+              { field: 'etat', headerName: 'etat', width: 200 },
               { field: 'description', headerName: 'Description', width: 255 },
               {
                 field: 'actions',

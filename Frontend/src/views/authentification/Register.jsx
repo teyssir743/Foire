@@ -5,7 +5,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import '../../style/login/auth.css';
 import TopBarHome from '../visiteur/TopBarHome';
 import image from '../../image/signin.jpg'; // Import de l'image
-
+import Footer from '../visiteur/Footer';
 function Register() {
     const [user, setUser] = useState({
         username: '',
@@ -56,7 +56,7 @@ function Register() {
     };
 
     return (
-        <div>
+        <div className='container-compte '>
             <TopBarHome />
             <div className="register">
                 <div className="container-register">
@@ -97,6 +97,7 @@ function Register() {
                 </div>
             </div>
             <ToastContainer />
+           
         </div>
     );
 }

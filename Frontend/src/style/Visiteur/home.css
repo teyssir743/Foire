@@ -1,10 +1,12 @@
 
 .container {
-    display: flex; /* Utiliser flexbox pour aligner les éléments horizontalement */
-    justify-content: center; /* Centrer les éléments horizontalement */
-    align-items: center; /* Centrer les éléments verticalement */
-}
-
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100vh;
+    padding: 0 20px; /* Ajoute un peu d'espace sur les côtés */
+    
+  }
 
 .imageFront {
     align-items: center;

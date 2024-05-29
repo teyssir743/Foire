@@ -33,7 +33,7 @@ function DashboardPage() {
 
         axios.get("http://localhost:5000/api/reservation/listeReservation1")
             .then(response => {
-                setReservationData(response.data.data);
+                setReservationData(response.data);
             })
             .catch(error => console.error('Erreur lors de la récupération des données des réservations :', error));
 

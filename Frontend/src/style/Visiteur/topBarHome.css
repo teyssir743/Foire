@@ -1,6 +1,6 @@
 .navbar-container {
     background-color: transparent;
-    padding: 10px 20px;
+    padding: 0px 20px;
     width: 100%; /* Occupe toute la largeur disponible */
 
     background-color: #ffffff; /* Couleur de fond */
@@ -58,7 +58,7 @@
     width: 180px; /* Largeur souhaitée */
     height: auto; /* Hauteur automatique pour maintenir les proportions */
     margin-right: 0%;
-    margin-top: 80px;
+    margin-top: 50px;
     padding:20px 20px;
 
 }
@@ -118,7 +118,7 @@
     border-radius: 4px; /* Arrondi des coins */
     cursor: pointer; /* Curseur au survol */
     transition: background-color 0.3s ease; /* Animation au survol */
-    margin-left: 4px;
+    margin-left: 20px;
   
 }
 

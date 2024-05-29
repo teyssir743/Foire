@@ -1,4 +1,4 @@
-import  { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import "../../style/evenement/eventGallery.css";
@@ -6,7 +6,7 @@ import TopBarHome from '../visiteur/TopBarHome';
 
 function EventGallery() {
   const [events, setEvents] = useState([]);
-  const [selectedEvent, setSelectedEvent] = useState(null); // Ajout de useState pour gérer la sélection de l'événement
+  const [selectedEvent, setSelectedEvent] = useState(null);
 
   useEffect(() => {
     fetchEvents();
@@ -29,6 +29,13 @@ function EventGallery() {
     setSelectedEvent(event);
   };
 
+  const isEventOngoing = (startDate, endDate) => {
+    const now = new Date();
+    const start = new Date(startDate);
+    const end = new Date(endDate);
+    return now >= start && now <= end;
+  };
+
   return (
     <div>
       <TopBarHome />
@@ -38,7 +45,7 @@ function EventGallery() {
           {events.map(event => (
             <div
               key={event._id}
-              className="event-box"
+              className={`event-box ${isEventOngoing(event.date_debut, event.date_fin) ? 'ongoing' : ''}`}
               onClick={() => handleEventClick(event)}
             >
               <div className="event">
@@ -48,9 +55,13 @@ function EventGallery() {
                   <p>Date de début: {event.date_debut}</p>
                   <p>Date de fin: {event.date_fin}</p>
                   <p>Description: {event.description}</p>
-                  <Link to={`/Gallerystand?event=${event._id}&eventName=${encodeURIComponent(event.titre)}&eventStartDate=${encodeURIComponent(event.date_debut)}&eventEndDate=${encodeURIComponent(event.date_fin)}`}>
-                    <button>Voir les stands</button>
-                  </Link>
+                  {isEventOngoing(event.date_debut, event.date_fin) ? (
+                    <Link to={`/Gallerystand?event=${event._id}&eventName=${encodeURIComponent(event.titre)}&eventStartDate=${encodeURIComponent(event.date_debut)}&eventEndDate=${encodeURIComponent(event.date_fin)}`}>
+                      <button className="button-ongoing">Voir les stands</button>
+                    </Link>
+                  ) : (
+                    <button className="button-ended" disabled></button>
+                  )}
                 </div>
               </div>
             </div>

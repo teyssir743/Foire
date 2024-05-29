@@ -33,6 +33,7 @@ router.post('/createReservation', async (req, res) => {
   
       // Enregistrez la réservation dans la base de données
       await newReservation.save();
+      await Stand.findByIdAndUpdate(stand, { etat: 'reservé' });
   
       res.status(201).json({ message: 'Réservation créée avec succès!' });
     } catch (error) {
@@ -41,27 +42,37 @@ router.post('/createReservation', async (req, res) => {
     }
   });
 
+  router.get('/listeReservation1', (req, res) => {
+    Reservation.find({}).then((result) => {
+      res.json(result); // Envoyez directement les données sans les envelopper dans un objet
+    }).catch((error) => {
+      res.status(500).json({ error: error.message });
+    });
+  });
+  
+  
 
-router.get('/listeReservation/:id', async (req, res) => {
+  router.get('/reservation/:id', async (req, res) => {
     try {
-        const reservation = await Reservation.findById(req.params.id).populate('selectedStand selectedEvent');
+        const reservation = await Reservation.findById(req.params.id);
         if (reservation) {
             res.json({ data: reservation });
         } else {
-            res.status(404).json({ error: 'Reservation not found' });
+            res.status(404).json({ error: 'Réservation non trouvée' });
         }
     } catch (err) {
         res.status(500).json({ message: err.message });
     }
 });
 
+
 router.put('/updateReservation/:id', async (req, res) => {
     try {
         const updatedReservation = await Reservation.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true });
         if (updatedReservation) {
-            res.json({ msg: 'Reservation updated successfully!', data: updatedReservation });
+            res.json({ msg: 'Réservation mise à jour avec succès!', data: updatedReservation });
         } else {
-            res.status(404).json({ error: 'Reservation not found' });
+            res.status(404).json({ error: 'Réservation non trouvée' });
         }
     } catch (err) {
         res.status(400).json({ message: err.message });

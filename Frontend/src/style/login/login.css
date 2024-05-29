@@ -1,24 +1,30 @@
 
-
+.container_log{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 215vh;
+ 
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: #0e172f;
+}
   .form-container {
-    width: 400px;
-    padding: 20px;
+   
+    top: 20%;
+  left: 45%;
   
-    border-radius: 5px;
-    margin-right: 370px;
-    margin-left: 80px;
-    margin-top: 180px;
-    position: absolute;
-    right: 0; /* Modification : aligner à droite */
-    top: 0;
+  padding: 40px;
+  border-radius: 10px; /* Cadre arrondi */
+  
+  
+  max-width: 500px;
+  width: 100%;
+
+  margin-top: 50px;
+  margin-left: 50px;
   }
-  
-
-
-
-
-
-
   
 
 
@@ -29,10 +35,11 @@
   }
   
   .image-container img {
-    max-width: 55%;
+    max-width: 100%;
     height: auto;
     margin-top: 150px;
-    margin-left: 120px;
+    margin-left: 20px;
+    margin-right: 800px;
    
     
   }
@@ -42,11 +49,25 @@
 
 
   .form-container h2 {
-    margin-top: 0;
-    margin-left: 10px;
-    color:#1b2b34;
+    margin: 30px;
+    margin-top: -15px;
+    margin-left: -25px;
+    color:#fcfcfc;
+    font-size: 20px;
+}
+.input-group {
+  position: relative;
+  margin-bottom: 2px;
 }
 
+.input-icon {
+  position: absolute;
+  left: 1px;
+  top: 40%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+}
 
 
 .form-container .form input[type="email"],
@@ -57,16 +78,19 @@
     box-sizing: border-box;
     border: 1px solid #ccc;
     border-radius: 4px;
+    margin-left: -14px;
 }
 
-.form-container .form button {
-    background-color:#f7c706;
-    color: #fff;
+.log {
+    background-color:#62c1d2;
+    color: #ffffff;
     padding: 10px 20px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
    width: 100%;
+   margin-left: -15px;
+   margin-top: px;
 }
 
 
@@ -87,7 +111,7 @@
 
 
 .login-lien a {
-  color: #0056b3; /* Couleur du lien */
+  color: #ffffff; /* Couleur du lien */
   text-decoration: none; /* Supprimer la soulignement par défaut */
   font-size: 16px; /* Taille de la police */
   font-weight: bold; /* Gras */
@@ -100,10 +124,38 @@
 }
 
 .login-lien p {
-  color: #2a253f; /* Couleur du lien */
+  color: #a6a4a4; /* Couleur du lien */
   text-decoration: none; /* Supprimer la soulignement par défaut */
   font-size: 10px; /* Taille de la police */
   font-weight: bold; /* Gras */
-  margin-left: 150px;
-  margin-top: 50px;
+  margin-left: 170px;
+  margin-top: 26px;
+}
+.remember-me {
+  display: flex;
+  align-items: center;
+}
+
+.remember-me input {
+  margin-right: -180px;
+  margin-left: -200px;
+}
+
+.forgot-password {
+  margin-top: 30px;
+  margin-left: 100px;
+  color: #ccc;
+}
+
+.forgot-password-button {
+  background: none;
+  border: none;
+  color: #007bff;
+  text-decoration: underline;
+  cursor: pointer;
+  padding: 0;
+}
+
+.forgot-password-button:hover {
+  color: #0056b3;
 }
