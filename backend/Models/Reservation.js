@@ -11,12 +11,12 @@ const reservationSchema = new mongoose.Schema({
   },
   stand: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Stand', // Assurez-vous que cela correspond à votre modèle de stand
+    ref: 'Stand',
     required: true
   },
   event: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Event', // Assurez-vous que cela correspond à votre modèle d'événement
+    ref: 'Event',
     required: true
   }
 });

@@ -1,7 +1,8 @@
 
 import '../../style/Visiteur/topBarHome.css';
-import logo from '../../image/logo.png';
+import logo from '../../image/3.png';
 import { useNavigate } from 'react-router-dom';
+
 
 const Navbar = () => {
    
@@ -46,7 +47,7 @@ const handleCreateAccountClick = () => {
         <nav className="navbar-container">
              <div className="top-banner">
         <p>Bienvenue sur Futur Event - Votre partenaire pour des foires réussies !</p>
-        <p>Planifiez et organisez vos événements avec facilité. Inscrivez-vous dès maintenant pour réserver votre stand.</p>
+        <p>Participez aux événements en toute simplicité. Inscrivez-vous dès maintenant pour réserver votre stand.</p>
     </div>
             <div className="navbar-box">
                

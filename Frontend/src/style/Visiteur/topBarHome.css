@@ -1,6 +1,6 @@
 .navbar-container {
     background-color: transparent;
-    padding: 10px 20px;
+    padding: 0px 20px;
     width: 100%; /* Occupe toute la largeur disponible */
 
     background-color: #ffffff; /* Couleur de fond */
@@ -15,13 +15,16 @@
 }
 
 .top-banner {
-    background-color: #83a7cb;
-    color: #343a40;
+    background-color: #0e172f;
+    color: #e9eef3;
     text-align: center;
     padding: 0px 0;
     border-bottom: 1px solid #dee2e6;
-    width: 100%;
+    width: 110%;
     overflow-x: hidden;
+   
+    margin-left: -20px;
+   
 }
 
 .top-banner p {
@@ -57,8 +60,9 @@
 .logo-img {
     width: 180px; /* Largeur souhaitée */
     height: auto; /* Hauteur automatique pour maintenir les proportions */
-    margin-right: 0%;
-    margin-top: 80px;
+    margin-right: 12px;
+    margin-top: 15px;
+    margin-left: 40px;
     padding:20px 20px;
 
 }
@@ -118,7 +122,7 @@
     border-radius: 4px; /* Arrondi des coins */
     cursor: pointer; /* Curseur au survol */
     transition: background-color 0.3s ease; /* Animation au survol */
-    margin-left: 4px;
+    margin-left: 20px;
   
 }
 

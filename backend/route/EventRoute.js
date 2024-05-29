@@ -59,6 +59,30 @@ router.delete("/deleteEvent/:id",(req,res)=>{
   });
 });
 
+router.get('/events', async (req, res) => {
+  try {
+    const events = await Event.find({});
+    res.json({ data: events });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// Route to get event by ID
+router.get('/events/:id', async (req, res) => {
+  try {
+    const event = await Event.findById(req.params.id);
+    if (event) {
+      res.json({ data: event });
+    } else {
+      res.status(404).json({ error: "Event not found" });
+    }
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+
 
 
 module.exports = router ;

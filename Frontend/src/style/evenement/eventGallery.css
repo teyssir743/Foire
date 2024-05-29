@@ -1,6 +1,11 @@
 .event-gallery {
     padding: 20px;
     margin-top: 100px;
+    background-color: #0e172f;
+  }
+  .event-gallery h2{
+    color: #ffffff;
+ 
   }
   
   .event-boxes {
@@ -32,21 +37,80 @@
   
   .event-details {
     padding: 10px;
+    
   }
   
   .event-details h3 {
-    font-size: 20px;
+    font-size: 30px;
     margin-bottom: 5px;
+    color: #ccc;
+
    
   }
   
   .event-details p {
     font-size: 14px;
     margin-bottom: 5px;
+    color: #ccc;
   }
   
   .event-gallery h2{
-    margin-left: 600px;
+    margin-left: 50px;
     font-size: 40px;
     margin-bottom: 50px;
+    margin-top: 25px ;
   }
+  /* Ajoutez ces styles en bas de votre fichier CSS existant */
+.button-ongoing {
+  background-color: white;
+  color: black;
+  font-size:larger;
+}
+
+.button-ended {
+  background-color: transparent;
+  color: white;
+  cursor: not-allowed;
+}
+/* Ajoutez ces styles en bas de votre fichier CSS existant */
+@keyframes borderPulse {
+  0% {
+    border-color: #fff;
+  }
+  50% {
+    border-color: #FF007F;
+  }
+  100% {
+    border-color: #fff;
+  }
+}
+
+.event-box {
+  width: calc(32% - 20px); /* Pour 3 boîtes par ligne */
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: border 0.3s ease;
+}
+
+.event-box.ongoing {
+  border: 3px solid; /* Augmentation de l'épaisseur de la bordure */
+  animation: borderPulse 2s infinite;
+}
+
+.button-ongoing {
+  background-color: #FF007F;
+  color: black;
+  animation: borderPulse 1s infinite;
+  border: 2px solid; /* Ajout d'une bordure pour l'animation */
+  padding: 5px 20px; /* Ajustement du padding pour une meilleure apparence */
+  transition: border 0.3s ease;
+  
+}
+
+.button-ended {
+  
+  cursor: not-allowed;
+  border: px solid black; /* Bordure noire fixe pour les boutons désactivés */
+}

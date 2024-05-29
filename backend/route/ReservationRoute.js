@@ -33,6 +33,7 @@ router.post('/createReservation', async (req, res) => {
   
       // Enregistrez la réservation dans la base de données
       await newReservation.save();
+      await Stand.findByIdAndUpdate(stand, { etat: 'reservé' });
   
       res.status(201).json({ message: 'Réservation créée avec succès!' });
     } catch (error) {

@@ -1,4 +1,4 @@
-import  { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -20,8 +20,13 @@ function CreateReservation() {
 
   const eventStartDate = new Date(eventStartDateStr);
   const eventEndDate = new Date(eventEndDateStr);
+  const today = new Date(); // Obtenez la date actuelle
+
+  // Calculer la date minimale pour la réservation
+  const minStartDate = today > eventStartDate ? today : eventStartDate; // La date minimale est soit la date actuelle soit la date de début de l'événement, selon celle qui est la plus tardive
+
   const isValidDate = (date) => !isNaN(date.getTime());
-  const [startDate, setStartDate] = useState(isValidDate(eventStartDate) ? eventStartDate : new Date());
+  const [startDate, setStartDate] = useState(isValidDate(minStartDate) ? minStartDate : new Date());
   const [endDate, setEndDate] = useState(isValidDate(eventEndDate) ? eventEndDate : new Date());
   const [standNum, setStandNum] = useState('');
 
@@ -87,45 +92,45 @@ function CreateReservation() {
   return (
     <div>
       <TopBarHome />
+     
       <div className="container-reservation">
-        <div className="flex-container">
-          <div className="form-container">
-            <ToastContainer />
-            <form onSubmit={handleSubmit} className="form">
-              <h2>Réserver un stand !</h2>
-              <label>Date de début de réservation :</label>
-              <DatePicker
-                selected={startDate}
-                onChange={(date) => setStartDate(date)}
-                dateFormat="dd/MM/yyyy"
-                selectsStart
-                startDate={startDate}
-                endDate={endDate}
-                minDate={eventStartDate}
-                maxDate={eventEndDate}
-                required
-              />
-              <label>Date de fin de réservation :</label>
-              <DatePicker
-                selected={endDate}
-                onChange={(date) => setEndDate(date)}
-                dateFormat="dd/MM/yyyy"
-                selectsEnd
-                startDate={startDate}
-                endDate={endDate}
-                minDate={startDate}
-                maxDate={eventEndDate}
-                required
-              />
-              <input type="text" value={`Stand sélectionné: Stand ${standNum}`} readOnly />
-              <input type="text" value={`Événement sélectionné: ${eventName}`} readOnly />
-              <button type="submit">Réserver</button>
-            </form>
-          </div>
+        <ToastContainer />
+        <div className="form-container-res">
+          <form onSubmit={handleSubmit} className="form">
+            <h2>Réserver un stand !</h2>
+            <label>Date de début de réservation </label>
+            <DatePicker
+              selected={startDate} className='date'
+              onChange={(date) => setStartDate(date)}
+              dateFormat="dd/MM/yyyy"
+              selectsStart
+              startDate={startDate}
+              endDate={endDate}
+              minDate={minStartDate} // Définir la date minimale comme étant minStartDate
+              maxDate={eventEndDate}
+              required
+            />
+            <label>Date de fin de réservation </label>
+            <DatePicker className='date'
+              selected={endDate}
+              onChange={(date) => setEndDate(date)}
+              dateFormat="dd/MM/yyyy"
+              selectsEnd
+              startDate={startDate}
+              endDate={endDate}
+              minDate={startDate}
+              maxDate={eventEndDate}
+              required
+            />
+            <input className='date' type="text" value={`Stand sélectionné: Stand ${standNum}`} readOnly />
+            <input className='date' type="text" value={`Événement sélectionné: ${eventName}`} readOnly />
+            <button className='reserverb' type="submit">Réserver</button>
+          </form>
         </div>
       </div>
-     <Footer />
+      <Footer/>
     </div>
+    
   );
 }
 

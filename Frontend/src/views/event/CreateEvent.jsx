@@ -9,6 +9,7 @@ function Events() {
     titre: '',
     date_debut: '',
     date_fin: '',
+    etat: '',
     description: '',
     image: null // State pour l'image sélectionnée
   });
@@ -27,6 +28,7 @@ function Events() {
     formData.append('titre', event.titre);
     formData.append('date_debut', event.date_debut);
     formData.append('date_fin', event.date_fin);
+    
     formData.append('description', event.description);
     formData.append('image', event.image); // Ajouter l'image au formData
 

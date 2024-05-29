@@ -7,7 +7,7 @@ const eventSchema = new mongoose.Schema({
   date_fin: { type: Date, required: true },
   description: { type: String, required: true },
   image: { type: String },
-  etat: { type: String, enum: ['en cours', 'terminé'], default: 'en cours' } // Ajout du champ etat
+ 
 });
 
 module.exports = mongoose.model('Event', eventSchema);

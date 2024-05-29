@@ -6,17 +6,18 @@
   box-sizing: border-box;
 }
 
-body {
-  margin: 0;
+.container-stand{
+ margin-right: -800px;
   padding: 0;
-  font-family: 'Exo 2', sans-serif;
-  background: #080808;
+
+ background-color: #0e172f;
   color: #100576;
   font-size: 14px;
   min-height: 100vh;
   display: flex;
 justify-content: center;
   align-items: center;
+  width: 1520px;
 }
 
 .stands-grid {
@@ -25,20 +26,24 @@ justify-content: center;
   grid-template-rows: repeat(4, 1fr);
   gap: 20px;
   padding: 30px;
+  margin-top: 100px;
+
+ 
   
 }
 
 .stand {
   width: 70px;
   height: 70px;
-  background-color: #1e3a4c;
+  background-color: #ccc;
   border-radius: 5px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white;
+  color: rgb(10, 1, 1);
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  
+
 }
 
 .stand:hover {
@@ -52,6 +57,7 @@ justify-content: center;
 .stand-details {
   border: 2px solid #eeeef3;
   padding: 20px;
+  margin-left: 70px;
   border-radius: 5px;
   background-color: #f9f9f9;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -61,6 +67,7 @@ justify-content: center;
   font-weight: 300;
   color: #0c0909;
   margin-bottom: 10px;
+  
 }
 
 .stand-details p {
@@ -75,9 +82,21 @@ justify-content: center;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  
   transition: background-color 0.3s ease;
 }
 
 .stand-details button:hover {
   background-color: #16a41d;
+}
+
+.stand.selected {
+  background-color: rgb(0, 181, 57);
+}
+
+
+/* Ajouter ce style dans Gallerystand.css */
+.stand.reserved {
+  background-color: red;
+  cursor: not-allowed;
 }

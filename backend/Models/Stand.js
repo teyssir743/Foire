@@ -26,6 +26,10 @@ const standSchema = new mongoose.Schema({
   prixLocation: {
     type: Number,
     required: true
+  },
+  isReserved: {  // New field
+    type: Boolean,
+    default: false
   }
 });
 

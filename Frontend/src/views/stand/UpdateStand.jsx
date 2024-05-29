@@ -9,9 +9,10 @@ import Dash from '../dash-bord/Dash';
 function UpdateStand() {
     const [stand, setStand] = useState({
         nom: '',
+        numero:'',
         emplacement: '',
         taille: '',
-        etat: 'réservé',
+        etat: '',
         exposant: '',
         description: '',
         prixLocation: 0,
@@ -112,76 +113,38 @@ function UpdateStand() {
                 <div style={styles.leftSection}>
                     <h1>Update Stand</h1>
                     <form style={styles.form}>
-                        <label style={styles.label}>
-                            Nom:
-                            <input type="text" name="" value={stand?.nom} onChange={e => setStand({ ...stand, nom: e.target.value })} style={styles.input} />
-                        </label>
-                        <br />
-                        <label style={styles.label}>
-                            Emplacement:
-                            <input type="text" name="" value={stand?.emplacement} onChange={e => setStand({ ...stand, emplacement: e.target.value })} style={styles.input} />
-                        </label>
-                        <br />
-                        <label style={styles.label}>
-                            Taille:
-                            <input type="text" name="" value={stand?.taille} onChange={e => setStand({ ...stand, taille: e.target.value })} style={styles.input} />
-                        </label>
-                        <br />
-                        <label style={styles.label}>
-                            État:
-                            <select name="" value={stand?.etat} onChange={e => setStand({ ...stand, etat: e.target.value })} style={styles.input}>
-                                <option value="réservé">Réservé</option>
-                                <option value="confirmé">Confirmé</option>
-                                <option value="installé">Installé</option>
-                                <option value="démonté">Démonté</option>
-                            </select>
-                        </label>
-                        <br />
-                        <label style={styles.label}>
-                            Exposant:
-                            <input type="text" value={stand?.exposant} name="" onChange={e => setStand({ ...stand, exposant: e.target.value })} style={styles.input} />
-                        </label>
-                        <br />
-                        <label style={styles.label}>
-                            Description:
-                            <textarea name="description" value={stand?.description} type="text" onChange={e => setStand({ ...stand, description: e.target.value })} style={styles.input} />
-                        </label>
-                        <br />
-                    </form>
-                </div>
-                <div style={styles.rightSection}>
-                   <br/>
-                    <form style={styles.form}>
-                       
-                        <label style={styles.label}>
-                            Prix de location:
-                            <input type="number" value={stand?.prixLocation} name="" onChange={e => setStand({ ...stand, prixLocation: e.target.value })} style={styles.input} />
-                        </label>
-                        <br />
-                        <label style={styles.label}>
-                            Date de réservation:
-                            <input type="date" name="" value={formatDate(stand?.dateReservation)} onChange={e => setStand({ ...stand, dateReservation: e.target.value })} style={styles.input} />
-                        </label>
-                        <br />
-                        <label style={styles.label}>
-                            Date d'installation:
-                            <input type="date" name="" value={formatDate(stand?.dateInstallation)} onChange={e => setStand({ ...stand, dateInstallation: e.target.value })} style={styles.input} />
-                        </label>
-                        <br />
-                        <label style={styles.label}>
-                            Date de démontage:
-                            <input type="date" name="" value={formatDate(stand?.dateDemontage)} onChange={e => setStand({ ...stand, dateDemontage: e.target.value })} style={styles.input} />
-                        </label>
-                        <br />
-                        <label style={styles.label}>
-                            Commentaires:
-                            <textarea type="text" name="commentaires" value={stand?.commentaires} onChange={e => setStand({ ...stand, commentaires: e.target.value })} style={styles.input} />
-                        </label>
-                        <br />
-                        <label style={styles.label}>
-                            Services supplémentaires:
-                            <textarea type="text" name="service" value={stand?.service} onChange={e => setStand({ ...stand, service: e.target.value })} style={styles.input} />
-                        </label>
+                       <label style={styles.label}>
+                        Nom:
+                        <input type="text" name="nom" value={stand?.nom} onChange={(e) => setStand({ ...stand, nom: e.target.value })} style={styles.input} />
+                    </label>
+                    <br />
+                    <label style={styles.label}>
+                        Numéro:
+                        <input type="number" name="numero" value={stand?.num}  onChange={(e) => setStand({ ...stand, numero: e.target.value })} style={styles.input} />
+                    </label>
+                    <br />
+                    <label style={styles.label}>
+                        Emplacement:
+                        <input type="text" name="emplacement" value={stand?.emplacement} onChange={(e) => setStand({ ...stand, emplacement: e.target.value })} style={styles.input} />
+                    </label>
+                    <br />
+                    <label style={styles.label}>
+                        Taille:
+                        <input type="text" name="taille" value={stand?.taille} onChange={(e) => setStand({ ...stand, taille: e.target.value })} style={styles.input} />
+                    </label>
+                    <br />
+                    <label style={styles.label}>
+                        État:
+                        <select name="etat" value={stand?.etat} onChange={(e) => setStand({ ...stand, etat: e.target.value })} style={styles.select}>
+                            <option value="réservé">Réservé</option>
+                            <option value="disponible">Disponible</option>
+                        </select>
+                    </label>
+                    <br />
+                    <label style={styles.label}>
+                        Prix de location:
+                        <input type="number" name="prixLocation" onChange={(e) => setStand({ ...stand, prixLocation: e.target.value })} style={styles.input} />
+                    </label>
                         <br />
                     </form>
                 </div>

@@ -151,6 +151,7 @@ const styles = {
         marginBottom: '10px', // Marge inférieure
         outline: 'none', // Pas de contour
     },
+
     radioButtons: {
         display: 'flex',
         marginBottom: '10px',
