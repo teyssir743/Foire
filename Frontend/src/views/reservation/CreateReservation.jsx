@@ -7,7 +7,7 @@ import TopBarHome from '../visiteur/TopBarHome';
 import Footer from '../visiteur/Footer';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 function CreateReservation() {
   const location = useLocation();
@@ -36,9 +36,20 @@ function CreateReservation() {
     }
   }, [standId]);
 
+  const navigate = useNavigate()
+
+  const token = localStorage.getItem('token');
+
+  let config = token && {
+    headers: {
+      Authorization: `Bearer ${token.replace(/"/g, '')}`
+    }
+  };
+
+
   const fetchStandDetails = async (standId) => {
     try {
-      const response = await axios.get(`http://localhost:5000/api/stand/listeStand/${standId}`);
+      const response = await axios.get(`http://localhost:5000/api/stand/listeStand/${standId}`, config);
       console.log('Réponse de l\'API pour les détails du stand :', response); // Debug
       if (response.data && response.data.data && response.data.data.num !== undefined) {
         setStandNum(response.data.data.num);
@@ -67,21 +78,24 @@ function CreateReservation() {
       toast.error('Les dates de réservation doivent être dans la plage des dates de l\'événement.');
       return;
     }
+    const user = JSON.parse(localStorage.getItem('userData'))
 
     try {
       const reservationData = {
         startDate: start.toISOString(),
         endDate: end.toISOString(),
         stand: standId,
-        event: eventId
+        event: eventId,
+        user: user._id
       };
 
       console.log('Données envoyées pour la réservation :', reservationData);
 
-      const response = await axios.post('http://localhost:5000/api/reservation/createReservation', reservationData);
+      const response = await axios.post('http://localhost:5000/api/reservation/createReservation', reservationData, config);
 
       console.log('Réponse de la requête de réservation :', response);
       toast.success('Votre réservation a été enregistrée avec succès!');
+      navigate(`/payer/${eventId}/${user._id}`)
 
     } catch (error) {
       console.error('Erreur lors de la réservation :', error);
@@ -92,7 +106,7 @@ function CreateReservation() {
   return (
     <div>
       <TopBarHome />
-     
+
       <div className="container-reservation">
         <ToastContainer />
         <div className="form-container-res">
@@ -128,9 +142,9 @@ function CreateReservation() {
           </form>
         </div>
       </div>
-      <Footer/>
+      <Footer />
     </div>
-    
+
   );
 }
 

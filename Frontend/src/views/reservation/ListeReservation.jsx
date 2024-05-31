@@ -9,8 +9,17 @@ function ListeReservation() {
   const [reservations, setReservations] = useState([]);
   const navigate = useNavigate();
 
+
+ const token = localStorage.getItem('token');
+
+    let config = token && {
+        headers: {
+            Authorization: `Bearer ${token.replace(/"/g, '')}`
+        }
+    };
+
   useEffect(() => {
-    axios.get("http://localhost:5000/api/reservation/listeReservation1")
+    axios.get("http://localhost:5000/api/reservation/listeReservation1", config)
       .then(res => {
         console.log("Réponse de la requête :", res); // Consolez la réponse ici
         setReservations(res.data); // Assurez-vous que vous utilisez la bonne structure pour accéder aux données
@@ -22,7 +31,7 @@ function ListeReservation() {
 
   
   const handleDelete = id => {
-    axios.delete(`http://localhost:5000/api/reservation/deleteReservation/${id}`)
+    axios.delete(`http://localhost:5000/api/reservation/deleteReservation/${id}`, config)
       .then(() => {
         console.log('Réservation supprimée avec succès');
         toast.warn("Réservation supprimée avec succès");

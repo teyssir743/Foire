@@ -68,12 +68,21 @@ function InvitationForm() {
     setInvitationMessage(e.target.value);
   };
 
+
+  const token = localStorage.getItem('token');
+
+  let config = token && {
+    headers: {
+      Authorization: `Bearer ${token.replace(/"/g, '')}`
+    }
+  };
+
   const sendInvitations = async () => {
     try {
       await axios.post('http://localhost:5000/api/invitation/createInvitation', {
         senderName: senderName,
         invitationMessage: invitationMessage
-      });
+      }, config);
       toast.success('Invitations envoyées avec succès !'); // Affiche la toast de succès
     } catch (error) {
       console.error('Erreur lors de l\'envoi des invitations :', error);

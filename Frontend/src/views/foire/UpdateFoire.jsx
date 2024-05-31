@@ -6,8 +6,17 @@ function UpdateFoire({ id }) {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
 
+
+ const token = localStorage.getItem('token');
+
+    let config = token && {
+        headers: {
+            Authorization: `Bearer ${token.replace(/"/g, '')}`
+        }
+    };
+
     useEffect(() => {
-        axios.get(`http://localhost:5000/api/foire/listeFoire/${id}`)
+        axios.get(`http://localhost:5000/api/foire/listeFoire/${id}`, config)
             .then(response => {
                 setFoire(response.data);
                 setLoading(false);
@@ -26,7 +35,7 @@ function UpdateFoire({ id }) {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.put(`http://localhost:5000/api/foire/updateFoire/${id}`, foire);
+            await axios.put(`http://localhost:5000/api/foire/updateFoire/${id}`, foire,config);
             // Ajouter une logique de redirection ou de confirmation ici si nécessaire
         } catch (error) {
             console.error('Error updating foire:', error);

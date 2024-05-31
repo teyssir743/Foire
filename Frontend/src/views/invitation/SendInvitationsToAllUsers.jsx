@@ -3,12 +3,18 @@
 import axios from 'axios';
 
 
+const token = localStorage.getItem('token');
 
+let config = token && {
+  headers: {
+    Authorization: `Bearer ${token.replace(/"/g, '')}`
+  }
+};
 // Fonction pour envoyer une invitation à tous les utilisateurs enregistrés
 const sendInvitationsToAllUsers = async({invitationMessage}) => {
   try {
     // Récupérer la liste des utilisateurs depuis votre backend
-    const response = await axios.get('http://localhost:5000/api/user/listeUser');
+    const response = await axios.get('http://localhost:5000/api/user/listeUser', config);
     const users = response.data.data;
     
 
@@ -16,7 +22,7 @@ const sendInvitationsToAllUsers = async({invitationMessage}) => {
     users.forEach(async (user) => {
       const {email } = user;
       // Envoyer une invitation à l'e-mail de l'utilisateur
-      await axios.post('http://localhost:5000/api/invitation/createInvitation',{ email, invitationMessage } );
+      await axios.post('http://localhost:5000/api/invitation/createInvitation',{ email, invitationMessage } ,config);
     });
 
     // Afficher un message de succès

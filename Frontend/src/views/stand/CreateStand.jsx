@@ -7,10 +7,17 @@ import Dash from '../dash-bord/Dash';
 
 function CreateStand() {
     const [stand, setStand] = useState(null);
+    const token = localStorage.getItem('token');
+
+    let config = token && {
+        headers: {
+            Authorization: `Bearer ${token.replace(/"/g, '')}`
+        }
+    };
 
     const handleCreateStand = (e) => {
         e.preventDefault();
-        axios.post("http://localhost:5000/api/stand/createStand", stand)
+        axios.post("http://localhost:5000/api/stand/createStand", stand, config)
             .then(() => {
                 toast.success("Stand ajouté avec succès !");
             })

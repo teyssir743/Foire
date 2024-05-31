@@ -12,9 +12,17 @@ function EventGallery() {
     fetchEvents();
   }, []);
 
+  const token = localStorage.getItem('token');
+
+  let config = token && {
+    headers: {
+      Authorization: `Bearer ${token.replace(/"/g, '')}`
+    }
+  };
+
   const fetchEvents = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/event/listeEvent');
+      const response = await axios.get('http://localhost:5000/api/event/listeEvent', config);
       if (response.data && response.data.data) {
         setEvents(response.data.data);
       } else {
@@ -52,8 +60,8 @@ function EventGallery() {
                 <img src={event.image} alt="Event" />
                 <div className="event-details">
                   <h3>{event.titre}</h3>
-                  <p>Date de début: {event.date_debut}</p>
-                  <p>Date de fin: {event.date_fin}</p>
+                  <p>Date de début: {new Date(event.date_debut).toLocaleDateString('fr-FR')}</p>
+                  <p>Date de fin: {new Date(event.date_fin).toLocaleDateString('fr-FR')}</p>
                   <p>Description: {event.description}</p>
                   {isEventOngoing(event.date_debut, event.date_fin) ? (
                     <Link to={`/Gallerystand?event=${event._id}&eventName=${encodeURIComponent(event.titre)}&eventStartDate=${encodeURIComponent(event.date_debut)}&eventEndDate=${encodeURIComponent(event.date_fin)}`}>

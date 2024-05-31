@@ -12,8 +12,17 @@ function ListeEvent() {
   const [events, setEvents] = useState([]);
   const navigate = useNavigate();
 
+  const token = localStorage.getItem('token');
+
+  let config = token && {
+    headers: {
+      Authorization: `Bearer ${token.replace(/"/g, '')}`
+    }
+  };
+
+
   useEffect(() => {
-    axios.get("http://localhost:5000/api/event/listeEvent")
+    axios.get("http://localhost:5000/api/event/listeEvent",config)
       .then(res => {
         // Ajouter une propriété id unique à chaque événement
         const eventsWithId = res.data.data.map((event, index) => ({
@@ -28,7 +37,7 @@ function ListeEvent() {
   }, []);
 
   const handleDelete = id => {
-    axios.delete(`http://localhost:5000/api/event/deleteEvent/${id}`)
+    axios.delete(`http://localhost:5000/api/event/deleteEvent/${id}`, config)
       .then(() => {
         toast.warn('Event supprimé');
         setEvents(events.filter(event => event.id !== id)); // Mettre à jour la liste des événements après la suppression

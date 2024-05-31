@@ -11,6 +11,14 @@ function CreateInvitation() {
         statut: 'en attente' // Par défaut, en attente
     });
 
+    const token = localStorage.getItem('token');
+
+    let config = token && {
+        headers: {
+            Authorization: `Bearer ${token.replace(/"/g, '')}`
+        }
+    };
+
     const handleChange = (e) => {
         const { name, value } = e.target;
         setInvitation(prevState => ({
@@ -21,7 +29,7 @@ function CreateInvitation() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.post('http://localhost:5000/api/invitation/createInvitation', invitation)
+        axios.post('http://localhost:5000/api/invitation/createInvitation', invitation, config)
             .then(response => {
                 console.log('Invitation créée avec succès:', response.data);
                 toast.success('Invitation créée avec succès');

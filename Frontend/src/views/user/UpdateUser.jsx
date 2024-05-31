@@ -8,13 +8,22 @@ function UpdateUser() {
     const [user, setUser] = useState({ username: '', lastname: '', dateNaissance: '', email: '' });
     const { id } = useParams();
     
+
+    const token = localStorage.getItem('token');
+
+    let config = token && {
+        headers: {
+            Authorization: `Bearer ${token.replace(/"/g, '')}`
+        }
+    };
+
     useEffect(() => {
         handleGetUserData(id);
     }, []);
 
     const handleGetUserData = async (id) => {
         try {
-            const result = await axios.get(`http://localhost:5000/api/user/listeUser/${id}`);
+            const result = await axios.get(`http://localhost:5000/api/user/listeUser/${id}`,config);
             setUser(result.data.data);
         } catch (error) {
             console.error("Erreur lors de la récupération de l'utilisateur :", error);
@@ -23,7 +32,7 @@ function UpdateUser() {
 
     const handleUpdateUser = (e) => {
         e.preventDefault()
-        axios.put(`http://localhost:5000/api/user/updateUser/${id}`, user)
+        axios.put(`http://localhost:5000/api/user/updateUser/${id}`, user,config)
             .then(() => {
                 console.log('Mise à jour réussie');
                 toast.success("Utilisateur mis à jour avec succès ");

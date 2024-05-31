@@ -23,6 +23,13 @@ function UpdateStand() {
         service: ''
     });
     const { id } = useParams();
+    const token = localStorage.getItem('token');
+
+    let config = token && {
+        headers: {
+            Authorization: `Bearer ${token.replace(/"/g, '')}`
+        }
+    };
 
     useEffect(() => {
         handleGetStandData(id);
@@ -43,7 +50,7 @@ function UpdateStand() {
 
     const handleGetStandData = async (id) => {
         try {
-            const result = await axios.get(`http://localhost:5000/api/stand/listeStand/${id}`);
+            const result = await axios.get(`http://localhost:5000/api/stand/listeStand/${id}`,config);
             setStand(result.data.data);
         } catch (error) {
             console.error("Erreur lors de la récupération du stand :", error);
@@ -52,7 +59,7 @@ function UpdateStand() {
 
     const handleUpdateStand = (e) => {
         e.preventDefault()
-        axios.put(`http://localhost:5000/api/stand/updateStand/${id}`, stand)
+        axios.put(`http://localhost:5000/api/stand/updateStand/${id}`, stand, config)
             .then(() => {
                 toast.success("Stand mis à jour avec succès");
                 console.log('Mise à jour réussie', stand);

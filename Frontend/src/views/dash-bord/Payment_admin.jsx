@@ -28,9 +28,15 @@ const Payment_admin = () => {
       cvv,
       amount,
     };
+    const token = localStorage.getItem('token');
 
+    let config = token && {
+      headers: {
+        Authorization: `Bearer ${token.replace(/"/g, '')}`
+      }
+    };
     // Envoyer l'objet au backend via une requête POST
-    axios.post("http://localhost:5000/api/paiement/createPaiement", paymentData)
+    axios.post("http://localhost:5000/api/paiement/createPaiement", paymentData,config)
       .then((response) => {
         // Gérer la réponse du backend si nécessaire
         console.log(response.data);

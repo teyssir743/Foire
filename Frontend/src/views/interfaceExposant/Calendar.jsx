@@ -41,13 +41,21 @@ const CalendarComponent = () => {
         await checkAvailability(selectedDate);
     };
 
+    const token = localStorage.getItem('token');
+
+    let config = token && {
+        headers: {
+            Authorization: `Bearer ${token.replace(/"/g, '')}`
+        }
+    };
+
     // Fonction pour vérifier la disponibilité pour la date sélectionnée
     const checkAvailability = async (selectedDate) => {
         try {
             const response = await axios.get(`/api/stands/availability`, {
                 params: {
                     date: selectedDate.toISOString().split('T')[0] // Envoyer la date au format YYYY-MM-DD
-                }
+                }, config
             });
 
             // Mettre à jour l'état de disponibilité

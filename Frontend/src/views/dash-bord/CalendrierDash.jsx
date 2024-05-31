@@ -12,9 +12,15 @@ import Dash from './Dash';
 function CalendrierDash() {
   const [weekendsVisible, setWeekendsVisible] = useState(true);
   const [events, setEvents] = useState([]);
+  const token = localStorage.getItem('token');
 
+  let config = token && {
+    headers: {
+      Authorization: `Bearer ${token.replace(/"/g, '')}`
+    }
+  };
   useEffect(() => {
-    axios.get("http://localhost:5000/api/event/listeEvent1")
+    axios.get("http://localhost:5000/api/event/listeEvent1",config)
       .then(res => {
         const formattedEvents = res.data.map(event => ({
           id: event._id,
@@ -62,7 +68,7 @@ function CalendrierDash() {
 
   function handleEventClick(clickInfo) {
     if (confirm(`Are you sure you want to delete the event '${clickInfo.event.title}'`)) {
-      axios.delete(`http://localhost:5000/api/event/deleteEvent/${clickInfo.event.id}`)
+      axios.delete(`http://localhost:5000/api/event/deleteEvent/${clickInfo.event.id}`,config)
         .then(() => {
           console.log('Event deleted successfully');
           const updatedEvents = events.filter(event => event.id !== clickInfo.event.id);

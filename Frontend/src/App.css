@@ -4,4 +4,21 @@
 @tailwind utilities;
 
   
-  
+.unauthorized {
+    display: flex !important;
+    justify-content: center !important;
+    flex-direction: column !important;
+   align-items: center !important;
+    text-align:center !important;
+    font-size: 35px;
+    width: 100vw;
+}
+
+.go_back {
+    background-color: blue;
+    padding:10px;
+    margin-top: 2vh;
+    font-size: 25px;
+    border-radius: 25px;
+
+}

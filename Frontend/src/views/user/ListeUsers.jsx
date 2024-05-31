@@ -10,6 +10,15 @@ function ListeUsers() {
   const [users, setUsers] = useState([]);
   const navigate = useNavigate();
 
+
+  const token = localStorage.getItem('token');
+
+  let config = token && {
+    headers: {
+      Authorization: `Bearer ${token.replace(/"/g, '')}`
+    }
+  };
+
   // Fonction pour formater la date au format DD/MM/YYYY
   const formatDate = (dateString) => {
     if (!dateString) return 'N/A'; // Si la date est manquante, retourner 'N/A'
@@ -23,7 +32,7 @@ function ListeUsers() {
   };
 
   useEffect(() => {
-    axios.get("http://localhost:5000/api/user/listeUser")
+    axios.get("http://localhost:5000/api/user/listeUser",config)
       .then(res => {
         // Ajout de la propriété 'id' à chaque objet utilisateur
         const usersWithIds = res.data.data.map((user, index) => ({
@@ -38,7 +47,7 @@ function ListeUsers() {
   }, []);
 
   const handleDelete = id => {
-    axios.delete(`http://localhost:5000/api/user/deleteUser/${id}`)
+    axios.delete(`http://localhost:5000/api/user/deleteUser/${id}`,config)
       .then(() => {
         console.log('Utilisateur supprimé avec succès');
         toast.warn("Utilisateur supprimé avec succès");

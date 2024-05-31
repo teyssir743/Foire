@@ -9,8 +9,19 @@ function ListePaiements() {
   const [paiements, setPaiements] = useState([]);
   const navigate = useNavigate();
 
+
+  const token = localStorage.getItem('token');
+
+  let config = token && {
+    headers: {
+      Authorization: `Bearer ${token.replace(/"/g, '')}`
+    }
+  };
+
+
+
   useEffect(() => {
-    axios.get("http://localhost:5000/api/paiement/listePaiement")
+    axios.get("http://localhost:5000/api/paiement/listePaiement",config)
       .then(res => {
         setPaiements(res.data.data);
       })
@@ -20,7 +31,7 @@ function ListePaiements() {
   }, []);
 
   const handleDelete = id => {
-    axios.delete(`http://localhost:5000/api/paiement/deletePaiement/${id}`)
+    axios.delete(`http://localhost:5000/api/paiement/deletePaiement/${id}`, config)
       .then(() => {
         console.log('Paiement supprimé avec succès');
         toast.warn("Paiement supprimé avec succès");
@@ -36,11 +47,11 @@ function ListePaiements() {
     <Dash>
       <div >
         <ToastContainer />
-       
+
         <button className="button-create" onClick={() => navigate(`/Payment_admin`)}>Créer un paiement</button>
         <div style={{ height: 400, width: '100%' }}>
           <DataGrid
-            rows={paiements.map(paiement => ({ ...paiement, id: paiement._id }))}
+            rows={paiements.map(paiement => ({ ...paiement, paymentDate: new Date(paiement.paymentDate).toLocaleDateString('fr-FR'), id: paiement._id }))}
             columns={[
               { field: 'id', headerName: 'ID ', width: 200 },
               { field: 'amount', headerName: 'Montant', width: 200 },

@@ -7,11 +7,17 @@ function AddUser() {
 
     const [user, setUser]= useState(null)
 
+  const token = localStorage.getItem('token');
 
+  let config = token && {
+    headers: {
+      Authorization: `Bearer ${token.replace(/"/g, '')}`
+    }
+  };
   
     const createUser =()=>{
       console.log(user)
-        axios.post("http://localhost:5000/api/user/createUser" , user)
+      axios.post("http://localhost:5000/api/user/createUser", user, config)
         .then (()=>{toast.success("utilisateur  ajouter avec sucess !")
       }).catch(()=>{toast.error('quelque chose va pas correctement ! ')})
       }

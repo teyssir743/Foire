@@ -27,7 +27,7 @@ const standSchema = new mongoose.Schema({
     type: Number,
     required: true
   },
-  isReserved: {  // New field
+  isReserved: {  
     type: Boolean,
     default: false
   }

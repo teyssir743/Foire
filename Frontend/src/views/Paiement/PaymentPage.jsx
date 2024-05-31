@@ -4,6 +4,8 @@ import axios from 'axios';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import '../../style/paiement/payer.css';
+import TopBarHome from '../visiteur/TopBarHome';
+import { useParams } from 'react-router-dom';
 
 
 const PaymentPage = () => {
@@ -12,25 +14,36 @@ const PaymentPage = () => {
   const [expirationDate, setExpirationDate] = useState('');
   const [cvv, setCvv] = useState('');
   const [amount, setAmount] = useState('');
+  const [paymentDate, setPaymentDate] = useState(Date.now());
 
-  // Gérer le changement de la carte sélectionnée
   const handleCardChange = (event) => {
     setSelectedCard(event.target.value);
   };
 
-  // Fonction pour envoyer le paiement au backend
+  const { userId, eventId } = useParams()
+
   const handleSubmit = () => {
-    // Créer un objet avec les données du formulaire
     const paymentData = {
-      selectedCard,
-      cardNumber,
-      expirationDate,
-      cvv,
-      amount,
+      selectedCard: selectedCard,
+      cardNumber: cardNumber,
+      expirationDate: expirationDate,
+      cvv: cvv,
+      amount: amount,
+      user: userId,
+      event: eventId,
+      paymentDate: paymentDate
     };
 
-    // Envoyer l'objet au backend via une requête POST
-    axios.post("http://localhost:5000/api/paiement/createPaiement", paymentData)
+    const token = localStorage.getItem('token');
+
+    let config = token && {
+      headers: {
+        Authorization: `Bearer ${token.replace(/"/g, '')}`
+      }
+    };
+
+
+    axios.post("http://localhost:5000/api/paiement/createPaiement", paymentData,config)
       .then((response) => {
         // Gérer la réponse du backend si nécessaire
         console.log(response.data);
@@ -44,14 +57,12 @@ const PaymentPage = () => {
   };
 
   return (
-    
+
     <div className="payment-page">
+      <TopBarHome />
       <ToastContainer />
 
-      <div className="payment-form">
-        <div className="payment-header">
-          <h1>Paiement</h1>
-        </div>
+      <div className="payment-form text-black">
 
         <label htmlFor="cardNumber">Numéro de carte :</label>
         <input
@@ -99,8 +110,10 @@ const PaymentPage = () => {
           type="date"
           id="paymentDate"
           name="paymentDate"
-          value={new Date().toISOString().split('T')[0]}
-          disabled
+          value={paymentDate}
+          onChange={(e) => setPaymentDate(e.target.value)}
+
+
         />
 
         <div className="card-selector">
@@ -153,10 +166,10 @@ const PaymentPage = () => {
           </label>
         </div>
 
-        <button type="button" onClick={handleSubmit}>Payer</button>
+        <button className='text-white border border-black px-4 bg-green-600' type="button" onClick={handleSubmit}>Payer</button>
       </div>
     </div>
-   
+
   );
 };
 

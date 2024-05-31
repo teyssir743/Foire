@@ -15,13 +15,22 @@ export default function Gallerystand() {
     const eventStartDate = searchParams.get('eventStartDate');
     const eventEndDate = searchParams.get('eventEndDate');
 
+ const token = localStorage.getItem('token');
+
+    let config = token && {
+        headers: {
+            Authorization: `Bearer ${token.replace(/"/g, '')}`
+        }
+    };
+
+
     useEffect(() => {
         fetchStands();
     }, []);
 
     const fetchStands = async () => {
         try {
-            const response = await axios.get('http://localhost:5000/api/stand/listeStand');
+            const response = await axios.get('http://localhost:5000/api/stand/listeStand',config);
             if (response.data && response.data.data) {
                 setStands(response.data.data);
             } else {
@@ -37,7 +46,7 @@ export default function Gallerystand() {
     };
 
     return (
-        <div className="container-stand">
+        <div style={{width:'100vw'}} className="container-stand">
             <TopBarHome />
             <div className="stands-grid">
                 {stands.map((stand, index) => (

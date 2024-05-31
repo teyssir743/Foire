@@ -14,6 +14,16 @@ function Events() {
     image: null // State pour l'image sélectionnée
   });
 
+ const token = localStorage.getItem('token');
+
+    let config = token && {
+      headers: {
+        Authorization: `Bearer ${token.replace(/"/g, '')}`
+      }
+    };
+  
+
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setEvent({ ...event, [name]: value });
@@ -35,7 +45,7 @@ function Events() {
     axios.post("http://localhost:5000/api/event/createEvent", formData, {
       headers: {
         'Content-Type': 'multipart/form-data',
-      }
+      }, config
     })
     .then (() => {
       toast.success("Événement ajouté avec succès !");

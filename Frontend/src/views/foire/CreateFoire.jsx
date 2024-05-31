@@ -15,11 +15,17 @@ function CreateFoire() {
     const handleChange = (e) => {
         setFoire({ ...foire, [e.target.name]: e.target.value });
     };
+    const token = localStorage.getItem('token');
 
+    let config = token && {
+        headers: {
+            Authorization: `Bearer ${token.replace(/"/g, '')}`
+        }
+    };
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.post('http://localhost:5000/api/foire/createFoire', foire);
+            await axios.post('http://localhost:5000/api/foire/createFoire', foire,config);
             // Ajouter une logique de redirection ou de confirmation ici si nécessaire
         } catch (error) {
             console.error('Error creating foire:', error);

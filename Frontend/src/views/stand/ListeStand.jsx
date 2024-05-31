@@ -13,13 +13,22 @@ export default function ListeStand() {
     const eventId = searchParams.get('event');
     const eventName = searchParams.get('eventName');
 
+const token = localStorage.getItem('token');
+
+    let config = token && {
+        headers: {
+            Authorization: `Bearer ${token.replace(/"/g, '')}`
+        }
+    };
+
+
     useEffect(() => {
         fetchStands();
     }, []);
 
     const fetchStands = async () => {
         try {
-            const response = await axios.get('http://localhost:5000/api/stand/listeStand');
+            const response = await axios.get('http://localhost:5000/api/stand/listeStand', config);
             if (response.data && response.data.data) {
                 setStands(response.data.data);
             } else {

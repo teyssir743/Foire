@@ -7,7 +7,13 @@ import Dash from '../dash-bord/Dash';
 
 function ReservationForm() {
   const { id } = useParams();
+  const token = localStorage.getItem('token');
 
+  let config = token && {
+    headers: {
+      Authorization: `Bearer ${token.replace(/"/g, '')}`
+    }
+  };
   const [reservations, setReservations] = useState({
     _id: '',
     startDate: '',
@@ -35,7 +41,7 @@ function ReservationForm() {
 
   const handleGetReservationData = async (id) => {
     try {
-      const result = await axios.get(`http://localhost:5000/api/reservation/listeReservation/${id}`);
+      const result = await axios.get(`http://localhost:5000/api/reservation/listeReservation/${id}`,config);
       setReservations(result.data.data.data);
     } catch (error) {
       console.error("Erreur lors de la récupération de la réservation :", error);
@@ -56,7 +62,7 @@ function ReservationForm() {
   };
 
   const handleUpdateReservation = () => {
-    axios.put(`http://localhost:5000/api/reservation/updateReservation/${id}`, reservations)
+    axios.put(`http://localhost:5000/api/reservation/updateReservation/${id}`, reservations, config)
       .then(() => {
         console.log('Mise à jour réussie');
         toast.success("Réservation mise à jour avec succès !");

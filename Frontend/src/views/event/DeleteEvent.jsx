@@ -8,8 +8,16 @@ function DeleteEvent() {
   const {id} = useParams();
   const [event, setEvent] = useState({});
 
+  const token = localStorage.getItem('token');
+
+  let config = token && {
+    headers: {
+      Authorization: `Bearer ${token.replace(/"/g, '')}`
+    }
+  };
+
   useEffect(() => {
-    axios.get(`http://localhost:5000/api/event/listeEvent/${id}`)
+    axios.get(`http://localhost:5000/api/event/listeEvent/${id}`,config)
       .then(res => {
         setEvent(res.data.data);
       })
@@ -21,7 +29,7 @@ function DeleteEvent() {
 
 
   const deleteEvent = () => {
-    axios.delete(`http://localhost:5000/api/event/deleteEvent/${id}`)
+    axios.delete(`http://localhost:5000/api/event/deleteEvent/${id}`, config)
       .then(res => {
         console.log("événement supprimé :", res.data);
       })

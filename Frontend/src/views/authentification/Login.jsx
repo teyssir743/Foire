@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -6,11 +6,14 @@ import '../../style/login/login.css';
 import emailIcon from '../../icone/mail.png';
 import passwordIcon from '../../icone/pass.png';
 import TopBarHome from '../visiteur/TopBarHome';
+import { MdEmail } from "react-icons/md";
+import { RiLockPasswordFill } from "react-icons/ri";
+import { useNavigate } from 'react-router-dom';
 
 function Login() {
     const [user, setUser] = useState({ email: '', password: '' });
     const [rememberMe, setRememberMe] = useState(false);
-
+    const navigate = useNavigate()
     const handleChange = (e) => {
         const { name, value } = e.target;
         setUser(prevUser => ({ ...prevUser, [name]: value }));
@@ -22,24 +25,42 @@ function Login() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.post('http://localhost:5000/api/log/login', user)
+        console.log(user)
+        axios.post('http://localhost:5000/api/auth/login', user)
             .then(response => {
-                console.log('Token:', response.data.token);
-                toast.success('Connexion réussie !');
-                if (rememberMe) {
-                    localStorage.setItem('token', response.data.token);
+                if (response.data.msg) {
+                    console.log('Token:', response.data.token);
+                    toast.success('Connexion réussie !');
+                    if (rememberMe) {
+                        localStorage.setItem('token', response.data.token);
+                        localStorage.setItem('userData', JSON.stringify(response.data.user))
+                    } else {
+                        localStorage.setItem('token', response.data.token);
+                        localStorage.setItem('userData', JSON.stringify(response.data.user))
+                    }
+                    setTimeout(() => {
+                        if (response.data.user.role == "exposant") {
+                            navigate('/EventGallery')
+                        } else if (response.data.user.role == "admin") {
+                            navigate('/DashbordPage')
+                        }
+
+                    }, 2000);
+
                 } else {
-                    sessionStorage.setItem('token', response.data.token);
+                    toast.error(response.data.error);
+
                 }
+
             })
             .catch(error => {
-                console.error('Nom d\'utilisateur ou mot de passe incorrect. Veuillez réessayer.');
-                toast.error('Nom d\'utilisateur ou mot de passe incorrect. Veuillez réessayer.');
+                console.error(error);
+
             });
     };
 
     const handleForgotPassword = () => {
-        axios.post('http://localhost:5000/api/log/forgot-password', { email: user.email })
+        axios.post('http://localhost:5000/api/auth/ask_for_reset_password', { email: user.email })
             .then(response => {
                 toast.success('Un code de récupération a été envoyé à votre adresse email.');
             })
@@ -47,6 +68,16 @@ function Login() {
                 toast.error('Erreur lors de l\'envoi du code de récupération. Veuillez réessayer.');
             });
     };
+
+    useEffect(() => {
+        let user = localStorage.getItem('userData')
+
+        if (user) {
+            return navigate('/')
+        }
+
+    })
+
 
     return (
         <div>
@@ -57,28 +88,28 @@ function Login() {
                         <ToastContainer />
                         <form className="form" onSubmit={handleSubmit}>
                             <h2>Connexion</h2>
-                            <div className="input-group">
-                                <img src={emailIcon} alt="Email Icon" className="input-icon" />
-                                <input 
-                                    type="email" 
-                                    name="email" 
-                                    value={user.email} 
-                                    onChange={handleChange} 
-                                    placeholder='              Email' 
-                                    required 
-                                />
+                            <div className="input_group">
+                                <div><MdEmail size={35} /></div> <div><input
+
+                                    type="email"
+                                    name="email"
+                                    value={user.email}
+                                    onChange={handleChange}
+                                    placeholder='Email'
+                                    required
+                                /></div>
                             </div>
                             <br />
-                            <div className="input-group">
-                                <img src={passwordIcon} alt="Password Icon" className="input-icon" />
-                                <input 
-                                    type="password" 
-                                    name="password" 
-                                    value={user.password} 
-                                    onChange={handleChange} 
-                                    placeholder='              Mot de passe ' 
-                                    required 
-                                />
+                            <div className="input_group">
+                                <div>  <RiLockPasswordFill size={35} /></div>
+                                <div><input
+                                    type="password"
+                                    name="password"
+                                    value={user.password}
+                                    onChange={handleChange}
+                                    placeholder='Mot de passe'
+                                    required
+                                /></div>
                             </div>
                             <br />
                             <div className="remember-me">

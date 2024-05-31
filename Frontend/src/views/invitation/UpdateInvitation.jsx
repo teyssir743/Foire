@@ -12,13 +12,22 @@ function UpdateInvitation() {
     });
     const { id } = useParams();
 
+    const token = localStorage.getItem('token');
+
+    let config = token && {
+        headers: {
+            Authorization: `Bearer ${token.replace(/"/g, '')}`
+        }
+    };
+    
+
     useEffect(() => {
         handleGetInvitationData(id);
     }, []);
 
     const handleGetInvitationData = async (id) => {
         try {
-            const result = await axios.get(`http://localhost:5000/api/invitation/listeInvitation/${id}`);
+            const result = await axios.get(`http://localhost:5000/api/invitation/listeInvitation/${id}`,config);
             setInvitation(result.data.data);
         } catch (error) {
             console.error("Erreur lors de la récupération de l'invitation :", error);
@@ -35,7 +44,7 @@ function UpdateInvitation() {
 
     const handleUpdateInvitation = (e) => {
         e.preventDefault();
-        axios.put(`http://localhost:5000/api/invitation/updateInvitation/${id}`, invitation)
+        axios.put(`http://localhost:5000/api/invitation/updateInvitation/${id}`, invitation, config)
             .then(() => {
                 toast.success("Invitation mise à jour avec succès");
                 console.log('Mise à jour réussie', invitation);

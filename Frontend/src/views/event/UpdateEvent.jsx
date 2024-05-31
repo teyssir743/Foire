@@ -13,6 +13,16 @@ function UpdateEvent() {
     handleGetEventData(id);
   }, []);
 
+
+
+  const token = localStorage.getItem('token');
+
+  let config = token && {
+    headers: {
+      Authorization: `Bearer ${token.replace(/"/g, '')}`
+    }
+  };
+
   const formatDate = (date) => {
     if (!date) return '';
     const d = new Date(date);
@@ -28,7 +38,7 @@ function UpdateEvent() {
 
   const handleGetEventData = async (id) => {
     try {
-      const result = await axios.get(`http://localhost:5000/api/event/listeEvent/${id}`, events);
+      const result = await axios.get(`http://localhost:5000/api/event/listeEvent/${id}`, events, config);
       setEvent(result.data.data);
     } catch (error) {
       console.error("Erreur lors de la récupération de l'événement :", error);
@@ -36,7 +46,7 @@ function UpdateEvent() {
   };
 
   const handleUpdateEvent = () => {
-    axios.put(`http://localhost:5000/api/event/updateEvent/${id}`, events)
+    axios.put(`http://localhost:5000/api/event/updateEvent/${id}`, events, config)
       .then(() => {
         console.log('Mise à jour réussie');
         toast.success("Événement mis à jour avec succès !");

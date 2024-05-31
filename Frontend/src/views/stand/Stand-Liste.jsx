@@ -10,10 +10,19 @@ function ListeStand1() {
   const [stands, setStands] = useState([]);
   const navigate = useNavigate();
 
+
+const token = localStorage.getItem('token');
+
+    let config = token && {
+        headers: {
+            Authorization: `Bearer ${token.replace(/"/g, '')}`
+        }
+    };
+
   // Function to fetch stands from the backend
   const fetchStands = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/stand/listeStand");
+      const res = await axios.get("http://localhost:5000/api/stand/listeStand", config);
       // Add a unique id property to each stand
       const standsWithId = res.data.data.map((stand, index) => ({
         ...stand,
@@ -33,7 +42,7 @@ function ListeStand1() {
   // Function to delete a stand
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/stand/deleteStand/${id}`);
+      await axios.delete(`http://localhost:5000/api/stand/deleteStand/${id}`,config);
       toast.warn('Stand supprimé');
       setStands(stands.filter(stand => stand._id !== id)); // Update the list of stands after deletion
     } catch (error) {
@@ -44,7 +53,7 @@ function ListeStand1() {
   // Function to update all stands to "available"
   const handleUpdateAllStands = async () => {
     try {
-      const response = await axios.put('http://localhost:5000/api/stand/updateAllStandsAvailable');
+      const response = await axios.put('http://localhost:5000/api/stand/updateAllStandsAvailable', config);
       toast.success(response.data.msg);
       fetchStands(); // Refresh the list of stands after update
     } catch (error) {

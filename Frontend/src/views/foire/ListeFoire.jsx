@@ -6,9 +6,15 @@ function ListeFoire() {
     const [foires, setFoires] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
+    const token = localStorage.getItem('token');
 
+    let config = token && {
+        headers: {
+            Authorization: `Bearer ${token.replace(/"/g, '')}`
+        }
+    };
     useEffect(() => {
-        axios.get('http://localhost:5000/api/foire/listeFoire')
+        axios.get('http://localhost:5000/api/foire/listeFoire',config)
             .then(response => {
                 setFoires(response.data.data || []);
                 setLoading(false);

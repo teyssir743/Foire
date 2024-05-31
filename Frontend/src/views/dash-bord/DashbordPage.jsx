@@ -12,32 +12,40 @@ function DashboardPage() {
     const [reservationData, setReservationData] = useState([]);
     const [paymentData, setPaymentData] = useState([]);
 
+    const token = localStorage.getItem('token');
+
+    let config = token && {
+        headers: {
+            Authorization: `Bearer ${token.replace(/"/g, '')}`
+        }
+    };
+
     useEffect(() => {
-        axios.get("http://localhost:5000/api/user/listeUser")
+        axios.get("http://localhost:5000/api/user/listeUser",config)
             .then(response => {
                 setUserData(response.data.data);
             })
             .catch(error => console.error('Erreur lors de la récupération des données des utilisateurs :', error));
 
-        axios.get("http://localhost:5000/api/event/listeEvent")
+        axios.get("http://localhost:5000/api/event/listeEvent", config)
             .then(response => {
                 setEventData(response.data.data);
             })
             .catch(error => console.error('Erreur lors de la récupération des données des événements :', error));
 
-        axios.get("http://localhost:5000/api/stand/listeStand")
+        axios.get("http://localhost:5000/api/stand/listeStand",config)
             .then(response => {
                 setStandData(response.data.data);
             })
             .catch(error => console.error('Erreur lors de la récupération des données des stands :', error));
 
-        axios.get("http://localhost:5000/api/reservation/listeReservation1")
+        axios.get("http://localhost:5000/api/reservation/listeReservation1",config)
             .then(response => {
                 setReservationData(response.data);
             })
             .catch(error => console.error('Erreur lors de la récupération des données des réservations :', error));
 
-        axios.get("http://localhost:5000/api/paiement/listePaiement")
+        axios.get("http://localhost:5000/api/paiement/listePaiement", config)
             .then(response => {
                 setPaymentData(response.data.data);
             })

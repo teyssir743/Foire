@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Stand = require('../Models/Stand'); 
+const Stand = require('../Models/Stand');
 
 // Route pour récupérer la liste des stands
 router.get('/listeStand', async (req, res) => {
@@ -30,8 +30,8 @@ router.get('/listeStand/:id', async (req, res) => {
 // Route pour créer un nouveau stand
 router.post('/createStand', async (req, res) => {
     // Extraction des données du corps de la requête
-    const { nom,num, emplacement, taille, etat, prixLocation } = req.body;
-    
+    const { nom, num, emplacement, taille, etat, prixLocation } = req.body;
+
     // Création d'une nouvelle instance de Stand avec les données extraites
     const stand = new Stand({
         nom,
@@ -71,5 +71,23 @@ router.delete("/deleteStand/:id", async (req, res) => {
         res.status(500).json({ error: err.message });
     }
 });
+
+
+router.put("/updateAllStandsAvailable", async (req, res) => {
+    try {
+        const result = await Stand.updateMany(
+            {},
+            { $set: { etat: 'disponible', isReserved: false } }
+        );
+
+        res.json({
+            msg: 'Tous les stands sont maintenant disponibles',
+            result
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'An error occurred while updating the stands' });
+    }
+})
 
 module.exports = router;

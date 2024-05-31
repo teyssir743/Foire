@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 
 const paymentSchema = new mongoose.Schema({
+
     cardNumber: {
         type: String,
         required: true
@@ -30,6 +31,16 @@ const paymentSchema = new mongoose.Schema({
         required: true,
         default: Date.now
     },
+    event: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Event',
+        required: true
+    },
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
+    }
    
 });
 
