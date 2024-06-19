@@ -3,7 +3,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 110vh;
   width: 100vw;
  
   background-repeat: no-repeat;
@@ -13,7 +13,7 @@
 
 
 .container_register {
-  margin-top: 10vh;
+
   background-color: #0e172f;
   height: 100vh;
   width: 100vw;
@@ -57,12 +57,12 @@
 
 
 
-  .form-container h2 {
-    margin: 30px;
-    margin-top: -15px;
-    margin-left: -25px;
-    color:#fcfcfc;
-    font-size: 20px;
+  .form-container .form h2 {
+    
+  
+    margin-left: 170px;
+    color:#0e172f;
+    font-size: 30px;
 }
 .input-group {
   position: relative;
@@ -82,13 +82,16 @@
 .form-container .form input[type="email"],
 .form-container .form input[type="password"] {
     width: 100%;
-    padding: 10px;
+    padding: 10px 10px 10px 40px;
     margin-bottom: 10px;
     box-sizing: border-box;
     border: 1px solid #ccc;
+    background-color: transparent;;
     border-radius: 4px;
     margin-left: -14px;
+    color: white;
 }
+
 
 .log {
     background-color:#62c1d2;
@@ -98,7 +101,7 @@
     border-radius: 4px;
     cursor: pointer;
    width: 100%;
-   margin-left: -15px;
+   margin-left: 65px;
    margin-top: px;
 }
 
@@ -116,6 +119,7 @@
     width: 400px;
     height: 300px;
     margin-right: 120px;
+    margin-top: -220px;
 }
 
 
@@ -124,8 +128,13 @@
   text-decoration: none; /* Supprimer la soulignement par défaut */
   font-size: 16px; /* Taille de la police */
   font-weight: bold; /* Gras */
-  margin-left: 120px;
+  margin-left: 160px;
 }
+.Mot_de_passe_oublié{
+  color: #62c1d2;
+  margin-left: 160px;
+}
+
 
 .login-lien a:hover {
   text-decoration: underline; /* Souligner au survol */
@@ -147,13 +156,14 @@
 
 .remember-me input {
   margin-right: -180px;
-  margin-left: -200px;
+  margin-left: -130px;
 }
 
 .forgot-password {
-  margin-top: 30px;
-  margin-left: 100px;
+  margin-right: -180px;
+  margin-left: -10px;
   color: #ccc;
+
 }
 
 .forgot-password-button {
@@ -163,6 +173,7 @@
   text-decoration: underline;
   cursor: pointer;
   padding: 0;
+  margin-left: 170px;
 }
 
 .forgot-password-button:hover {
@@ -174,7 +185,7 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  width: 25vw;
+  width: 30vw;
 }
 
 

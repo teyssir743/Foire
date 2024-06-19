@@ -17,6 +17,7 @@ function EventGallery() {
   let config = token && {
     headers: {
       Authorization: `Bearer ${token.replace(/"/g, '')}`
+      //bearer edsdsdsdsd.sdsdsdsdsdsd.sdsdsdsd
     }
   };
 

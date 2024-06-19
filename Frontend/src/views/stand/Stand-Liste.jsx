@@ -11,13 +11,13 @@ function ListeStand1() {
   const navigate = useNavigate();
 
 
-const token = localStorage.getItem('token');
+  const token = localStorage.getItem('token');
 
-    let config = token && {
-        headers: {
-            Authorization: `Bearer ${token.replace(/"/g, '')}`
-        }
-    };
+  let config = token && {
+    headers: {
+      Authorization: `Bearer ${token.replace(/"/g, '')}`
+    }
+  };
 
   // Function to fetch stands from the backend
   const fetchStands = async () => {
@@ -42,7 +42,7 @@ const token = localStorage.getItem('token');
   // Function to delete a stand
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/stand/deleteStand/${id}`,config);
+      await axios.delete(`http://localhost:5000/api/stand/deleteStand/${id}`, config);
       toast.warn('Stand supprimé');
       setStands(stands.filter(stand => stand._id !== id)); // Update the list of stands after deletion
     } catch (error) {
@@ -64,23 +64,25 @@ const token = localStorage.getItem('token');
 
   return (
     <Dash>
-      <div className="stand-list-container">
+      <div >
         <ToastContainer />
-        
-        <button className="button-create" onClick={() => navigate(`/createStand`)}>Créer un stand</button>
-        <button onClick={handleUpdateAllStands} style={{marginLeft:'50px' , color:'white' , backgroundColor:'blue', height:'40px' , width:'400px'}}>Rendre tous les stands disponibles</button>
-         <div style={{ height: 400, width: '100%' }}>
+        <div style={{ marginTop: '3vh' }}>
+          <button className="button-create" onClick={() => navigate(`/createStand`)}>Créer un stand</button>
+          
+
+        </div>
+        <div style={{ height: 400, width: '100%' }}>
           <DataGrid
             rows={stands}
             columns={[
-              { field: '_id', headerName: 'ID', width: 200 },
-              { field: 'num', headerName: 'Numéro', width: 200 },
-              { field: 'nom', headerName: 'Nom', width: 200 },
-              { field: 'emplacement', headerName: 'Emplacement', width: 200 },
-              { field: 'taille', headerName: 'Taille', width: 200 },
-              { field: 'description', headerName: 'Description', width: 200 },
-              { field: 'etat', headerName: 'État', width: 200 },
-              { field: 'prixLocation', headerName: 'Prix de location', width: 200 },
+              { field: '_id', headerName: 'ID', width: 200},
+              { field: 'num', headerName: 'Numéro', width: 50 },
+              { field: 'nom', headerName: 'Nom', width: 100 },
+              { field: 'emplacement', headerName: 'Emplacement', width: 100 },
+              { field: 'taille', headerName: 'Taille', width: 100 },
+              { field: 'description', headerName: 'Description', width: 300 },
+              { field: 'etat', headerName: 'État', width: 100 },
+              { field: 'prixLocation', headerName: 'Prix de location', width: 100 },
               {
                 field: 'actions',
                 headerName: 'Actions',

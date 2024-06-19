@@ -58,10 +58,10 @@ function ListeReservation() {
             rows={reservations.map(reservation => ({ ...reservation, id: reservation._id }))}
             columns={[
               { field: 'id', headerName: 'ID', width: 200 },
-              { field: 'startDate', headerName: 'Date de début', width: 200 },
-              { field: 'endDate', headerName: 'Date de fin', width: 200 },
-              { field: 'stand', headerName: 'Stand', width: 200 },
-              { field: 'event', headerName: 'Événement', width: 200 },
+              { field: 'startDate', headerName: 'Date de début', width: 150 },
+              { field: 'endDate', headerName: 'Date de fin', width: 150 },
+              { field: 'stand', headerName: 'Stand', width: 150 },
+              { field: 'event', headerName: 'Événement', width: 150 },
               
               {
                 field: 'actions',

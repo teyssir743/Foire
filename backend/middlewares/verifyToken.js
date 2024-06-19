@@ -1,15 +1,18 @@
-// middlewares/auth.js
 const jwt = require('jsonwebtoken');
 
 const verifyToken = (req, res, next) => {
-  const token = req.headers['authorization'];
-  if (!token) return res.status(403).send('Token is required');
+  const authHeader = req.headers['authorization'];
+  const token = authHeader && authHeader.split(' ')[1];
 
-  jwt.verify(token, "secret", (err, decoded) => {
-    if (err) return res.status(500).send('Failed to authenticate token');
-    req.user = decoded;
+  if (!token) return res.sendStatus(401);
+
+  jwt.verify(token, "secret", (err, user) => {
+    if (err) return res.sendStatus(403);
+
+    req.user = user;
     next();
   });
 };
+
 
 module.exports = verifyToken;

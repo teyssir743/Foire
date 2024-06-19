@@ -2,8 +2,9 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import "../../style/réservation/CreateReservation.css";
 import TopBarHome from '../visiteur/TopBarHome';
+import "../../style/réservation/CreateReservation.css";
+
 import Footer from '../visiteur/Footer';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -20,15 +21,15 @@ function CreateReservation() {
 
   const eventStartDate = new Date(eventStartDateStr);
   const eventEndDate = new Date(eventEndDateStr);
-  const today = new Date(); // Obtenez la date actuelle
+  const today = new Date();
 
-  // Calculer la date minimale pour la réservation
-  const minStartDate = today > eventStartDate ? today : eventStartDate; // La date minimale est soit la date actuelle soit la date de début de l'événement, selon celle qui est la plus tardive
+  const minStartDate = today > eventStartDate ? today : eventStartDate;
 
   const isValidDate = (date) => !isNaN(date.getTime());
   const [startDate, setStartDate] = useState(isValidDate(minStartDate) ? minStartDate : new Date());
   const [endDate, setEndDate] = useState(isValidDate(eventEndDate) ? eventEndDate : new Date());
   const [standNum, setStandNum] = useState('');
+  const [errors, setErrors] = useState({});
 
   useEffect(() => {
     if (standId) {
@@ -36,21 +37,18 @@ function CreateReservation() {
     }
   }, [standId]);
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const token = localStorage.getItem('token');
-
   let config = token && {
     headers: {
       Authorization: `Bearer ${token.replace(/"/g, '')}`
     }
   };
 
-
   const fetchStandDetails = async (standId) => {
     try {
       const response = await axios.get(`http://localhost:5000/api/stand/listeStand/${standId}`, config);
-      console.log('Réponse de l\'API pour les détails du stand :', response); // Debug
       if (response.data && response.data.data && response.data.data.num !== undefined) {
         setStandNum(response.data.data.num);
       } else {
@@ -61,10 +59,22 @@ function CreateReservation() {
     }
   };
 
+  const validateForm = () => {
+    const newErrors = {};
+    if (!startDate) {
+      newErrors.startDate = "Ce champ est obligatoire";
+    }
+    if (!endDate) {
+      newErrors.endDate = "Ce champ est obligatoire";
+    }
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!startDate || !endDate || !standId || !eventId) {
+    if (!validateForm()) {
       toast.error('Veuillez remplir tous les champs requis.');
       return;
     }
@@ -78,7 +88,7 @@ function CreateReservation() {
       toast.error('Les dates de réservation doivent être dans la plage des dates de l\'événement.');
       return;
     }
-    const user = JSON.parse(localStorage.getItem('userData'))
+    const user = JSON.parse(localStorage.getItem('userData'));
 
     try {
       const reservationData = {
@@ -89,18 +99,20 @@ function CreateReservation() {
         user: user._id
       };
 
-      console.log('Données envoyées pour la réservation :', reservationData);
-
       const response = await axios.post('http://localhost:5000/api/reservation/createReservation', reservationData, config);
-
-      console.log('Réponse de la requête de réservation :', response);
       toast.success('Votre réservation a été enregistrée avec succès!');
-      navigate(`/payer/${eventId}/${user._id}`)
+      navigate(`/payer/${eventId}/${user._id}`);
 
     } catch (error) {
       console.error('Erreur lors de la réservation :', error);
       toast.error('Erreur lors de la réservation. Veuillez réessayer.');
     }
+  };
+
+  const errorStyle = {
+    color: 'red',
+    fontSize: '0.9em',
+    marginTop: '5px'
   };
 
   return (
@@ -114,18 +126,21 @@ function CreateReservation() {
             <h2>Réserver un stand !</h2>
             <label>Date de début de réservation </label>
             <DatePicker
-              selected={startDate} className='date'
+              selected={startDate}
+              className='date'
               onChange={(date) => setStartDate(date)}
               dateFormat="dd/MM/yyyy"
               selectsStart
               startDate={startDate}
               endDate={endDate}
-              minDate={minStartDate} // Définir la date minimale comme étant minStartDate
+              minDate={minStartDate}
               maxDate={eventEndDate}
-              required
+              
             />
+            {errors.startDate && <span style={errorStyle}>{errors.startDate}</span>}
             <label>Date de fin de réservation </label>
-            <DatePicker className='date'
+            <DatePicker
+              className='date'
               selected={endDate}
               onChange={(date) => setEndDate(date)}
               dateFormat="dd/MM/yyyy"
@@ -134,8 +149,9 @@ function CreateReservation() {
               endDate={endDate}
               minDate={startDate}
               maxDate={eventEndDate}
-              required
+              
             />
+            {errors.endDate && <span style={errorStyle}>{errors.endDate}</span>}
             <input className='date' type="text" value={`Stand sélectionné: Stand ${standNum}`} readOnly />
             <input className='date' type="text" value={`Événement sélectionné: ${eventName}`} readOnly />
             <button className='reserverb' type="submit">Réserver</button>
@@ -144,7 +160,6 @@ function CreateReservation() {
       </div>
       <Footer />
     </div>
-
   );
 }
 

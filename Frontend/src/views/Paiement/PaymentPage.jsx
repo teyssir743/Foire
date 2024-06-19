@@ -7,22 +7,36 @@ import '../../style/paiement/payer.css';
 import TopBarHome from '../visiteur/TopBarHome';
 import { useParams } from 'react-router-dom';
 
-
 const PaymentPage = () => {
   const [selectedCard, setSelectedCard] = useState('');
   const [cardNumber, setCardNumber] = useState('');
   const [expirationDate, setExpirationDate] = useState('');
   const [cvv, setCvv] = useState('');
   const [amount, setAmount] = useState('');
-  const [paymentDate, setPaymentDate] = useState(Date.now());
+  const [paymentDate, setPaymentDate] = useState(new Date().toISOString().split('T')[0]);
+
+  const [errors, setErrors] = useState({});
 
   const handleCardChange = (event) => {
     setSelectedCard(event.target.value);
   };
 
-  const { userId, eventId } = useParams()
+  const { userId, eventId } = useParams();
+
+  const validate = () => {
+    const newErrors = {};
+    if (!cardNumber) newErrors.cardNumber = 'Numéro de carte est requis';
+    if (!expirationDate) newErrors.expirationDate = 'Date d\'expiration est requise';
+    if (!cvv) newErrors.cvv = 'CVV est requis';
+    if (!amount) newErrors.amount = 'Montant est requis';
+    if (!selectedCard) newErrors.selectedCard = 'Type de carte est requis';
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
 
   const handleSubmit = () => {
+    if (!validate()) return;
+
     const paymentData = {
       selectedCard: selectedCard,
       cardNumber: cardNumber,
@@ -42,28 +56,22 @@ const PaymentPage = () => {
       }
     };
 
-
-    axios.post("http://localhost:5000/api/paiement/createPaiement", paymentData,config)
+    axios.post("http://localhost:5000/api/paiement/createPaiement", paymentData, config)
       .then((response) => {
-        // Gérer la réponse du backend si nécessaire
         console.log(response.data);
         toast.success("Paiement effectué avec succès !");
       })
       .catch((error) => {
-        // Gérer les erreurs de requête ou de traitement
         console.error(error);
         toast.error('Une erreur est survenue lors du paiement.');
       });
   };
 
   return (
-
     <div className="payment-page">
       <TopBarHome />
       <ToastContainer />
-
       <div className="payment-form text-black">
-
         <label htmlFor="cardNumber">Numéro de carte :</label>
         <input
           type="text"
@@ -73,6 +81,7 @@ const PaymentPage = () => {
           value={cardNumber}
           onChange={(e) => setCardNumber(e.target.value)}
         />
+        {errors.cardNumber && <span style={{ color: 'red' }}>{errors.cardNumber}</span>}
 
         <label htmlFor="expirationDate">Date d'expiration :</label>
         <input
@@ -83,6 +92,7 @@ const PaymentPage = () => {
           value={expirationDate}
           onChange={(e) => setExpirationDate(e.target.value)}
         />
+        {errors.expirationDate && <span style={{ color: 'red' }}>{errors.expirationDate}</span>}
 
         <label htmlFor="cvv">CVV :</label>
         <input
@@ -93,6 +103,7 @@ const PaymentPage = () => {
           value={cvv}
           onChange={(e) => setCvv(e.target.value)}
         />
+        {errors.cvv && <span style={{ color: 'red' }}>{errors.cvv}</span>}
 
         <label htmlFor="amount">Montant :</label>
         <input
@@ -103,8 +114,8 @@ const PaymentPage = () => {
           value={amount}
           onChange={(e) => setAmount(e.target.value)}
         />
+        {errors.amount && <span style={{ color: 'red' }}>{errors.amount}</span>}
 
-        {/* Champ de date de paiement pré-rempli */}
         <label htmlFor="paymentDate">Date de paiement :</label>
         <input
           type="date"
@@ -112,8 +123,6 @@ const PaymentPage = () => {
           name="paymentDate"
           value={paymentDate}
           onChange={(e) => setPaymentDate(e.target.value)}
-
-
         />
 
         <div className="card-selector">
@@ -165,11 +174,11 @@ const PaymentPage = () => {
             <FaCcAmex className="payment-icon" />
           </label>
         </div>
+        {errors.selectedCard && <span style={{ color: 'red' }}>{errors.selectedCard}</span>}
 
         <button className='text-white border border-black px-4 bg-green-600' type="button" onClick={handleSubmit}>Payer</button>
       </div>
     </div>
-
   );
 };
 

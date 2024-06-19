@@ -26,7 +26,7 @@ function DashSideMenu() {
   const navigate = useNavigate();
 
   const menuItems = [
-    { key: '/', icon: <HomeOutlined style={styles.icon} />, title: "Accueil" },
+   // { key: '/', icon: <HomeOutlined style={styles.icon} />, title: "Accueil" },
     { key: '/DashbordPage', icon: <AppstoreOutlined style={styles.icon} />, title: "Tableau de bord" },
 
     { key: '/listeUser', icon: <TeamOutlined style={styles.icon} />, title: "Exposant" },
@@ -36,6 +36,7 @@ function DashSideMenu() {
     { key: '/ListeReservation', icon: <ScheduleFilled style={styles.icon} />, title: "Réservation" },
     { key: '/ListeDePaiement', icon: <DollarCircleOutlined style={styles.icon} />, title: "Paiement" },
     { key: '/invitation', icon: <MailOutlined style={styles.icon} />, title: "Invitation" },
+    { key: '/admin_profile', icon: <QuestionCircleOutlined style={styles.icon} />, title: "Profile" },
     { key: '/faq', icon: <QuestionCircleOutlined style={styles.icon} />, title: "FAQ" },
   ];
 

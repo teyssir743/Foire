@@ -150,4 +150,39 @@ const askForResetPassword = async (req, res) => {
 }
 
 
-module.exports = { login, register, activation, resetPassword, askForResetPassword }
+const updateUser = async (req, res) => {
+    console.log(req.body)
+    if (req.body.password?.length > 0) {
+        let newUser = new User(req.body)
+
+        bcrypt.genSalt(10, (err, salt) => {
+            if (err) {
+                console.log(err)
+            }
+            bcrypt.hash(req.body.password, salt, async (err, hashedPassword) => {
+
+                if (err) {
+                    console.log(err)
+                }
+
+                newUser.password = hashedPassword
+                await User.findOneAndUpdate({ _id: req.params.id }, newUser)
+
+                const user = await User.findOne({ _id: req.params.id })
+                res.json({ user: user })
+
+            })
+        })
+    } else {
+        await User.findOneAndUpdate({ _id: req.params.id }, req.body)
+
+        const user = await User.findOne({ _id: req.params.id })
+        delete user.password
+        res.json({ user: user })
+    }
+
+
+}
+      
+
+module.exports = { login, register, activation, resetPassword, askForResetPassword, updateUser }        

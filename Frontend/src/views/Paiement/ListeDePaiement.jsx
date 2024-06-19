@@ -42,24 +42,25 @@ function ListePaiements() {
         console.error("Erreur lors de la suppression du paiement :", error);
       });
   };
+//;<button className='button-create' onClick={() => navigate(`/Payment_admin`)}>Créer un paiement</button>
 
   return (
     <Dash>
       <div >
         <ToastContainer />
 
-        <button className="button-create" onClick={() => navigate(`/Payment_admin`)}>Créer un paiement</button>
+        
         <div style={{ height: 400, width: '100%' }}>
           <DataGrid
             rows={paiements.map(paiement => ({ ...paiement, paymentDate: new Date(paiement.paymentDate).toLocaleDateString('fr-FR'), id: paiement._id }))}
             columns={[
-              { field: 'id', headerName: 'ID ', width: 200 },
-              { field: 'amount', headerName: 'Montant', width: 200 },
-              { field: 'paymentDate', headerName: 'Date de paiement', width: 200 },
-              { field: 'cardNumber', headerName: 'Numéro de carte', width: 200 },
-              { field: 'expirationDate', headerName: 'Date d\'expiration', width: 200 },
+              { field: 'id', headerName: 'ID ', width: 100 },
+              { field: 'amount', headerName: 'Montant', width: 100 },
+              { field: 'paymentDate', headerName: 'Date de paiement', width: 100 },
+              { field: 'cardNumber', headerName: 'Numéro de carte', width: 150 },
+              { field: 'expirationDate', headerName: 'Date d\'expiration', width: 100 },
               { field: 'cvv', headerName: 'CVV', width: 200 },
-              { field: 'selectedCard', headerName: 'Carte sélectionnée', width: 200 },
+              { field: 'selectedCard', headerName: 'Carte sélectionnée', width: 100 },
               {
                 field: 'actions',
                 headerName: 'Actions',

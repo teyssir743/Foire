@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import  { useState, useEffect } from 'react';
 import axios from 'axios';
 import clsx from 'clsx';
+import standimage from '../../image/stand2.png'
 import { Link, useLocation } from 'react-router-dom';
 import "../../style/stand/Gallerystand.css";
 import TopBarHome from '../visiteur/TopBarHome';
@@ -48,6 +49,10 @@ export default function Gallerystand() {
     return (
         <div style={{width:'100vw'}} className="container-stand">
             <TopBarHome />
+            <div className='image-stand' style={{width:'350px', marginTop:'150px'}}>
+                <img src={standimage} alt="stand" />
+                 
+            </div>
             <div className="stands-grid">
                 {stands.map((stand, index) => (
                     <div

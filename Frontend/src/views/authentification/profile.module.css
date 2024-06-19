@@ -1,0 +1,120 @@
+.containerFluid {
+  margin-top: 5rem;
+  display: flex;
+  width: 80vw;
+  color:white;
+  background-color: #0e172f;
+}
+
+.rowCenter {
+  justify-content: center;
+}
+
+.col4 {
+  flex-direction: column;
+  align-items: center;
+}
+
+.imgSize {
+  width: 75%;
+  height: 75%;
+}
+
+.mt4 {
+  margin-top: 1rem;
+}
+
+.col6 {
+  width: 50%;
+}
+
+.btnPrimary {
+  margin-top: 5rem;
+  background-color: #007bff;
+  color: white;
+}
+
+
+
+.mb2 {
+  margin-bottom: 0.5rem;
+}
+
+.textWhite {
+  color: white;
+}
+
+.p2 {
+  padding: 0.5rem;
+}
+
+.m4 {
+  margin: 1rem;
+}
+
+.textCenter {
+  text-align: center;
+}
+
+.formRow {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.formRow div {
+  width: 45%;
+}
+
+.formGroup {
+  margin-top: 1rem;
+  margin-right: 1rem;
+}
+
+.col5 {
+  width: 41.66667%;
+}
+
+.col8 {
+  width: 66.66667%;
+  margin-left: 20vw;
+}
+
+.col4 {
+  width: 33.33333%;
+}
+
+.col12 {
+  width: 100%;
+}
+
+.btnLg {
+  padding: 0.5rem 1rem;
+  font-size: 1.25rem;
+  border-radius: 0.3rem;
+}
+
+.colMd5 {
+  width: 41.66667%;
+}
+
+.btnDanger {
+  background-color: #dc3545;
+  color: white;
+}
+
+.mb4 {
+  margin-bottom: 1rem;
+}
+
+.offset3 {
+  margin-left: 25%;
+}
+
+.mt5 {
+  margin-top: 5rem;
+}
+
+
+input {
+  color: white !important;;
+}

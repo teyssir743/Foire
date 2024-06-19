@@ -1,5 +1,6 @@
 import '../dash-bord/Dash-style/dash.css';
 import profil from '../../image/profil.png';
+import logo from '../../image/3.png';
 
 import { Space } from 'antd';
 import { ToastContainer, toast } from 'react-toastify';
@@ -22,6 +23,7 @@ function DashHeader() {
   return (
     <div className="dash-Header" >
       <ToastContainer />
+      <img src={logo} alt="logo" style={{width:'200px' , marginRight:'10px', marginLeft:'-120px'}} />
       <img width={50} src={profil} alt="profil" />
       <h1 style={{ color: '#f0f0f0', textAlign: 'center', marginBottom: '30px', fontSize: '32px', marginTop: '15px' }}>Bienvenue sur votre Dashboard !</h1>
 

@@ -13,4 +13,7 @@ router.post('/ask_for_reset_password', authController.askForResetPassword)
 
 router.post('/reset_password/:id', authController.resetPassword)
 
+router.put('/update_user/:id', authController.updateUser)
+
+
 module.exports = router;

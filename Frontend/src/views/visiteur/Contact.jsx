@@ -34,7 +34,7 @@ const Contact = () => {
           />
         </svg>
       ),
-      contact: 'Support@example.com',
+      contact: 'FuturEvent@gmail.com',
     },
     {
       icon: (
@@ -52,7 +52,7 @@ const Contact = () => {
           />
         </svg>
       ),
-      contact: '+1 (555) 000-000',
+      contact: '28478702',
     },
     {
       icon: (

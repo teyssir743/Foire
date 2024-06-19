@@ -1,86 +1,37 @@
 
 const express = require('express');
 const router = express.Router(); 
-const eventModel=require('../Models/Event');
 const upload = require('../middlewares/multer-config');
+const eventController = require('../Controller/eventController')
 
-router.get('/listeEvent1', (req, res) => {
-  eventModel.find({}).then((result) => {
-    res.json(result); // Envoyez directement les données sans les envelopper dans un objet
-  }).catch((error) => {
-    res.status(500).json({ error: error.message });
-  });
-});
+router.get('/listeEvent1',eventController.listEvents1 );
 
 //liste event
-router.get('/listeEvent',(req,res)=>
-      {eventModel.find({}).then((result)=>{res.json({data: result});
-    });
-       });
+router.get('/listeEvent',eventController.listEvent);
 
 
 
 // recherche by id 
-router.get("/listeEvent/:id",(req,res)=>
-{ //eventModel.find({_id: req.params.id})
-  eventModel.findById(req.params.id)
-  .then((result)=>{
-    if(result){res.json({data:result});}
-    else{res.json({error:"veuillez verifier l'id"});
-  }
-  });
-});
+router.get("/listeEvent/:id",eventController.getEventById);
  
 
 // create event 
-router.post('/createEvent',upload,async(req,res)=>
-    {
-   const newEvent = new eventModel({...req.body,image:`${req.file.filename}`});
-   await newEvent.save().then(()=>{res.json({msg : "event enregistré avec success"});
-}).catch((err)=>{console.log(err);
-});
-});
+router.post('/createEvent',upload,eventController.createEvent);
 
 
 
 // update event : mise a jour 
-router.put("/updateEvent/:id",(req,res)=>{
-eventModel.findByIdAndUpdate(req.params.id, req.body)
-.then(()=>{res.json({msg:"mise a jour bien avec succes !"});
-});
-});
+router.put("/updateEvent/:id",eventController.updateEvent);
 
 
 
 // delete event 
-router.delete("/deleteEvent/:id",(req,res)=>{
-  eventModel.findByIdAndDelete(req.params.id).then(()=>{
-    res.json({msg: "event supprimée avec succes "})
-  });
-});
+router.delete("/deleteEvent/:id",eventController.deleteEvent);
 
-router.get('/events', async (req, res) => {
-  try {
-    const events = await Event.find({});
-    res.json({ data: events });
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-});
+router.get('/events',eventController.getEvents );
 
 // Route to get event by ID
-router.get('/events/:id', async (req, res) => {
-  try {
-    const event = await Event.findById(req.params.id);
-    if (event) {
-      res.json({ data: event });
-    } else {
-      res.status(404).json({ error: "Event not found" });
-    }
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-});
+router.get('/events/:id',eventController.getEventById2);
 
 
 

@@ -70,16 +70,16 @@ function ListeUsers() {
             <DataGrid
               rows={users}
               columns={[
-                { field: 'id', headerName: 'ID', width: 200 },
+                { field: 'id', headerName: 'ID', width: 50 },
                 { field: 'role', headerName: 'Role', width: 200 },
 
                 { field: 'username', headerName: 'Username', width: 200 },
-                { field: 'lastname', headerName: 'Lastname', width: 200 },
-                { field: 'email', headerName: 'Email', width: 500 },
+                { field: 'lastname', headerName: 'Lastname', width: 100 },
+                { field: 'email', headerName: 'Email', width: 300 },
                 {
                   field: 'actions',
                   headerName: 'Actions',
-                  width: 500,
+                  width: 200,
                   renderCell: (params) => (
                     <>
                       <button className="buttonUpdate" onClick={() => navigate(`/updateUser/${params.row._id}`)}>Update</button>

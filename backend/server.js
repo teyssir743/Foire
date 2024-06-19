@@ -33,41 +33,28 @@ app.use('/api/log', LoginRoute);
 
 
 const EventRoute = require('./route/EventRoute');
-app.use('/api/event', EventRoute);
+app.use('/api/event', verifyToken, EventRoute);
 
 
-// Montez le routeur standRoute sous le préfixe '/api'
 const StandRoute = require('./route/StandRoute');
-app.use('/api/stand', StandRoute);
+app.use('/api/stand', verifyToken, StandRoute);
 
-
-
-// Montez le routeur invitationRoute sous le préfixe '/api'
 const InvitationRoute = require('./route/InvitationRoute');
-app.use('/api/invitation', InvitationRoute);
-     
+app.use('/api/invitation', verifyToken, InvitationRoute);
 
-// Montez le routeur UserRoute sous le préfixe '/api'
+
 const UserRoute = require('./route/UserRoute');
-app.use('/api/user', UserRoute);
+app.use('/api/user', verifyToken, UserRoute);
 
-// Montez le routeur reservationRoute sous le préfixe '/api'
 const ReservationRoute = require('./route/ReservationRoute');
-app.use('/api/reservation', ReservationRoute);
+app.use('/api/reservation', verifyToken, ReservationRoute);
 
-// Montez le routeur paiementRoute sous le préfixe '/api'
 const PaiementRoute = require('./route/paiementRoute');
-app.use('/api/paiement', PaiementRoute);
+app.use('/api/paiement', verifyToken, PaiementRoute);
 
-
-// Montez le routeur adminRoute sous le préfixe '/api'
 const AdminRoute = require('./route/AdminRoute');
-app.use('/api/admin', AdminRoute);
+app.use('/api/admin', verifyToken, AdminRoute);
 
-
-
-
-// Montez le routeur Foire Route sous le préfixe '/api'
 const FoireRoute = require('./route/FoireRoute');
 app.use('/api/foire', verifyToken, FoireRoute);
 

@@ -79,17 +79,8 @@ function Register_admin() {
                                 <div style={styles.inputContainer}>
                                     <input placeholder="Mot de passe" type="password" name="password" value={user.password} onChange={handleChange} style={styles.input} />
                                 </div>
-                                <div style={styles.radioButtons}>
-                                    <input type="radio" id="admin" name="role" value="admin" checked={user.role === 'admin'} onChange={handleChange} />
-                                    <label htmlFor="admin" style={user.role === 'admin' ? styles.radioLabelSelected : styles.radioLabel}>Admin</label>
-                                    <input type="radio" id="exposant" name="role" value="exposant" checked={user.role === 'exposant'} onChange={handleChange} />
-                                    <label htmlFor="exposant" style={user.role === 'exposant' ? styles.radioLabelSelected : styles.radioLabel}>Exposant</label>
-                                </div>
-                                {user.role === 'admin' && (
-                                    <div style={styles.inputContainer}>
-                                        <input placeholder="Clé secrète" type="password" name="secretKey" value={user.secretKey} onChange={handleChange} style={styles.input} />
-                                    </div>
-                                )}
+                               
+                                
                                 <div style={styles.buttonContainer}>
                                     <button type="submit" style={styles.submitButton}>Créer utilisateur</button>
                                 </div>

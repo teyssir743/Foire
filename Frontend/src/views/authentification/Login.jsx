@@ -3,17 +3,20 @@ import axios from 'axios';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import '../../style/login/login.css';
-import emailIcon from '../../icone/mail.png';
-import passwordIcon from '../../icone/pass.png';
-import TopBarHome from '../visiteur/TopBarHome';
 import { MdEmail } from "react-icons/md";
 import { RiLockPasswordFill } from "react-icons/ri";
 import { useNavigate } from 'react-router-dom';
+import TopBarHome from '../visiteur/TopBarHome';
+
+
+
 
 function Login() {
     const [user, setUser] = useState({ email: '', password: '' });
     const [rememberMe, setRememberMe] = useState(false);
-    const navigate = useNavigate()
+    const [errors, setErrors] = useState({});
+    const navigate = useNavigate();
+
     const handleChange = (e) => {
         const { name, value } = e.target;
         setUser(prevUser => ({ ...prevUser, [name]: value }));
@@ -23,61 +26,62 @@ function Login() {
         setRememberMe(prev => !prev);
     };
 
+    const validateForm = () => {
+        const newErrors = {};
+        if (!user.email) {
+            newErrors.email = "Ce champ est obligatoire";
+        }
+        if (!user.password) {
+            newErrors.password = "Ce champ est obligatoire";
+        }
+        setErrors(newErrors);
+        return Object.keys(newErrors).length === 0;
+    };
+
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(user)
+        if (!validateForm()) return;
+
         axios.post('http://localhost:5000/api/auth/login', user)
             .then(response => {
                 if (response.data.msg) {
-                    console.log('Token:', response.data.token);
                     toast.success('Connexion réussie !');
-                    if (rememberMe) {
-                        localStorage.setItem('token', response.data.token);
-                        localStorage.setItem('userData', JSON.stringify(response.data.user))
-                    } else {
-                        localStorage.setItem('token', response.data.token);
-                        localStorage.setItem('userData', JSON.stringify(response.data.user))
-                    }
+                    localStorage.setItem('token', response.data.token);
+                    localStorage.setItem('userData', JSON.stringify(response.data.user));
+
                     setTimeout(() => {
-                        if (response.data.user.role == "exposant") {
-                            navigate('/EventGallery')
-                        } else if (response.data.user.role == "admin") {
-                            navigate('/DashbordPage')
+                        if (response.data.user.role === "exposant") {
+                            navigate('/EventGallery');
+                        } else if (response.data.user.role === "admin") {
+                            navigate('/DashbordPage');
                         }
-
                     }, 2000);
-
                 } else {
                     toast.error(response.data.error);
-
                 }
-
             })
             .catch(error => {
                 console.error(error);
-
+                toast.error('Erreur lors de la connexion. Veuillez réessayer.');
             });
     };
 
     const handleForgotPassword = () => {
         axios.post('http://localhost:5000/api/auth/ask_for_reset_password', { email: user.email })
-            .then(response => {
+            .then(() => {
                 toast.success('Un code de récupération a été envoyé à votre adresse email.');
             })
-            .catch(error => {
+            .catch(() => {
                 toast.error('Erreur lors de l\'envoi du code de récupération. Veuillez réessayer.');
             });
     };
 
     useEffect(() => {
-        let user = localStorage.getItem('userData')
-
+        const user = localStorage.getItem('userData');
         if (user) {
-            return navigate('/')
+            navigate('/');
         }
-
-    })
-
+    }, [navigate]);
 
     return (
         <div>
@@ -86,31 +90,44 @@ function Login() {
                 <div className="flex-container">
                     <div className="form-container">
                         <ToastContainer />
-                        <form className="form" onSubmit={handleSubmit}>
+                        <form className="form " onSubmit={handleSubmit}>
                             <h2>Connexion</h2>
                             <div className="input_group">
-                                <div><MdEmail size={35} /></div> <div><input
-
+                                <MdEmail size={35} />
+                                <input
                                     type="email"
                                     name="email"
                                     value={user.email}
                                     onChange={handleChange}
                                     placeholder='Email'
-                                    required
-                                /></div>
+                                    style={{ marginLeft: '2vw' }}
+
+                                />
                             </div>
+                            {errors.email && <span style={{
+                                color: "red",
+                                fontSize: "0.9em",
+                                marginTop: '5px'
+                            }}>{errors.email}</span>}
                             <br />
                             <div className="input_group">
-                                <div>  <RiLockPasswordFill size={35} /></div>
-                                <div><input
+                                <RiLockPasswordFill size={35} />
+                                <input
                                     type="password"
                                     name="password"
                                     value={user.password}
                                     onChange={handleChange}
                                     placeholder='Mot de passe'
-                                    required
-                                /></div>
+                                    style={{ marginLeft: '2vw' }}
+
+
+                                />
                             </div>
+                            {errors.password && <span style={{
+                                color: "red",
+                                fontSize: "0.9em",
+                                marginTop: '5px'
+                            }}>{errors.password}</span>}
                             <br />
                             <div className="remember-me">
                                 <input
@@ -127,8 +144,10 @@ function Login() {
                                 <p>ou bien </p>
                                 <a href="/register">créer un compte</a>
                             </div>
+                           <br/> 
+                            <p className='Mot_de_passe_oublié'>Mot de passe oublié ?</p>
                             <div className='forgot-password'>
-                                <p>Mot de passe oublié ?</p>
+                                
                                 <button type="button" onClick={handleForgotPassword} className='forgot-password-button'>Réinitialiser le mot de passe</button>
                             </div>
                         </form>

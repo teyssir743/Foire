@@ -1,80 +1,105 @@
-/* auth.css */
+/* Register.css */
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
 
-.container-compte{
+
+
+.register{
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  height: 100vh;
-  padding: 0 20px; /* Ajoute un peu d'espace sur les côtés */
- margin-left: -800px;
+  height: auto;
+  width: 1519px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: #0e172f;
   
 }
 
 
 
-.welcome-section {
-  text-align: center;
-  margin-bottom: 20px;
-  background-color: #ffa7a6;
-  margin-top: 150px;
-  width: 365%;
-  height: 80px;
+.welcom-section {
+    background-color: transparent;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 900px;
+ 
 }
 
+.welcomSection {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #0e172f;
+    background-color:#4299e1 ;
+    margin-top: 119px;
+    width: 1590px;
+ margin-left: -400px;
+    
 
-.form-section {
-  width: 100%;
-  max-width: 400px;
-  margin-left: 20px;
 }
 
-.formulaire-register {
-  display: flex;
-  flex-direction: column;
-  margin-left: 80px;
+.welcomSection h2 {
+    font-size: 2rem;
+    font-weight: 700;
 }
 
-
-
-.formulaire-register input {
-  padding: 10px;
-  margin-bottom: 15px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
+.welcomSection p {
+    color: #0e172f;
 }
 
-.formulaire-register button {
-  padding: 10px 20px;
-  background-color: #826bc1;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  font-size: 16px;
-  cursor: pointer;
+.formulaire-create {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
 }
 
-.formulaire-register button:hover {
-  background-color: #826bc1;
+.formulaire-create form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
-
-.form-section.image-register {
-  margin-top: 20px;
-  width: 10%;
-  border-radius: 8px;
+.input {
+    display: flex;
+    flex-direction: column;
 }
 
-.image-register {
-  margin-top: 20px;
-  width: 800px; /* Réglez la largeur de l'image en fonction de vos besoins */
-  border-radius: 8px;
+.input input {
+    border: 1px solid #4299e1;
+    padding: 10px;
+    border-radius: 5px;
+    width: 50%;
+    margin-left: -250px;
+}
+
+.text-red-500 {
+    color: #f56565;
+    font-size: 0.875rem;
+}
+
+.crete-user {
+    background-color: #4299e1;
+    color: #ffffff;
+    width: 50%;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    margin-left: -250px;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.crete-user:hover {
+    background-color: #2b6cb0;
 }
 
 .image-register img {
-  width: 500px;
-  height: auto;
-  border-radius: 8px; /* Ajoutez également la bordure arrondie à l'image elle-même */
-margin-left: 150px;
-margin-top: -450px;
+    margin-top: -400px;
+    margin-left: 300px;
+    width: 800px;
+    height: 500px;
 
 }

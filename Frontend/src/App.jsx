@@ -92,6 +92,8 @@ import Payment_admin from './views/dash-bord/Payment_admin';
 import ProtectedExpoRoute from './views/layout/ProtectedExpoRoutes';
 import Unauthorized from './views/layout/unauthorized';
 import ProtectedAdminRoute from './views/layout/ProtectedAdminRoutes';
+import AdminProfile from './views/authentification/AdminProfile';
+import ExposantProfile from './views/authentification/ExposantProfile';
 
 
 
@@ -151,10 +153,13 @@ function App() {
         <Route path='/DashContent' element={<DashContent />} />
         <Route path='/dash' element={<Dash />} />
         <Route path='/DashbordPage' element={<ProtectedAdminRoute><DashbordPage /></ProtectedAdminRoute>} />
+        <Route path='/admin_profile' element={<ProtectedAdminRoute><AdminProfile /></ProtectedAdminRoute>} />
+
         <Route path='/CalendrierDash' element={<CalendrierDash />} />
         <Route path='/Faq' element={<Faq />} />
 
 
+        <Route path='/expo_profile' element={<ProtectedExpoRoute><ExposantProfile /></ProtectedExpoRoute>} />
 
 
 

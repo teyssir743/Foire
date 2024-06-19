@@ -10,13 +10,23 @@ const HomePage = () => {
     return (
        <div>
        
+       <div className='stand-front'>
+       <div className="des">
+       <h2>Bienvenue dans notre plateforme Futur Event </h2>
+       <Link to="/login">
+                      <button    className="get-started-button">get-started</button>
+                     </Link>
+                      
+                      
+                     </div>
+       </div>
        
 
 
             <div className='container'>
                  
                     <div className="description">
-                      <h2>Bienvenue sur notre plateforme de gestion de foires !</h2>
+                     
                       
                       <p>Planifiez, gérez et réservez en ligne vos expositions avec facilité.</p>
                       <Link to="/vue">

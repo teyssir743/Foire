@@ -58,12 +58,11 @@ function ListeEvent() {
             rows={events}
             columns={[
               //{ field: 'id', headerName: 'ID', width: 200 },
-              { field: 'id', headerName: 'id', width: 200 },
+              { field: 'id', headerName: 'id', width: 50 },
               { field: 'titre', headerName: 'Titre', width: 200 },
-              { field: 'date_debut', headerName: 'Date de début', width: 200, valueFormatter: ({ value }) => formatDate(value) },
-              { field: 'date_fin', headerName: 'Date de fin', width: 200, valueFormatter: ({ value }) => formatDate(value) },
-              { field: 'etat', headerName: 'etat', width: 200 },
-              { field: 'description', headerName: 'Description', width: 255 },
+              { field: 'date_debut', headerName: 'Date de début', width: 100, valueFormatter: ({ value }) => formatDate(value) },
+              { field: 'date_fin', headerName: 'Date de fin', width: 100, valueFormatter: ({ value }) => formatDate(value) },
+              { field: 'description', headerName: 'Description', width: 505 },
               {
                 field: 'actions',
                 headerName: 'Actions',
